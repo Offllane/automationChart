@@ -4,9 +4,42 @@
   align-items: center;
   width: 200px;
   height: 80px;
-  background-color: coral;
   color: black;
   border-radius: 10px;
+  background-color: whitesmoke;
+  box-shadow: inset -5px -5px 5px 0 rgba(0, 0, 0, 0.05), inset 5px 5px 5px 0 rgba(255, 255, 255, 0.5);
+}
+
+.parent-node {
+  position: relative;
+  padding-left: 200px;
+}
+.parent-node .child-node {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.child-node:before {
+  content: "";
+  position: absolute;
+  height: 40px;
+  width: 100px;
+  border-left: 3px solid black;
+  border-bottom: 3px solid black;
+  margin-left: -100px;
+}
+
+.child-node:after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  border-left: 3px solid black;
+  top: 30px;
+  margin-left: -100px;
+}
+
+.child-node:last-child:after {
+  content: none;
 }
 
 /*# sourceMappingURL=chart-item.component.css.map */

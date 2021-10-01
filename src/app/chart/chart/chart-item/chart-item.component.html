@@ -1,3 +1,10 @@
 <div class="chart-item-card">
-  hello there
+  {{employee.id}} {{employee.firstname}} {{employee.lastname}}
+</div>
+
+<div class="parent-node">
+
+  <div class="child-node" *ngFor="let employee of employee.subordinates">
+    <app-chart-item  [employee]="employee"></app-chart-item>
+  </div>
 </div>
