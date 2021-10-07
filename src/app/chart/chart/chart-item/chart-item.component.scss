@@ -2,6 +2,7 @@ $card-width: 200px;
 $card-height: 80px;
 $card-padding-left: 0px;
 $card-height-margin: 30px;
+$shadow-size: 3px;
 
 .chart-item-card {
   display: flex;
@@ -11,55 +12,39 @@ $card-height-margin: 30px;
   height: $card-height;
   color: black;
   border-radius: 10px;
-  background-color: whitesmoke;
-  box-shadow:inset -5px -5px 5px 0 rgba(0,0,0,.05),
-  inset 5px 5px 5px 0 rgba(255,255,255,0.5);
+  background-color: #D0F2FF;
+  box-shadow:inset -3px -3px 3px 0 rgba(0, 35, 148,.2), // TODO $shadow-size (for now it's hardcoded 3px but should add it as variable
+  inset 3px 3px 3px 0 rgba(255,255,255,0.5);
+  transition-duration: .3s;
+  cursor: pointer;
+}
+.chart-item-card:hover {
+  box-shadow:inset 3px 3px 3px 0 rgba(0, 35, 148,.2),
+  inset -3px -3px 3px 0 rgba(255,255,255,0.5);
+  transition-duration: .3s;
 }
 
-.parent-node {
+.parent-node-vertical {
   position: relative;
   padding-left: $card-width + $card-padding-left;
 
-  .child-node {
+  .child-node-vertical {
     position: relative;
     margin-bottom: $card-height-margin;
   }
 }
 
-// TODO should delete it after tests with different tree types
-//.parent-node:before {
-//  content: '';
-//  position: absolute;
-//  height: 100%;
-//  border-left: 3px solid black;
-//  margin-left: -$card-width / 2;;
-//  z-index: 4;
-//}
-
-//.parent-node:after {
-//  content: '';
-//  position: absolute;
-//  height: $card-height-margin;
-//  border-left: 3px solid black;
-//  top: 100%;
-//  margin-left: -$card-width / 2;
-//}
-
-//.parent-node:nth-child(2):before, .parent-node:nth-child(2):after {
-//  content: none;
-//}
-
-.child-node:before {
+.child-node-vertical:before {
   content: '';
   position: absolute;
   height: $card-height / 2;
-  width: $card-width / 2;
+  width: $card-width / 2 - $shadow-size;
   border-left: 3px solid black;
   border-bottom: 3px solid black;
   margin-left: -$card-width / 2;
 }
 
-.child-node:after {
+.child-node-vertical:after {
   content: '';
   position: absolute;
   height: 100%;
@@ -68,6 +53,6 @@ $card-height-margin: 30px;
   margin-left: -$card-width / 2;
 }
 
-.child-node:last-child:after {
+.child-node-vertical:last-child:after {
   content: none;
 }

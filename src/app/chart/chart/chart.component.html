@@ -1,7 +1,5 @@
-<p>chart works!</p>
-<div class="parent-node">
-
-  <div class="child-node" *ngFor="let employee of employeesArray">
+<div>
+  <div *ngFor="let employee of employeesArray">
     <app-chart-item [employee]="employee"></app-chart-item>
   </div>
 </div>

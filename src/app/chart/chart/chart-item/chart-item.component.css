@@ -6,30 +6,37 @@
   height: 80px;
   color: black;
   border-radius: 10px;
-  background-color: whitesmoke;
-  box-shadow: inset -5px -5px 5px 0 rgba(0, 0, 0, 0.05), inset 5px 5px 5px 0 rgba(255, 255, 255, 0.5);
+  background-color: #D0F2FF;
+  box-shadow: inset -3px -3px 3px 0 rgba(0, 35, 148, 0.2), inset 3px 3px 3px 0 rgba(255, 255, 255, 0.5);
+  transition-duration: 0.3s;
+  cursor: pointer;
 }
 
-.parent-node {
+.chart-item-card:hover {
+  box-shadow: inset 3px 3px 3px 0 rgba(0, 35, 148, 0.2), inset -3px -3px 3px 0 rgba(255, 255, 255, 0.5);
+  transition-duration: 0.3s;
+}
+
+.parent-node-vertical {
   position: relative;
   padding-left: 200px;
 }
-.parent-node .child-node {
+.parent-node-vertical .child-node-vertical {
   position: relative;
   margin-bottom: 30px;
 }
 
-.child-node:before {
+.child-node-vertical:before {
   content: "";
   position: absolute;
   height: 40px;
-  width: 100px;
+  width: 97px;
   border-left: 3px solid black;
   border-bottom: 3px solid black;
   margin-left: -100px;
 }
 
-.child-node:after {
+.child-node-vertical:after {
   content: "";
   position: absolute;
   height: 100%;
@@ -38,7 +45,7 @@
   margin-left: -100px;
 }
 
-.child-node:last-child:after {
+.child-node-vertical:last-child:after {
   content: none;
 }
 

@@ -1,0 +1,22 @@
+<header>
+  <div class="header-logo">
+    <div class="logo-name">
+      LOGO
+    </div>
+    <div class="header-name">
+      ChartAutomation
+    </div>
+  </div>
+
+  <div class="header-controls">
+    <div class="switch-tree-type-buttons">
+      <div [ngClass]="{ active: treeType === 'vertical'}"
+           class="vertical-tree tree-type-switch"
+          (click)="switchTreeType('vertical')">1</div>
+      <div [ngClass]=" { active: treeType === 'horizontal'}"
+           class="horizontal-tree tree-type-switch"
+           (click)="switchTreeType('horizontal')">2</div>
+    </div>
+  </div>
+</header>
+

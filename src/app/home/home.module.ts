@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartModule} from "../chart/chart.module";
+import { SharedModule} from "../shared/shared.module";
 import { HomeComponent } from './home/home.component';
 
 
@@ -11,7 +12,8 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     CommonModule,
-    ChartModule
+    ChartModule,
+    SharedModule
   ],
   exports: [
     HomeComponent
