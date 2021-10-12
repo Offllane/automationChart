@@ -2,7 +2,9 @@
   {{employee.id}} {{employee.firstname}} {{employee.lastname}}
 </div>
 
-<div [ngClass]="{
+<div
+  *ngIf="employee.subordinates.length"
+  [ngClass]="{
       'parent-node-vertical': treeType === 'vertical',
       'parent-node-horizontal': treeType === 'horizontal'
      }" class="parent-node-vertical">
@@ -12,6 +14,11 @@
       'child-node-horizontal': treeType === 'horizontal'
      }"
        *ngFor="let employee of employee.subordinates">
-    <app-chart-item  [employee]="employee"></app-chart-item>
+    <app-chart-item
+      [ngClass]="{
+        'chart-item-horizontal': treeType === 'horizontal'
+      }"
+      [employee]="employee">
+    </app-chart-item>
   </div>
 </div>

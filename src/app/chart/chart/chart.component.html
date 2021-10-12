@@ -1,6 +1,10 @@
 <div>
   <div *ngFor="let employee of employeesArray">
-    <app-chart-item [employee]="employee"></app-chart-item>
+    <app-chart-item
+      [ngClass]="{
+        'chart-item-horizontal': treeType === 'horizontal'
+      }"
+      [employee]="employee"></app-chart-item>
   </div>
 </div>
 

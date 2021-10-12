@@ -5,6 +5,7 @@ $card-height-margin: 30px;
 $shadow-size: 3px;
 
 .chart-item-card {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,6 +35,8 @@ $shadow-size: 3px;
   }
 }
 
+// vertical tree type styles
+
 .child-node-vertical:before {
   content: '';
   position: absolute;
@@ -56,3 +59,74 @@ $shadow-size: 3px;
 .child-node-vertical:last-child:after {
   content: none;
 }
+
+// horizontal tree type styles
+
+.chart-item-horizontal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.parent-node-horizontal {
+  display:flex;
+  position: relative;
+  padding-top: 20px;
+}
+
+.child-node-horizontal {
+  position: relative;
+  float: left;
+  text-align: center;
+  padding: 20px 5px 0 5px; // TODO вынести паддинг в переменную
+}
+
+.child-node-horizontal::before, .child-node-horizontal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  border-top: 3px solid black;
+  width: 50%;
+  height: 20px;
+}
+
+.child-node-horizontal::after {
+  right: auto;
+  left: 50%;
+  border-left: 3px solid black;
+}
+
+/*We need to remove left-right connectors from elements without any siblings*/
+.child-node-horizontal:only-child::after, .child-node-horizontal:only-child::before {
+  display: none;
+}
+
+.child-node-horizontal:only-child {
+  padding-top: 0;
+}
+
+.child-node-horizontal:first-child:before, .child-node-horizontal:last-child:after {
+  border: 0 none;
+}
+
+.child-node-horizontal:last-child:before {
+  border-right: 3px solid black;
+  border-radius: 0 5px 0 0;
+}
+
+.child-node-horizontal:first-child:after {
+  border-radius: 5px 0 0 0;
+}
+
+.parent-node-horizontal:before {
+  content: '';
+  position: absolute;
+  height: 20px;
+  border-left: 3px solid black;
+  top: 0;
+  left: 50%;
+}
+
+///// ===============================================================================================================

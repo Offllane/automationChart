@@ -6,7 +6,7 @@ import {TreeType} from "../models/types";
   providedIn: 'root'
 })
 export class HomeService {
-  public treeType: BehaviorSubject<TreeType> = new BehaviorSubject<TreeType>('vertical');
+  public treeType: BehaviorSubject<TreeType> = new BehaviorSubject<TreeType>('horizontal');
 
   constructor() { }
 }
