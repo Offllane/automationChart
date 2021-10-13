@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700;900&display=swap');
+@import "src/app/shared/shared";
 
 * {
   margin: 0;
@@ -8,5 +9,5 @@
 }
 
 body {
-  background-color: #D0F2FF;
+  background-color: $background;
 }

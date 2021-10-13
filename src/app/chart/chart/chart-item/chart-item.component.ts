@@ -9,6 +9,7 @@ import {TreeType} from "../../../models/types";
   styleUrls: ['./chart-item.component.scss']
 })
 export class ChartItemComponent implements OnInit, OnDestroy {
+  public isAdditionalInformOpen = false;
   public treeType: TreeType = 'vertical';
   private dataSubscription: Subscription = new Subscription();
   @Input() employee: any = {
@@ -26,8 +27,11 @@ export class ChartItemComponent implements OnInit, OnDestroy {
     }))
   }
 
+  public toggleAdditionalInform() {
+    this.isAdditionalInformOpen = !this.isAdditionalInformOpen;
+  }
+
   ngOnDestroy() {
     this.dataSubscription.unsubscribe();
   }
-
 }

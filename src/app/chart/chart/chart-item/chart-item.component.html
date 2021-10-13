@@ -1,5 +1,16 @@
-<div class="chart-item-card">
+<div
+  [ngClass]="{'chart-item-card-active': isAdditionalInformOpen}"
+  class="chart-item-card"
+  (click)="toggleAdditionalInform()">
   {{employee.id}} {{employee.firstname}} {{employee.lastname}}
+</div>
+
+<div
+  *ngIf="isAdditionalInformOpen"
+  class="additional-inform">
+  Lorem ipsum dolor sit amet, consectetur adipisicing
+  elit. Assumenda, eveniet harum laboriosam nemo optio
+  quam recusandae repellendus rerum vero voluptatem?
 </div>
 
 <div

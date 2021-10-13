@@ -1,3 +1,4 @@
+@import "src/app/shared/shared";
 $card-width: 200px;
 $card-height: 80px;
 $card-padding-left: 0px;
@@ -13,17 +14,28 @@ $shadow-size: 3px;
   height: $card-height;
   color: black;
   border-radius: 10px;
-  background-color: #D0F2FF;
+  background-color: $background;
   box-shadow:inset -3px -3px 3px 0 rgba(0, 35, 148,.2), // TODO $shadow-size (for now it's hardcoded 3px but should add it as variable
   inset 3px 3px 3px 0 rgba(255,255,255,0.5);
   transition-duration: .3s;
   cursor: pointer;
 }
-.chart-item-card:hover {
+.chart-item-card:hover, .chart-item-card-active {
   box-shadow:inset 3px 3px 3px 0 rgba(0, 35, 148,.2),
   inset -3px -3px 3px 0 rgba(255,255,255,0.5);
   transition-duration: .3s;
 }
+
+.additional-inform {
+  width: $card-width;
+  margin-top: 5px;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow:inset 3px 3px 3px 0 rgba(0, 35, 148,.2),
+  inset -3px -3px 3px 0 rgba(255,255,255,0.5);
+}
+
+// vertical tree type styles
 
 .parent-node-vertical {
   position: relative;
@@ -34,8 +46,6 @@ $shadow-size: 3px;
     margin-bottom: $card-height-margin;
   }
 }
-
-// vertical tree type styles
 
 .child-node-vertical:before {
   content: '';
