@@ -6,17 +6,28 @@ import {BehaviorSubject} from "rxjs";
   providedIn: 'root'
 })
 export class ChartService {
-  public chartData: BehaviorSubject<any> = new BehaviorSubject([]);
-  public employees;
+  public standardChartData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  public preparedChartData: BehaviorSubject<any> = new BehaviorSubject([]);
+  public standardEmployeeList: any;
 
 
   constructor() {
-    console.log('here');
-    this.employees = this.orderInformation(testData.employees);
-    this.chartData.next(this.orderInformation(testData.employees));
+    this.standardChartData.next(testData.employees)
+    this.prepareChartDataList(testData.employees);
+
+    this.standardChartData.subscribe(data => {
+      this.standardEmployeeList = data;
+      this.prepareChartDataList(data);
+    })
   }
 
-  orderInformation(employeeArray: Array<any>): Array<any> {
+  public prepareChartDataList(employeeList: any): any {
+    const orderedEmployeeList = this.orderInformation(employeeList);
+    this.preparedChartData.next(orderedEmployeeList);
+    return orderedEmployeeList;
+  }
+
+  public orderInformation(employeeArray: Array<any>): Array<any> {
     employeeArray = employeeArray.map(employee => {
       return {
         ...employee,
@@ -31,7 +42,7 @@ export class ChartService {
     return employeeArray;
   }
 
-  findSubordinates(employeeArray: any[], id: number): Array<any> {
+  private findSubordinates(employeeArray: any[], id: number): Array<any> {
     return employeeArray.filter(employee => employee.parentId === id);
   }
 }

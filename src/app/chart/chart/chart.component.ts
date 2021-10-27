@@ -20,13 +20,16 @@ export class ChartComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.dataSubscription.add(this.chartService.chartData.subscribe(data => {
-      console.log(data);
+    this.dataSubscription.add(this.chartService.preparedChartData.subscribe(data => {
       this.employeesArray = data;
     }));
     this.dataSubscription.add(this.homeService.treeType.subscribe((data: TreeType) => {
       this.treeType = data;
     }));
+  }
+
+  onDragOver(event: any): void {
+    event.preventDefault();
   }
 
   ngOnDestroy(): void {

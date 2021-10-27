@@ -1,5 +1,6 @@
 <div>
-  <div *ngFor="let employee of employeesArray">
+  <div *ngFor="let employee of employeesArray"
+    (dragover)="onDragOver($event)">
     <app-chart-item
       [ngClass]="{
         'chart-item-horizontal': treeType === 'horizontal'
