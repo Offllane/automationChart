@@ -6,16 +6,16 @@ import {BehaviorSubject} from "rxjs";
   providedIn: 'root'
 })
 export class ChartService {
-  public standardChartData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
-  public preparedChartData: BehaviorSubject<any> = new BehaviorSubject([]);
+  public listChartData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  public treeChartData: BehaviorSubject<any> = new BehaviorSubject([]);
   public standardEmployeeList: any;
 
 
   constructor() {
-    this.standardChartData.next(testData.employees)
+    this.listChartData.next(testData.employees)
     this.prepareChartDataList(testData.employees);
 
-    this.standardChartData.subscribe(data => {
+    this.listChartData.subscribe(data => {
       this.standardEmployeeList = data;
       this.prepareChartDataList(data);
     })
@@ -23,7 +23,7 @@ export class ChartService {
 
   public prepareChartDataList(employeeList: any): any {
     const orderedEmployeeList = this.orderInformation(employeeList);
-    this.preparedChartData.next(orderedEmployeeList);
+    this.treeChartData.next(orderedEmployeeList);
     return orderedEmployeeList;
   }
 
