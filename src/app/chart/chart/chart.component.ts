@@ -3,6 +3,7 @@ import {ChartService} from "../chart.service";
 import {HomeService} from "../../home/home.service";
 import {Subscription} from "rxjs";
 import {TreeType} from "../../models/types";
+import {treeChartItem} from "../../models/interfaces";
 
 @Component({
   selector: 'app-chart',
@@ -10,7 +11,7 @@ import {TreeType} from "../../models/types";
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit, OnDestroy {
-  public employeesArray: any;
+  public employeesArray: Array<treeChartItem> = [];
   public treeType: TreeType = 'vertical';
   private dataSubscription: Subscription = new Subscription();
 
@@ -20,7 +21,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.dataSubscription.add(this.chartService.treeChartData.subscribe(data => {
+    this.dataSubscription.add(this.chartService.treeChartData.subscribe((data: Array<treeChartItem>) => {
       this.employeesArray = data;
     }));
     this.dataSubscription.add(this.homeService.treeType.subscribe((data: TreeType) => {

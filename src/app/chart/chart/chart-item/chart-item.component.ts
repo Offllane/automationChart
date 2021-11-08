@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {HomeService} from "../../../home/home.service";
 import {TreeType} from "../../../models/types";
 import {DragAndDropService} from "../../drag-and-drop.service";
+import {treeChartItem} from "../../../models/interfaces";
 
 @Component({
   selector: 'app-chart-item',
@@ -13,12 +14,14 @@ export class ChartItemComponent implements OnInit, OnDestroy {
   public isAdditionalInformOpen = false;
   public treeType: TreeType = 'vertical';
   private dataSubscription: Subscription = new Subscription();
-  @Input() employee: any = {
-    id: 0,
-    firstname: 'none',
-    lastname: 'none',
+  @Input() employee: treeChartItem = {
+    parentId: -1, // init value
+    id: -1, // init value
+    firstName: 'none',
+    lastName: 'none',
     city: 'none',
     country: 'none',
+    age: -1, // init value
     isHide: false,
     subordinates: []
   };

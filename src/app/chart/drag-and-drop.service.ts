@@ -1,31 +1,32 @@
 import {ChartService} from "./chart.service";
 import {Subscription} from "rxjs";
 import {Injectable, OnDestroy} from "@angular/core";
+import {listChartItem, treeChartItem} from "../models/interfaces";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DragAndDropService implements OnDestroy{
   private dataSubscription = new Subscription();
-  private employeeList = [];
-  private employeeTree = []
-  public draggedItemId: number | undefined;
-  public dropPlaceholderItemId: number | undefined;
-  private mainBossItem: any;
+  private employeeList: Array<listChartItem> = [];
+  private employeeTree: Array<treeChartItem> = []
+  public draggedItemId: number = -1; // init value
+  public dropPlaceholderItemId: number = -1; // init value
+  private mainBossItem: treeChartItem = {} as treeChartItem;
 
   constructor(
     private chartService: ChartService
   ) {
-    this.dataSubscription.add(this.chartService.listChartData.subscribe(employeeList => {
+    this.dataSubscription.add(this.chartService.listChartData.subscribe((employeeList: Array<listChartItem>) => {
       this.employeeList = employeeList;
     }));
-    this.dataSubscription.add(this.chartService.treeChartData.subscribe(treeEmployeeList => {
+    this.dataSubscription.add(this.chartService.treeChartData.subscribe((treeEmployeeList: Array<treeChartItem>) => {
       this.employeeTree = treeEmployeeList;
       this.mainBossItem = treeEmployeeList[0];
     }))
   }
 
-  private updateEmployeeList(employeeList: any): void {
+  private updateEmployeeList(employeeList: Array<listChartItem>): void {
     this.employeeList = employeeList;
     this.chartService.listChartData.next(this.employeeList);
   }
@@ -35,26 +36,24 @@ export class DragAndDropService implements OnDestroy{
       return;
     }
 
-    const employeeList: any = [...this.employeeList];
-    const draggedItem = employeeList.find((item: any) => item.id === this.draggedItemId);
-    const draggedItemWithSubordinates = this.findTreeItemById(this.mainBossItem, this.draggedItemId);
-    const dropPlaceholderItem = employeeList.find((item: any) => item.id === this.dropPlaceholderItemId)
+    const employeeList: Array<listChartItem> = [...this.employeeList];
+    const draggedItem: listChartItem = employeeList.find((item: listChartItem) => item.id === this.draggedItemId) as listChartItem;
+    const draggedItemWithSubordinates: treeChartItem = this.findTreeItemById(this.mainBossItem, this.draggedItemId) as treeChartItem;
+    const dropPlaceholderItem: listChartItem = employeeList.find((item: listChartItem) => item.id === this.dropPlaceholderItemId) as listChartItem;
 
     if (!this.isItemSubordinate(draggedItemWithSubordinates, dropPlaceholderItem)) {
       draggedItem.parentId = this.dropPlaceholderItemId;
-    } else { // TODO swap items
-      // draggedItem.parentId = dropPlaceholderItem.parentId;
-      // dropPlaceholderItem.parentId = draggedItem.parentId;
+    } else { // TODO warning popup
     }
 
     this.updateEmployeeList(employeeList);
   }
 
-  private findTreeItemById(bossItem: any ,id: any): any {
+  private findTreeItemById(bossItem: treeChartItem, id: number): treeChartItem | null {
     if (bossItem.id === id) {
       return bossItem;
     } else if (bossItem.subordinates.length) {
-      let result = null;
+      let result: treeChartItem | null = null;
       for (let i = 0; i < bossItem.subordinates.length && result === null; i++) {
          result = this.findTreeItemById(bossItem.subordinates[i], id);
       }
@@ -64,7 +63,7 @@ export class DragAndDropService implements OnDestroy{
     }
   }
 
-  private isItemSubordinate(possibleBossItem: any, possibleSubordinateItem: any): boolean {
+  private isItemSubordinate(possibleBossItem: treeChartItem, possibleSubordinateItem: listChartItem): boolean {
     return this.findTreeItemById(possibleBossItem, possibleSubordinateItem.id) !== null;
   }
 
