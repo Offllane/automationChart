@@ -1,0 +1,18 @@
+.icons {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  &.tree-chart-icon {
+    background-image: url("../../assets/icons/family-tree.png");
+    background-size: 30px;
+  }
+  &.list-chart-icon {
+    background-image: url("../../assets/icons/list-chart-icon.png");
+    background-size: 30px;
+  }
+  &.buffer {
+    background-image: url("../../assets/icons/buffer.png");
+    background-size: 30px;
+  }
+}

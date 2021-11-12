@@ -11,12 +11,14 @@
   <div class="header-controls">
     <div class="switch-tree-type-buttons">
       <div [ngClass]="{ active: treeType === 'vertical'}"
-           class="vertical-tree tree-type-switch"
-          (click)="switchTreeType('vertical')">1</div>
+           class="header-button icons list-chart-icon"
+          (click)="switchTreeType('vertical')"></div>
       <div [ngClass]=" { active: treeType === 'horizontal'}"
-           class="horizontal-tree tree-type-switch"
-           (click)="switchTreeType('horizontal')">2</div>
+           class="header-button icons tree-chart-icon"
+           (click)="switchTreeType('horizontal')"></div>
     </div>
+    <div [ngClass]="{active: bufferState === 'open'}" class="header-button icons buffer"
+         (click)="toggleBuffer()"></div>
   </div>
 </header>
 

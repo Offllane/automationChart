@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HomeService} from "../../home/home.service";
-import {TreeType} from "../../models/types";
+import {Switch, TreeType} from "../../models/types";
 
 @Component({
   selector: 'app-header',
@@ -9,6 +9,7 @@ import {TreeType} from "../../models/types";
 })
 export class HeaderComponent implements OnInit {
   public treeType: TreeType = 'horizontal';
+  public bufferState: Switch = 'close';
 
   constructor(
     private homeService: HomeService,
@@ -22,5 +23,10 @@ export class HeaderComponent implements OnInit {
 
   public switchTreeType(treeType: TreeType) {
     this.homeService.treeType.next(treeType);
+  }
+
+  public toggleBuffer(): void {
+    this.bufferState = this.bufferState === 'open' ? 'close' : 'open';
+    this.homeService.bufferState.next(this.bufferState);
   }
 }

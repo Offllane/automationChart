@@ -1,0 +1,18 @@
+.buffer-placeholder {
+  position: fixed;
+  width: 35vw;
+  height: calc(100vh - 100px); // 100px -- header height
+  background-color: #E2D8FF;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  right: 0;
+  bottom: 0;
+}
+
+.buffer-open-state {
+  display: flex;
+}
+
+.buffer-close-state {
+  display: none;
+}
