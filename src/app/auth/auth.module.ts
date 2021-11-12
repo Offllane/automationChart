@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChartModule} from "../chart/chart.module";
+import { ChartModule} from "../home/components/chart/chart.module";
 import { LoginComponent} from "./login/login.component";
 
 

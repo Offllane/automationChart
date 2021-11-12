@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import testData from '../models/testData2.json';
+import testData from '../../../models/testData2.json';
 import {BehaviorSubject} from "rxjs";
-import {listChartItem, treeChartItem} from "../models/interfaces";
+import {listChartItem, treeChartItem} from "../../../models/interfaces";
 
 @Injectable({
   providedIn: 'root'

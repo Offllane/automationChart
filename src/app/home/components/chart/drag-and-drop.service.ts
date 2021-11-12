@@ -1,7 +1,7 @@
 import {ChartService} from "./chart.service";
 import {Subscription} from "rxjs";
 import {Injectable, OnDestroy} from "@angular/core";
-import {listChartItem, treeChartItem} from "../models/interfaces";
+import {listChartItem, treeChartItem} from "../../../models/interfaces";
 
 @Injectable({
   providedIn: 'root'

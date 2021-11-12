@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ChartService} from "../chart.service";
-import {HomeService} from "../../home/home.service";
+import {HomeService} from "../../../home.service";
 import {Subscription} from "rxjs";
-import {TreeType} from "../../models/types";
-import {treeChartItem} from "../../models/interfaces";
+import {TreeType} from "../../../../models/types";
+import {treeChartItem} from "../../../../models/interfaces";
 
 @Component({
   selector: 'app-chart',
