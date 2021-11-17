@@ -25,6 +25,7 @@ export class ChartItemComponent implements OnInit, OnDestroy {
     isHide: false,
     subordinates: []
   };
+  @Input() isBufferChartItem = false;
 
   constructor(
     private homeService: HomeService,

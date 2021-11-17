@@ -1,8 +1,11 @@
 <div
-  [ngClass]="{'chart-item-card-active': isAdditionalInformOpen}"
-  class="chart-item-card"
-  (click)="toggleAdditionalInform()"
+  class="chart-item-card buffer"
   draggable="true"
+  [ngClass]="{
+    'chart-item-card-active': isAdditionalInformOpen,
+    'buffer': isBufferChartItem
+  }"
+  (click)="toggleAdditionalInform()"
   (dragstart)="onDragStart($event)"
   (drop)="onDrop($event)">
   {{employee.id}} {{employee.firstName}} {{employee.lastName}}
@@ -33,6 +36,7 @@
       [ngClass]="{
         'chart-item-horizontal': treeType === 'horizontal'
       }"
+      [isBufferChartItem]="isBufferChartItem"
       [employee]="employee">
     </app-chart-item>
   </div>

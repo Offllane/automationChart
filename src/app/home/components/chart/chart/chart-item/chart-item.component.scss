@@ -19,6 +19,10 @@ $shadow-size: 3px;
   inset 3px 3px 3px 0 rgba(255,255,255,0.5);
   transition-duration: .3s;
   cursor: pointer;
+
+  &.buffer {
+    background-color: #E2D8FF;
+  }
 }
 .chart-item-card:hover, .chart-item-card-active {
   box-shadow:inset 3px 3px 3px 0 rgba(0, 35, 148,.2),

@@ -15,7 +15,8 @@ export class ChartComponent implements OnInit, OnDestroy {
   public treeType: TreeType = 'vertical';
   private dataSubscription: Subscription = new Subscription();
 
-  @Input() chartMode: ChartMode = 'main';
+  @Input() chartMode: ChartMode = 'main'; // by default
+  public isBufferChart = false;
 
   constructor(
     private chartService: ChartService,
@@ -23,6 +24,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.isBufferChart = this.chartMode === 'buffer';
     switch (this.chartMode) {
       case 'main':
         this.dataSubscription.add(this.chartService.treeChartData.subscribe((data: Array<treeChartItem>) => {
