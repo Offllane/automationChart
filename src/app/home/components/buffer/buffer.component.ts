@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Switch} from "../../../models/types";
 import {Subscription} from "rxjs";
 import {HomeService} from "../../home.service";
@@ -8,9 +8,10 @@ import {HomeService} from "../../home.service";
   templateUrl: './buffer.component.html',
   styleUrls: ['./buffer.component.scss']
 })
-export class BufferComponent implements OnInit {
+export class BufferComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription = new Subscription();
   public bufferState: Switch = 'close';
+
   constructor(
     private homeService: HomeService
   ) { }
@@ -18,7 +19,11 @@ export class BufferComponent implements OnInit {
   ngOnInit(): void {
     this.dataSubscription.add(this.homeService.bufferState.subscribe((state: Switch) => {
       this.bufferState = state;
-    }))
+    }));
   }
 
+
+  ngOnDestroy(): void {
+    this.dataSubscription.unsubscribe();
+  }
 }

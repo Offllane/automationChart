@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ChartService} from "../chart.service";
 import {HomeService} from "../../../home.service";
 import {Subscription} from "rxjs";
-import {TreeType} from "../../../../models/types";
+import {ChartMode, TreeType} from "../../../../models/types";
 import {treeChartItem} from "../../../../models/interfaces";
 
 @Component({
@@ -15,15 +15,30 @@ export class ChartComponent implements OnInit, OnDestroy {
   public treeType: TreeType = 'vertical';
   private dataSubscription: Subscription = new Subscription();
 
+  @Input() chartMode: ChartMode = 'main';
+
   constructor(
     private chartService: ChartService,
     private homeService: HomeService
   ) { }
 
   ngOnInit(): void {
-    this.dataSubscription.add(this.chartService.treeChartData.subscribe((data: Array<treeChartItem>) => {
-      this.employeesArray = data;
-    }));
+    switch (this.chartMode) {
+      case 'main':
+        this.dataSubscription.add(this.chartService.treeChartData.subscribe((data: Array<treeChartItem>) => {
+          this.employeesArray = data;
+        }));
+        break;
+      case 'buffer':
+        this.dataSubscription.add(this.chartService.bufferTreeChartData.subscribe((data: Array<treeChartItem>) => {
+          this.employeesArray = data;
+        }));
+      break;
+      default:
+        console.log('incorrect chartMode');
+        break
+    }
+
     this.dataSubscription.add(this.homeService.treeType.subscribe((data: TreeType) => {
       this.treeType = data;
     }));

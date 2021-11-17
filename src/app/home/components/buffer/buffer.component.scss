@@ -1,5 +1,7 @@
 .buffer-placeholder {
   position: fixed;
+  display: flex;
+  flex-direction: column;
   width: 35vw;
   height: calc(100vh - 100px); // 100px -- header height
   background-color: #E2D8FF;
@@ -7,6 +9,7 @@
   border-bottom-left-radius: 20px;
   right: 0;
   bottom: 0;
+  overflow: auto;
 }
 
 .buffer-open-state {
