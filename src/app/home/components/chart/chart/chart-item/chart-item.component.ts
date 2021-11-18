@@ -45,6 +45,7 @@ export class ChartItemComponent implements OnInit, OnDestroy {
   public onDragStart(event: any): void {
     event.stopPropagation();
     this.dndService.draggedItemId = this.employee.id;
+    this.dndService.isDraggedItemFromBuffer = this.isBufferChartItem;
   }
 
   public onDragOver(event: any): void {
@@ -54,7 +55,7 @@ export class ChartItemComponent implements OnInit, OnDestroy {
   public onDrop(event: any): void {
     event.stopPropagation();
     this.dndService.dropPlaceholderItemId = this.employee.id;
-    this.dndService.replaceItem();
+    this.dndService.replaceItem(this.isBufferChartItem);
   }
 
   ngOnDestroy() {
