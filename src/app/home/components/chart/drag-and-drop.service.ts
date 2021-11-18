@@ -13,6 +13,7 @@ export class DragAndDropService implements OnDestroy{
   public draggedItemId: number = -1; // init value
   public dropPlaceholderItemId: number = -1; // init value
   private mainBossItem: treeChartItem = {} as treeChartItem;
+  private mainItemsArray: Array<treeChartItem> = [];
 
   constructor(
     private chartService: ChartService
@@ -22,6 +23,8 @@ export class DragAndDropService implements OnDestroy{
     }));
     this.dataSubscription.add(this.chartService.treeChartData.subscribe((treeEmployeeList: Array<treeChartItem>) => {
       this.employeeTree = treeEmployeeList;
+      this.mainItemsArray = treeEmployeeList.filter(employee => employee.id === null);
+      this.mainItemsArray = this.employeeTree;
       this.mainBossItem = treeEmployeeList[0];
     }))
   }
@@ -38,15 +41,22 @@ export class DragAndDropService implements OnDestroy{
 
     const employeeList: Array<listChartItem> = [...this.employeeList];
     const draggedItem: listChartItem = employeeList.find((item: listChartItem) => item.id === this.draggedItemId) as listChartItem;
-    const draggedItemWithSubordinates: treeChartItem = this.findTreeItemById(this.mainBossItem, this.draggedItemId) as treeChartItem;
+    let draggedItemWithSubordinates: treeChartItem | any;
+    for (let i = 0, neededItem = null; i < this.mainItemsArray.length, neededItem === null; i++) {
+      neededItem = this.findTreeItemById(this.mainItemsArray[i], this.draggedItemId) as treeChartItem;
+      draggedItemWithSubordinates = neededItem;
+    }
     const dropPlaceholderItem: listChartItem = employeeList.find((item: listChartItem) => item.id === this.dropPlaceholderItemId) as listChartItem;
-
     if (!this.isItemSubordinate(draggedItemWithSubordinates, dropPlaceholderItem)) {
       draggedItem.parentId = this.dropPlaceholderItemId;
     } else { // TODO warning popup
     }
 
     this.updateEmployeeList(employeeList);
+  }
+
+  private isItemSubordinate(possibleBossItem: treeChartItem, possibleSubordinateItem: listChartItem): boolean {
+    return this.findTreeItemById(possibleBossItem, possibleSubordinateItem.id) !== null;
   }
 
   private findTreeItemById(bossItem: treeChartItem, id: number): treeChartItem | null {
@@ -61,10 +71,6 @@ export class DragAndDropService implements OnDestroy{
     } else {
       return null;
     }
-  }
-
-  private isItemSubordinate(possibleBossItem: treeChartItem, possibleSubordinateItem: listChartItem): boolean {
-    return this.findTreeItemById(possibleBossItem, possibleSubordinateItem.id) !== null;
   }
 
   public ngOnDestroy() {
