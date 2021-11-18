@@ -1,5 +1,5 @@
 <div>
-  <div *ngFor="let employee of employeesArray"
+  <div *ngFor="let employee of employeesArray" class="employees-chart"
     (dragover)="onDragOver($event)">
     <app-chart-item
       [ngClass]="{

@@ -1,6 +1,10 @@
-.chart-item-horizontal {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.employees-chart {
+  margin-bottom: 40px;
+
+  .chart-item-horizontal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

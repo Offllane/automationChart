@@ -1,4 +1,7 @@
-.chart-item-horizontal {
+.employees-chart {
+  margin-bottom: 40px;
+}
+.employees-chart .chart-item-horizontal {
   display: flex;
   flex-direction: column;
   justify-content: center;

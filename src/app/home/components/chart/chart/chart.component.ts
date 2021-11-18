@@ -37,7 +37,7 @@ export class ChartComponent implements OnInit, OnDestroy {
         }));
       break;
       default:
-        console.log('incorrect chartMode');
+        console.warn('incorrect chartMode');
         break
     }
 

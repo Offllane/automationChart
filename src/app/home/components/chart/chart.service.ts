@@ -32,6 +32,7 @@ export class ChartService implements OnDestroy{
     }));
     this.dataSubscription.add(this.bufferListChartData.subscribe((data: Array<listChartItem>) => {
       this.bufferEmployeeList = data;
+      this.bufferTreeChartData.next(this.prepareChartDataList(data));
     }));
   }
 
@@ -40,6 +41,7 @@ export class ChartService implements OnDestroy{
   }
 
   public orderInformation(employeeArray: Array<listChartItem>): Array<treeChartItem> {
+    // add new field to user model
     const treeEmployeeArray: Array<treeChartItem> = employeeArray.map(employee => {
       return {
         ...employee,
@@ -48,11 +50,10 @@ export class ChartService implements OnDestroy{
       };
     });
 
-    treeEmployeeArray.forEach(employee => employee.subordinates = this.findSubordinates(treeEmployeeArray, employee.id));
-    while (treeEmployeeArray.length !== 1) {
-      treeEmployeeArray.pop();
-    }
-    return treeEmployeeArray;
+    let _treeEmployeeArray = [...treeEmployeeArray]; // деструктуризация массива
+    _treeEmployeeArray.forEach(employee => employee.subordinates = this.findSubordinates(_treeEmployeeArray, employee.id));
+    _treeEmployeeArray = _treeEmployeeArray.filter(employee => employee.parentId === null);
+    return _treeEmployeeArray;
   }
 
   private findSubordinates(employeeArray: Array<treeChartItem>, id: number): Array<treeChartItem> {
