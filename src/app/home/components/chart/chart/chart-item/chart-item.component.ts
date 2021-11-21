@@ -55,7 +55,7 @@ export class ChartItemComponent implements OnInit, OnDestroy {
   public onDrop(event: any): void {
     event.stopPropagation();
     this.dndService.dropPlaceholderItemId = this.employee.id;
-    this.dndService.replaceItem(this.isBufferChartItem);
+    this.dndService.replaceItemToNewPosition(this.isBufferChartItem);
   }
 
   ngOnDestroy() {

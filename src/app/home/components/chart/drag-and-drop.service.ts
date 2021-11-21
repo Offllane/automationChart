@@ -43,7 +43,7 @@ export class DragAndDropService implements OnDestroy{
     this.chartService.bufferListChartData.next(this.bufferEmployeeList);
   }
 
-  public replaceItem(isDropPlaceholderItemFromBuffer: boolean, isDraggedItemFromBuffer: boolean = this.isDraggedItemFromBuffer): void {
+  public replaceItemToNewPosition(isDropPlaceholderItemFromBuffer: boolean, isDraggedItemFromBuffer: boolean = this.isDraggedItemFromBuffer): void {
     if (this.draggedItemId === this.dropPlaceholderItemId) { // if we drop item to itself then return
       return;
     }
@@ -68,14 +68,17 @@ export class DragAndDropService implements OnDestroy{
     }
 
     if (!this.isItemSubordinate(draggedItemWithSubordinates, dropPlaceholderItem)) {
-      draggedItem.parentId = this.dropPlaceholderItemId;
+      draggedItemWithSubordinates.parentId = dropPlaceholderItem.id;
+      draggedItem.parentId = dropPlaceholderItem.id;
       // remove item form dragged array
       if(isDraggedItemFromBuffer && !isDropPlaceholderItemFromBuffer) {
-        employeeList.push(draggedItem);
-        bufferEmployeeList = this.removeItemFromList(draggedItem.id, bufferEmployeeList);
+        const updatedLists = this.replaceItemsBetweenLists(bufferEmployeeList, employeeList, draggedItemWithSubordinates);
+        bufferEmployeeList = updatedLists.startList;
+        employeeList = updatedLists.endList;
       } else if (!isDraggedItemFromBuffer && isDropPlaceholderItemFromBuffer) {
-        bufferEmployeeList.push(draggedItem);
-        employeeList = this.removeItemFromList(draggedItem.id, employeeList);
+        const updatedLists = this.replaceItemsBetweenLists(employeeList, bufferEmployeeList, draggedItemWithSubordinates);
+        employeeList = updatedLists.startList;
+        bufferEmployeeList = updatedLists.endList;
       }
     } else { // TODO warning popup
     }
@@ -100,6 +103,16 @@ export class DragAndDropService implements OnDestroy{
     } else {
       return null;
     }
+  }
+
+  private replaceItemsBetweenLists(startList: Array<listChartItem>, endList:Array<listChartItem>, draggedItem: treeChartItem) {
+    endList.push(draggedItem);
+    startList = this.removeItemFromList(draggedItem.id, startList);
+    for (let i = 0; i < draggedItem.subordinates.length; i++) {
+      this.replaceItemsBetweenLists(startList, endList, draggedItem.subordinates[i]);
+    }
+
+    return {startList: startList, endList: endList};
   }
 
   private removeItemFromList(id: number, list: Array<listChartItem>): Array<listChartItem> {
