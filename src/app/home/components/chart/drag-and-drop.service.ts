@@ -43,15 +43,15 @@ export class DragAndDropService implements OnDestroy{
     this.chartService.bufferListChartData.next(this.bufferEmployeeList);
   }
 
-  public replaceItem(isDropPlaceholderItemFromBuffer: boolean): void {
+  public replaceItem(isDropPlaceholderItemFromBuffer: boolean, isDraggedItemFromBuffer: boolean = this.isDraggedItemFromBuffer): void {
     if (this.draggedItemId === this.dropPlaceholderItemId) { // if we drop item to itself then return
       return;
     }
 
-    const employeeList: Array<listChartItem> = [...this.employeeList];
-    const bufferEmployeeList: Array<listChartItem> = [...this.bufferEmployeeList];
+    let employeeList: Array<listChartItem> = [...this.employeeList];
+    let bufferEmployeeList: Array<listChartItem> = [...this.bufferEmployeeList];
 
-    const draggedItem: listChartItem = this.isDraggedItemFromBuffer ?
+    const draggedItem: listChartItem = isDraggedItemFromBuffer ?
       bufferEmployeeList.find((item: listChartItem) => item.id === this.draggedItemId) as listChartItem
       : employeeList.find((item: listChartItem) => item.id === this.draggedItemId) as listChartItem;
     const dropPlaceholderItem: listChartItem = isDropPlaceholderItemFromBuffer ?
@@ -66,9 +66,17 @@ export class DragAndDropService implements OnDestroy{
     for (let i = 0; i < this.bufferEmployeeTrees.length, draggedItemWithSubordinates === null; i++) {
       draggedItemWithSubordinates = this.findTreeItemById(this.bufferEmployeeTrees[i], this.draggedItemId)
     }
-    console.log(draggedItem, dropPlaceholderItem);
+
     if (!this.isItemSubordinate(draggedItemWithSubordinates, dropPlaceholderItem)) {
       draggedItem.parentId = this.dropPlaceholderItemId;
+      // remove item form dragged array
+      if(isDraggedItemFromBuffer && !isDropPlaceholderItemFromBuffer) {
+        employeeList.push(draggedItem);
+        bufferEmployeeList = this.removeItemFromList(draggedItem.id, bufferEmployeeList);
+      } else if (!isDraggedItemFromBuffer && isDropPlaceholderItemFromBuffer) {
+        bufferEmployeeList.push(draggedItem);
+        employeeList = this.removeItemFromList(draggedItem.id, employeeList);
+      }
     } else { // TODO warning popup
     }
 
@@ -92,6 +100,13 @@ export class DragAndDropService implements OnDestroy{
     } else {
       return null;
     }
+  }
+
+  private removeItemFromList(id: number, list: Array<listChartItem>): Array<listChartItem> {
+    const neededItemIndex = list.findIndex((employee: listChartItem) => employee.id === id);
+    list.splice(neededItemIndex, 1);
+
+    return list;
   }
 
   public ngOnDestroy() {
