@@ -11,13 +11,10 @@
   {{employee.id}} {{employee.firstName}} {{employee.lastName}}
 </div>
 
-<div
-  *ngIf="isAdditionalInformOpen"
-  class="additional-inform">
-  Lorem ipsum dolor sit amet, consectetur adipisicing
-  elit. Assumenda, eveniet harum laboriosam nemo optio
-  quam recusandae repellendus rerum vero voluptatem?
-</div>
+<app-two-columns-list
+  [isInformDisplaying]="isAdditionalInformOpen"
+  [listInform]="employee"
+></app-two-columns-list>
 
 <div
   *ngIf="employee.subordinates.length"

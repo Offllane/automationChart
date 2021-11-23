@@ -1,0 +1,11 @@
+<div *ngIf="isInformDisplaying">
+  <div class="additional-inform-container">
+    <div *ngFor="let item of listInform | keyvalue"
+         class="list-point">
+      <div *ngIf="item.key !== 'subordinates' && item.key !== 'id' && item.key != 'parentId' && item.key != 'isHide'">
+        <span class="list-param">{{item.key}}: </span>
+        <span class="list-value">{{item.value}}</span>
+      </div>
+    </div>
+  </div>
+</div>

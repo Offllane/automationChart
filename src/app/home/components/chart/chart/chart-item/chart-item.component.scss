@@ -1,9 +1,4 @@
 @import "src/app/shared/shared.scss";
-$card-width: 200px;
-$card-height: 80px;
-$card-padding-left: 0px;
-$card-height-margin: 30px;
-$shadow-size: 3px;
 
 .chart-item-card {
   position: relative;
@@ -12,11 +7,12 @@ $shadow-size: 3px;
   align-items: center;
   width: $card-width;
   height: $card-height;
-  color: black;
   border-radius: 10px;
   background-color: $background;
   box-shadow:inset -3px -3px 3px 0 rgba(0, 35, 148,.2), // TODO $shadow-size (for now it's hardcoded 3px but should add it as variable
   inset 3px 3px 3px 0 rgba(255,255,255,0.5);
+  color: $text-color;
+  font-weight: 700;
   transition-duration: .3s;
   cursor: pointer;
 
@@ -28,15 +24,6 @@ $shadow-size: 3px;
   box-shadow:inset 3px 3px 3px 0 rgba(0, 35, 148,.2),
   inset -3px -3px 3px 0 rgba(255,255,255,0.5);
   transition-duration: .3s;
-}
-
-.additional-inform {
-  width: $card-width;
-  margin-top: 5px;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow:inset 3px 3px 3px 0 rgba(0, 35, 148,.2),
-  inset -3px -3px 3px 0 rgba(255,255,255,0.5);
 }
 
 // vertical tree type styles

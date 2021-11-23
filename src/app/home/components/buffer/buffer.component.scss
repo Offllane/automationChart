@@ -1,10 +1,12 @@
+@import 'src/app/shared/shared.scss';
+
 .buffer-placeholder {
   position: fixed;
   display: flex;
   flex-direction: column;
   width: 35vw;
   height: calc(100vh - 100px); // 100px -- header height
-  background-color: #E2D8FF;
+  background-color: $buffer-background;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   right: 0;
