@@ -3,9 +3,14 @@
         'buffer-open-state' : bufferState === 'open',
         'buffer-close-state' : bufferState === 'close'
       }"
->
+     (dragover)="onDragOver($event)"
+     (dragleave)="onDragLeave($event)">
   <app-chart
     class="chart"
     [chartMode]="'buffer'">
   </app-chart>
+
+  <div class="empty-element-placeholder" (drop)="onDrop($event)">
+    <div class="empty-element-placeholder-drop icons drop-icon" *ngIf="isShowDropIcon"></div>
+  </div>
 </div>

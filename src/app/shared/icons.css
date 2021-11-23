@@ -1,0 +1,23 @@
+.icons {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.icons.tree-chart-icon {
+  background-image: url("../../assets/icons/family-tree.png");
+  background-size: 30px;
+}
+.icons.list-chart-icon {
+  background-image: url("../../assets/icons/list-chart-icon.png");
+  background-size: 30px;
+}
+.icons.buffer {
+  background-image: url("../../assets/icons/buffer.png");
+  background-size: 30px;
+}
+.icons.drop-icon {
+  background-image: url("../../assets/icons/drop.png");
+  background-size: 50px;
+}
+
+/*# sourceMappingURL=icons.css.map */

@@ -14,7 +14,7 @@ export class DragAndDropService implements OnDestroy{
   private bufferEmployeeTrees: Array<treeChartItem> = [];
   public draggedItemId: number = -1; // init value
   public isDraggedItemFromBuffer = false;
-  public dropPlaceholderItemId: number = -1; // init value
+  public dropPlaceholderItemId: number | null = -1; // init value
 
   constructor(
     private chartService: ChartService
@@ -54,9 +54,9 @@ export class DragAndDropService implements OnDestroy{
     const draggedItem: listChartItem = isDraggedItemFromBuffer ?
       bufferEmployeeList.find((item: listChartItem) => item.id === this.draggedItemId) as listChartItem
       : employeeList.find((item: listChartItem) => item.id === this.draggedItemId) as listChartItem;
-    const dropPlaceholderItem: listChartItem = isDropPlaceholderItemFromBuffer ?
-      bufferEmployeeList.find((item: listChartItem) => item.id === this.dropPlaceholderItemId) as listChartItem
-      : employeeList.find((item: listChartItem) => item.id === this.dropPlaceholderItemId) as listChartItem;
+    const dropPlaceholderItem: listChartItem | undefined = isDropPlaceholderItemFromBuffer ?
+      bufferEmployeeList.find((item: listChartItem) => item.id === this.dropPlaceholderItemId)
+      : employeeList.find((item: listChartItem) => item.id === this.dropPlaceholderItemId);
 
     // for check subordinating of dragged item
     let draggedItemWithSubordinates: treeChartItem | null = null;
@@ -68,8 +68,9 @@ export class DragAndDropService implements OnDestroy{
     }
 
     if (!this.isItemSubordinate(draggedItemWithSubordinates, dropPlaceholderItem)) {
-      draggedItemWithSubordinates.parentId = dropPlaceholderItem.id;
-      draggedItem.parentId = dropPlaceholderItem.id;
+      draggedItemWithSubordinates.parentId = dropPlaceholderItem?.id ?? null;
+      draggedItem.parentId = dropPlaceholderItem?.id ?? null;
+
       // remove item form dragged array
       if(isDraggedItemFromBuffer && !isDropPlaceholderItemFromBuffer) {
         const updatedLists = this.replaceItemsBetweenLists(bufferEmployeeList, employeeList, draggedItemWithSubordinates);
@@ -87,11 +88,12 @@ export class DragAndDropService implements OnDestroy{
     this.updateEmployeeList(employeeList);
   }
 
-  private isItemSubordinate(possibleBossItem: treeChartItem, possibleSubordinateItem: listChartItem): boolean {
-    return this.findTreeItemById(possibleBossItem, possibleSubordinateItem.id) !== null;
+  private isItemSubordinate(possibleBossItem: treeChartItem, possibleSubordinateItem: listChartItem | undefined): boolean {
+    const id = possibleSubordinateItem?.id ?? null;
+    return this.findTreeItemById(possibleBossItem, id) !== null;
   }
 
-  private findTreeItemById(bossItem: treeChartItem, id: number): treeChartItem | null {
+  private findTreeItemById(bossItem: treeChartItem, id: number | null): treeChartItem | null {
     if (bossItem.id === id) {
       return bossItem;
     } else if (bossItem.subordinates.length) {

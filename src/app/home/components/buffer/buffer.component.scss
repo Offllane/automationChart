@@ -1,9 +1,11 @@
 @import 'src/app/shared/shared.scss';
+@import "src/app/shared/icons.scss";
 
 .buffer-placeholder {
   position: fixed;
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 35vw;
   height: calc(100vh - 100px); // 100px -- header height
   background-color: $buffer-background;
@@ -21,4 +23,20 @@
 
 .buffer-close-state {
   display: none;
+}
+
+.empty-element-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $card-width;
+  height: $card-height;
+  border: 1px $text-color dashed;
+  border-radius: 4px; //TODO вынести в файл с переменными
+
+  .empty-element-placeholder-drop {
+    pointer-events: none;
+    width: 70px;
+    height: 70px;
+  }
 }

@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Switch} from "../../../models/types";
 import {Subscription} from "rxjs";
 import {HomeService} from "../../home.service";
+import {DragAndDropService} from "../chart/drag-and-drop.service";
 
 @Component({
   selector: 'app-buffer',
@@ -11,9 +12,11 @@ import {HomeService} from "../../home.service";
 export class BufferComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription = new Subscription();
   public bufferState: Switch = 'close';
+  public isShowDropIcon = false;
 
   constructor(
-    private homeService: HomeService
+    private homeService: HomeService,
+    private dndService: DragAndDropService
   ) { }
 
   ngOnInit(): void {
@@ -22,6 +25,22 @@ export class BufferComponent implements OnInit, OnDestroy {
     }));
   }
 
+  public onDragOver(event: any): void {
+    event.preventDefault();
+    this.isShowDropIcon = true;
+  }
+
+  public onDragLeave(event: any): void {
+    event.preventDefault();
+    this.isShowDropIcon = false;
+  }
+
+  onDrop(event: any): void {
+    event.stopPropagation();
+    this.dndService.dropPlaceholderItemId = null;
+    this.dndService.replaceItemToNewPosition(true);
+    this.isShowDropIcon = false;
+  }
 
   ngOnDestroy(): void {
     this.dataSubscription.unsubscribe();
