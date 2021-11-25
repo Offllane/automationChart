@@ -3,11 +3,12 @@
 
 header {
   position: fixed;
-  width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100vw;
   height: 100px;
+  top:0;
   padding: 15px;
   background-color: $background;
   color: #002394;

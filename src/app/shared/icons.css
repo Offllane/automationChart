@@ -19,5 +19,13 @@
   background-image: url("../../assets/icons/drop.png");
   background-size: 50px;
 }
+.icons.add-person-icon {
+  background-image: url("../../assets/icons/add-person.png");
+  background-size: 30px;
+}
+.icons.home-icon {
+  background-image: url("../../assets/icons/home.png");
+  background-size: 30px;
+}
 
 /*# sourceMappingURL=icons.css.map */

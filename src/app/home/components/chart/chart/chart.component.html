@@ -1,4 +1,4 @@
-<div>
+<div (dragover)="onDragOver($event)">
   <div *ngFor="let employee of employeesArray" class="employees-chart"
     (dragover)="onDragOver($event)">
     <app-chart-item
@@ -7,6 +7,12 @@
       }"
       [isBufferChartItem]="isBufferChart"
       [employee]="employee"></app-chart-item>
+  </div>
+
+  <div class="empty-element-placeholder"
+       *ngIf="employeesArray.length === 0 && chartMode !== 'buffer'"
+       (drop)="onDrop($event)">
+    <div class="empty-element-placeholder-drop icons drop-icon" ></div>
   </div>
 </div>
 

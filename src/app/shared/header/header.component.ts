@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {HomeService} from "../../home/home.service";
 import {Switch, TreeType} from "../../models/types";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,11 @@ import {Switch, TreeType} from "../../models/types";
 export class HeaderComponent implements OnInit {
   public treeType: TreeType = 'horizontal';
   public bufferState: Switch = 'close';
+  @Input() mode = 'home';
 
   constructor(
     private homeService: HomeService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +26,14 @@ export class HeaderComponent implements OnInit {
 
   public switchTreeType(treeType: TreeType) {
     this.homeService.treeType.next(treeType);
+  }
+
+  public goToAddItemPage(): void {
+    this.router.navigate(['/add-item']);
+  }
+
+  public goToMainPage(): void {
+    this.router.navigate(['/home']);
   }
 
   public toggleBuffer(): void {

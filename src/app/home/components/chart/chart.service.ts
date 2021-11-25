@@ -20,10 +20,10 @@ export class ChartService implements OnDestroy{
 
 
   constructor() {
-    this.listChartData.next(testData.employees); // будет браться из запроса к бд по идее
-    this.treeChartData.next(this.prepareChartDataList(testData.employees));
-    this.bufferListChartData.next(testDataBuffer.employees); // будет браться из запроса к бд по идее
-    this.bufferTreeChartData.next(this.prepareChartDataList(testDataBuffer.employees));
+    // this.listChartData.next(testData.employees); // будет браться из запроса к бд по идее
+    // this.treeChartData.next(this.prepareChartDataList(testData.employees));
+    // this.bufferListChartData.next(testDataBuffer.employees); // будет браться из запроса к бд по идее
+    // this.bufferTreeChartData.next(this.prepareChartDataList(testDataBuffer.employees));
 
 
     this.dataSubscription.add(this.listChartData.subscribe((data: Array<listChartItem>) => {
@@ -58,6 +58,16 @@ export class ChartService implements OnDestroy{
 
   private findSubordinates(employeeArray: Array<treeChartItem>, id: number): Array<treeChartItem> {
     return employeeArray.filter(employee => employee.parentId === id);
+  }
+
+  public findMaxIdInEmployeeList(): number {
+    const listIdsArray = this.employeeList.map((item: listChartItem) => item.id);
+    this.bufferEmployeeList.map((item: listChartItem) => listIdsArray.push(item.id));
+
+    function arrayMax(array: Array<number>): number {
+      return array.length === 0 ? 0 : array.reduce((a: number, b: number) => Math.max(a, b));
+    }
+    return arrayMax(listIdsArray);
   }
 
   ngOnDestroy(): void {

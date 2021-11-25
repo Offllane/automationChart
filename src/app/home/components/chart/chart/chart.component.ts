@@ -4,6 +4,7 @@ import {HomeService} from "../../../home.service";
 import {Subscription} from "rxjs";
 import {ChartMode, TreeType} from "../../../../models/types";
 import {treeChartItem} from "../../../../models/interfaces";
+import {DragAndDropService} from "../drag-and-drop.service";
 
 @Component({
   selector: 'app-chart',
@@ -20,7 +21,8 @@ export class ChartComponent implements OnInit, OnDestroy {
 
   constructor(
     private chartService: ChartService,
-    private homeService: HomeService
+    private homeService: HomeService,
+    private dndService: DragAndDropService
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +46,12 @@ export class ChartComponent implements OnInit, OnDestroy {
     this.dataSubscription.add(this.homeService.treeType.subscribe((data: TreeType) => {
       this.treeType = data;
     }));
+  }
+
+  onDrop(event: any) {
+    event.stopPropagation();
+    this.dndService.dropPlaceholderItemId = null;
+    this.dndService.replaceItemToNewPosition(false, true);
   }
 
   onDragOver(event: any): void {

@@ -12,7 +12,9 @@
   box-shadow:inset -3px -3px 3px 0 rgba(0, 35, 148,.2), // TODO $shadow-size (for now it's hardcoded 3px but should add it as variable
   inset 3px 3px 3px 0 rgba(255,255,255,0.5);
   color: $text-color;
-  font-weight: 700;
+  font-weight: $card-font-weight;
+  font-size: $card-font-size;
+  text-align: center;
   transition-duration: .3s;
   cursor: pointer;
 

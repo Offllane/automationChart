@@ -1,3 +1,16 @@
-
+.empty-element-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  min-height: 80px;
+  border: 1px #002394 dashed;
+  border-radius: 4px;
+}
+.empty-element-placeholder .empty-element-placeholder-drop {
+  pointer-events: none;
+  width: 70px;
+  height: 70px;
+}
 
 /*# sourceMappingURL=shared.css.map */

@@ -2,6 +2,7 @@
 @import "src/app/shared/icons.scss";
 
 .buffer-placeholder {
+  box-sizing: border-box;
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -23,20 +24,4 @@
 
 .buffer-close-state {
   display: none;
-}
-
-.empty-element-placeholder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: $card-width;
-  height: $card-height;
-  border: 1px $text-color dashed;
-  border-radius: 4px; //TODO вынести в файл с переменными
-
-  .empty-element-placeholder-drop {
-    pointer-events: none;
-    width: 70px;
-    height: 70px;
-  }
 }

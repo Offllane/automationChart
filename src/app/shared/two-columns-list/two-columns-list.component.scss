@@ -11,14 +11,14 @@
   .list-point {
     width: 100%;
     display: flex;
-    font-size: 18px;
+    font-size: $card-font-size;
     line-height: 22px;
     color: $text-color;
     text-overflow: ellipsis;
     text-align: left;
 
     .list-param {
-      font-weight: 700;
+      font-weight: $card-font-weight;
     }
   }
 }

@@ -6,18 +6,24 @@ import { AppComponent } from './app.component';
 
 import { AuthModule } from "./auth/auth.module";
 import { HomeModule } from "./home/home.module";
+import { AddItemPageComponent } from './pages/add-item-page/add-item-page.component';
+import {SharedModule} from "./shared/shared.module";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddItemPageComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AuthModule,
-    HomeModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        AuthModule,
+        HomeModule,
+        SharedModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
