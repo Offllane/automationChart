@@ -23,6 +23,7 @@
     </div>
     <div [ngClass]="{active: bufferState === 'open'}" class="header-button icons buffer"
          (click)="toggleBuffer()">
+      <div class="buffer-item-counter" *ngIf="bufferItemCounter">{{bufferItemCounter}}</div>
     </div>
   </div>
 
