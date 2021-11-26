@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import {FormsModule} from "@angular/forms";
 import { TwoColumnsListComponent } from './two-columns-list/two-columns-list.component';
+import { JsonFileInputComponent } from './json-file-input/json-file-input.component';
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    TwoColumnsListComponent
+    TwoColumnsListComponent,
+    JsonFileInputComponent
   ],
     imports: [
         CommonModule,

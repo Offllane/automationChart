@@ -27,5 +27,9 @@
   background-image: url("../../assets/icons/home.png");
   background-size: 30px;
 }
+.icons.upload {
+  background-image: url("../../assets/icons/upload.png");
+  background-size: 30px;
+}
 
 /*# sourceMappingURL=icons.css.map */

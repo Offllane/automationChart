@@ -9,7 +9,9 @@
   </div>
 
   <div class="header-controls" *ngIf="mode === 'home'">
-    <div class="header-button icons add-person-icon" (click)="goToAddItemPage()">
+    <div class="header-button icons add-person-icon" (click)="goToAddItemPage()"></div>
+    <div class="header-button icons upload">
+      <app-json-file-input></app-json-file-input>
     </div>
     <div class="switch-tree-type-buttons">
       <div [ngClass]="{ active: treeType === 'vertical'}"
