@@ -25,6 +25,7 @@ export class JsonFileInputComponent implements OnInit {
         if (evt?.target?.result) {
           data = JSON.parse(evt?.target?.result.toString());
           this.chartService.listChartData.next(data.employees);
+          this.chartService.bufferListChartData.next(data.bufferEmployees);
         }
       };
       reader.onerror = function (evt) {
