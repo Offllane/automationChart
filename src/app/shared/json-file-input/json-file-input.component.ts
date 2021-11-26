@@ -28,13 +28,6 @@ export class JsonFileInputComponent implements OnInit {
           this.chartService.bufferListChartData.next(data.bufferEmployees);
         }
       };
-      reader.onerror = function (evt) {
-        console.log('error reading file');
-      }
-
-      function check(evt: any) {
-
-      }
     }
   }
 }

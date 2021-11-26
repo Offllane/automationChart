@@ -31,4 +31,9 @@
     background-image: url("../../assets/icons/upload.png");
     background-size: 30px;
   }
+  &.export {
+    background-image: url("../../assets/icons/upload.png");
+    background-size: 30px;
+    transform: rotate(180deg);
+  }
 }

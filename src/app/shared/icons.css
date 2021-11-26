@@ -31,5 +31,10 @@
   background-image: url("../../assets/icons/upload.png");
   background-size: 30px;
 }
+.icons.export {
+  background-image: url("../../assets/icons/upload.png");
+  background-size: 30px;
+  transform: rotate(180deg);
+}
 
 /*# sourceMappingURL=icons.css.map */
