@@ -4,35 +4,35 @@
   background-position: center;
 }
 .icons.tree-chart-icon {
-  background-image: url("../../assets/icons/family-tree.png");
+  background-image: url("../../assets/icons/family-tree.svg");
   background-size: 30px;
 }
 .icons.list-chart-icon {
-  background-image: url("../../assets/icons/list-chart-icon.png");
+  background-image: url("../../assets/icons/list-chart-icon.svg");
   background-size: 30px;
 }
 .icons.buffer {
-  background-image: url("../../assets/icons/buffer.png");
+  background-image: url("../../assets/icons/buffer.svg");
   background-size: 30px;
 }
 .icons.drop-icon {
-  background-image: url("../../assets/icons/drop.png");
+  background-image: url("../../assets/icons/drop.svg");
   background-size: 50px;
 }
 .icons.add-person-icon {
-  background-image: url("../../assets/icons/add-person.png");
+  background-image: url("../../assets/icons/add-person.svg");
   background-size: 30px;
 }
 .icons.home-icon {
-  background-image: url("../../assets/icons/home.png");
+  background-image: url("../../assets/icons/home.svg");
   background-size: 30px;
 }
 .icons.upload {
-  background-image: url("../../assets/icons/upload.png");
+  background-image: url("../../assets/icons/upload.svg");
   background-size: 30px;
 }
 .icons.export {
-  background-image: url("../../assets/icons/upload.png");
+  background-image: url("../../assets/icons/upload.svg");
   background-size: 30px;
   transform: rotate(180deg);
 }

@@ -45,8 +45,8 @@
   position: absolute;
   height: $card-height / 2;
   width: $card-width / 2 - $shadow-size;
-  border-left: 3px solid black;
-  border-bottom: 3px solid black;
+  border-left: 3px solid $text-color;
+  border-bottom: 3px solid $text-color;
   margin-left: -$card-width / 2;
 }
 
@@ -54,7 +54,7 @@
   content: '';
   position: absolute;
   height: 100%;
-  border-left: 3px solid black;
+  border-left: 3px solid $text-color;
   top: $card-height-margin;
   margin-left: -$card-width / 2;
 }
@@ -90,7 +90,7 @@
   position: absolute;
   top: 0;
   right: 50%;
-  border-top: 3px solid black;
+  border-top: 3px solid $text-color;
   width: 50%;
   height: 20px;
 }
@@ -98,7 +98,7 @@
 .child-node-horizontal::after {
   right: auto;
   left: 50%;
-  border-left: 3px solid black;
+  border-left: 3px solid $text-color;
 }
 
 /*We need to remove left-right connectors from elements without any siblings*/
@@ -115,7 +115,7 @@
 }
 
 .child-node-horizontal:last-child:before {
-  border-right: 3px solid black;
+  border-right: 3px solid $text-color;
   border-radius: 0 5px 0 0;
 }
 
@@ -127,7 +127,7 @@
   content: '';
   position: absolute;
   height: 20px;
-  border-left: 3px solid black;
+  border-left: 3px solid $text-color;
   top: 0;
   left: 50%;
 }
