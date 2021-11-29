@@ -15,6 +15,22 @@ header {
   font-size: 30px;
   font-weight: bold;
   z-index: 1;
+  overflow: hidden;
+
+  .chart-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .header-logo {
+      margin-right: 30px;
+    }
+  }
+
+  .selector-container {
+    display: flex;
+    align-items: center;
+  }
 
   .header-controls {
     display: flex;

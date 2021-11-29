@@ -15,7 +15,7 @@ export class TwoColumnsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.listInformForAdditionalChartItemArea = {
-      age: 0, city: "", country: "", firstName: "", id: 0, lastName: "", parentId: null
+      age: 0, city: "", country: "", firstName: "", id: 0, lastName: "", parentId: null, chartId: 0
 
     }
   }

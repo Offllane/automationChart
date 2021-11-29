@@ -1,8 +1,8 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import testData from '../../../models/testData2.json';
 import testDataBuffer from '../../../models/testDataBuffer1.json';
 import {BehaviorSubject, Subscription} from "rxjs";
 import {listChartItem, treeChartItem} from "../../../models/interfaces";
+import {ResourceService} from "../../../services/resource.service";
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,11 @@ export class ChartService implements OnDestroy{
   public employeeList: Array<listChartItem> = [];
   public bufferEmployeeList: Array<listChartItem> = [];
 
+  public currentChartId: number = 0;
 
-  constructor() {
+  constructor(
+    private resourceService: ResourceService
+  ) {
     // this.listChartData.next(testData.employees); // будет браться из запроса к бд по идее
     // this.treeChartData.next(this.prepareChartDataList(testData.employees));
     // this.bufferListChartData.next(testDataBuffer.employees); // будет браться из запроса к бд по идее
@@ -68,6 +71,13 @@ export class ChartService implements OnDestroy{
       return array.length === 0 ? 0 : array.reduce((a: number, b: number) => Math.max(a, b));
     }
     return arrayMax(listIdsArray);
+  }
+
+  public setAllEmployeeCardsByChartId(chartId: number) {
+    const currentChartMainCards:Array<listChartItem> = this.resourceService.getAllMainPersonsCardsByChartId(chartId);
+    const currentChartBufferCards:Array<listChartItem> = this.resourceService.getAllBufferPersonsCardsByChartId(chartId);
+    this.listChartData.next(currentChartMainCards);
+    this.bufferListChartData.next(currentChartBufferCards);
   }
 
   ngOnDestroy(): void {

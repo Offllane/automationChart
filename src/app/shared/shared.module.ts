@@ -5,6 +5,7 @@ import {FormsModule} from "@angular/forms";
 import { TwoColumnsListComponent } from './two-columns-list/two-columns-list.component';
 import { JsonFileInputComponent } from './json-file-input/json-file-input.component';
 import { JsonFileExportComponent } from './json-file-export/json-file-export.component';
+import { ChartSelectorComponent } from './chart-selector/chart-selector.component';
 
 
 
@@ -13,7 +14,8 @@ import { JsonFileExportComponent } from './json-file-export/json-file-export.com
     HeaderComponent,
     TwoColumnsListComponent,
     JsonFileInputComponent,
-    JsonFileExportComponent
+    JsonFileExportComponent,
+    ChartSelectorComponent
   ],
     imports: [
         CommonModule,

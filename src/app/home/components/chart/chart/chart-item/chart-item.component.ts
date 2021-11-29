@@ -16,6 +16,7 @@ export class ChartItemComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription = new Subscription();
   @Input() employee: treeChartItem = {
     parentId: -1, // init value
+    chartId: -1,
     id: -1, // init value
     firstName: 'none',
     lastName: 'none',

@@ -16,6 +16,7 @@ export class AddItemPageComponent implements OnInit, OnDestroy {
   public listForm: listChartItem = {
     id: 0,
     parentId: null,
+    chartId: this.chartService.currentChartId,
     age: 0,
     birthDate: "",
     city: "",
@@ -61,7 +62,6 @@ export class AddItemPageComponent implements OnInit, OnDestroy {
   private addItemToBuffer(listChartItem: listChartItem): void {
     this.bufferEmployeeList.push(listChartItem);
     this.chartService.bufferListChartData.next(this.bufferEmployeeList);
-
   }
 
   ngOnDestroy(): void {

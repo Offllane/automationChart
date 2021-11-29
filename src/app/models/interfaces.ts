@@ -1,6 +1,7 @@
 export interface IIdentifiers {
   id: number;
   parentId: number | null;
+  chartId: number;
 }
 
 export interface listChartItem extends IIdentifiers{
