@@ -4,7 +4,7 @@ import {Switch, TreeType} from "../../models/types";
 import {Router} from "@angular/router";
 import {ChartService} from "../../home/components/chart/chart.service";
 import {Subscription} from "rxjs";
-import {listChartItem} from "../../models/interfaces";
+import {IListChartItem} from "../../models/interfaces";
 
 @Component({
   selector: 'app-header',
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.dataSubscription.add(this.homeService.treeType.subscribe((data: TreeType) => {
       this.treeType = data;
     }));
-    this.dataSubscription.add(this.chartService.bufferListChartData.subscribe((data: Array<listChartItem>) => {
+    this.dataSubscription.add(this.chartService.bufferListChartData.subscribe((data: Array<IListChartItem>) => {
       this.bufferItemCounter = data.length;
     }));
   }

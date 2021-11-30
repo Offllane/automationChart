@@ -1,10 +1,10 @@
-export interface IIdentifiers {
+export interface ICardIdentifiers {
   id: number;
   parentId: number | null;
   chartId: number;
 }
 
-export interface listChartItem extends IIdentifiers{
+export interface IListChartItem extends ICardIdentifiers{
   firstName?: string;
   lastName?: string;
   patronymic?: string;
@@ -21,7 +21,13 @@ export interface listChartItem extends IIdentifiers{
   photo?: any;
 }
 
-export interface treeChartItem extends listChartItem{
+export interface ITreeChartItem extends IListChartItem{
   isHide?: boolean;
-  subordinates: Array <treeChartItem>;
+  subordinates: Array <ITreeChartItem>;
+}
+
+export interface IChartParams {
+  chartId: number;
+  userId: number;
+  chartName: string;
 }

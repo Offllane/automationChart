@@ -1,10 +1,8 @@
 <select name="chartSelector" class="chart-selector"
         [(ngModel)]="selectedChartId"
         (change)="onChartSelectChange()">
-  <option value="-1" disabled selected>Select your option</option>
-  <option value="1">Chart 1</option>
-  <option value="2">Chart 2</option>
-  <option value="3">Chart 3</option>
+  <option value="-1" disabled selected>Select chart</option>
+  <option *ngFor="let chart of chartsArray"  value="{{chart.chartId}}">{{chart.chartName}}</option>
 </select>
 
 

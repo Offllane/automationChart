@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ChartService} from "../../home/components/chart/chart.service";
 import {Subscription} from "rxjs";
-import {listChartItem} from "../../models/interfaces";
+import {IListChartItem} from "../../models/interfaces";
 import {Router} from "@angular/router";
 
 @Component({
@@ -11,9 +11,9 @@ import {Router} from "@angular/router";
 })
 export class AddItemPageComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription = new Subscription();
-  private bufferEmployeeList: Array<listChartItem> = [];
-  private employeeList: Array<listChartItem> = [];
-  public listForm: listChartItem = {
+  private bufferEmployeeList: Array<IListChartItem> = [];
+  private employeeList: Array<IListChartItem> = [];
+  public listForm: IListChartItem = {
     id: 0,
     parentId: null,
     chartId: this.chartService.currentChartId,
@@ -39,10 +39,10 @@ export class AddItemPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.dataSubscription.add(this.chartService.listChartData.subscribe((data: Array<listChartItem>) => {
+    this.dataSubscription.add(this.chartService.listChartData.subscribe((data: Array<IListChartItem>) => {
       this.employeeList = data;
     }));
-    this.dataSubscription.add(this.chartService.bufferListChartData.subscribe((data: Array<listChartItem>) => {
+    this.dataSubscription.add(this.chartService.bufferListChartData.subscribe((data: Array<IListChartItem>) => {
       this.bufferEmployeeList = data;
     }));
   }
@@ -54,12 +54,12 @@ export class AddItemPageComponent implements OnInit, OnDestroy {
     this.router.navigate(['/home']);
   }
 
-  private addItemToMainList(listChartItem: listChartItem): void {
+  private addItemToMainList(listChartItem: IListChartItem): void {
     this.employeeList.push(listChartItem);
     this.chartService.listChartData.next(this.employeeList);
   }
 
-  private addItemToBuffer(listChartItem: listChartItem): void {
+  private addItemToBuffer(listChartItem: IListChartItem): void {
     this.bufferEmployeeList.push(listChartItem);
     this.chartService.bufferListChartData.next(this.bufferEmployeeList);
   }

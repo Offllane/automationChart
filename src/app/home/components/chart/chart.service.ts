@@ -1,7 +1,7 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import testDataBuffer from '../../../models/testDataBuffer1.json';
 import {BehaviorSubject, Subscription} from "rxjs";
-import {listChartItem, treeChartItem} from "../../../models/interfaces";
+import {IListChartItem, ITreeChartItem} from "../../../models/interfaces";
 import {ResourceService} from "../../../services/resource.service";
 
 @Injectable({
@@ -10,13 +10,13 @@ import {ResourceService} from "../../../services/resource.service";
 export class ChartService implements OnDestroy{
   private dataSubscription: Subscription = new Subscription();
 
-  public listChartData: BehaviorSubject<Array<listChartItem>> = new BehaviorSubject<Array<listChartItem>>([]);
-  public treeChartData: BehaviorSubject<Array<treeChartItem>> = new BehaviorSubject<Array<treeChartItem>>([]);
-  public bufferListChartData: BehaviorSubject<Array<listChartItem>> = new BehaviorSubject<Array<listChartItem>>([]);
-  public bufferTreeChartData: BehaviorSubject<Array<treeChartItem>> = new BehaviorSubject<Array<treeChartItem>>([]);
+  public listChartData: BehaviorSubject<Array<IListChartItem>> = new BehaviorSubject<Array<IListChartItem>>([]);
+  public treeChartData: BehaviorSubject<Array<ITreeChartItem>> = new BehaviorSubject<Array<ITreeChartItem>>([]);
+  public bufferListChartData: BehaviorSubject<Array<IListChartItem>> = new BehaviorSubject<Array<IListChartItem>>([]);
+  public bufferTreeChartData: BehaviorSubject<Array<ITreeChartItem>> = new BehaviorSubject<Array<ITreeChartItem>>([]);
 
-  public employeeList: Array<listChartItem> = [];
-  public bufferEmployeeList: Array<listChartItem> = [];
+  public employeeList: Array<IListChartItem> = [];
+  public bufferEmployeeList: Array<IListChartItem> = [];
 
   public currentChartId: number = 0;
 
@@ -29,26 +29,26 @@ export class ChartService implements OnDestroy{
     // this.bufferTreeChartData.next(this.prepareChartDataList(testDataBuffer.employees));
 
 
-    this.dataSubscription.add(this.listChartData.subscribe((data: Array<listChartItem>) => {
+    this.dataSubscription.add(this.listChartData.subscribe((data: Array<IListChartItem>) => {
       this.employeeList = data;
       this.treeChartData.next(this.prepareChartDataList(data));
     }));
-    this.dataSubscription.add(this.bufferListChartData.subscribe((data: Array<listChartItem>) => {
+    this.dataSubscription.add(this.bufferListChartData.subscribe((data: Array<IListChartItem>) => {
       this.bufferEmployeeList = data;
       this.bufferTreeChartData.next(this.prepareChartDataList(data));
     }));
   }
 
-  public prepareChartDataList(employeeList: Array<listChartItem>): Array<treeChartItem> {
+  public prepareChartDataList(employeeList: Array<IListChartItem>): Array<ITreeChartItem> {
     return this.orderInformation(employeeList);
   }
 
-  public orderInformation(employeeArray: Array<listChartItem>): Array<treeChartItem> {
+  public orderInformation(employeeArray: Array<IListChartItem>): Array<ITreeChartItem> {
     // add new field to user model
-    const treeEmployeeArray: Array<treeChartItem> = employeeArray.map(employee => {
+    const treeEmployeeArray: Array<ITreeChartItem> = employeeArray.map(employee => {
       return {
         ...employee,
-        subordinates: new Array<treeChartItem>(),
+        subordinates: new Array<ITreeChartItem>(),
         isHide: false
       };
     });
@@ -59,13 +59,13 @@ export class ChartService implements OnDestroy{
     return _treeEmployeeArray;
   }
 
-  private findSubordinates(employeeArray: Array<treeChartItem>, id: number): Array<treeChartItem> {
+  private findSubordinates(employeeArray: Array<ITreeChartItem>, id: number): Array<ITreeChartItem> {
     return employeeArray.filter(employee => employee.parentId === id);
   }
 
   public findMaxIdInEmployeeList(): number {
-    const listIdsArray = this.employeeList.map((item: listChartItem) => item.id);
-    this.bufferEmployeeList.map((item: listChartItem) => listIdsArray.push(item.id));
+    const listIdsArray = this.employeeList.map((item: IListChartItem) => item.id);
+    this.bufferEmployeeList.map((item: IListChartItem) => listIdsArray.push(item.id));
 
     function arrayMax(array: Array<number>): number {
       return array.length === 0 ? 0 : array.reduce((a: number, b: number) => Math.max(a, b));
@@ -74,8 +74,8 @@ export class ChartService implements OnDestroy{
   }
 
   public setAllEmployeeCardsByChartId(chartId: number) {
-    const currentChartMainCards:Array<listChartItem> = this.resourceService.getAllMainPersonsCardsByChartId(chartId);
-    const currentChartBufferCards:Array<listChartItem> = this.resourceService.getAllBufferPersonsCardsByChartId(chartId);
+    const currentChartMainCards:Array<IListChartItem> = this.resourceService.getAllMainPersonsCardsByChartId(chartId);
+    const currentChartBufferCards:Array<IListChartItem> = this.resourceService.getAllBufferPersonsCardsByChartId(chartId);
     this.listChartData.next(currentChartMainCards);
     this.bufferListChartData.next(currentChartBufferCards);
   }

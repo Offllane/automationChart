@@ -3,7 +3,7 @@ import {ChartService} from "../chart.service";
 import {HomeService} from "../../../home.service";
 import {Subscription} from "rxjs";
 import {ChartMode, TreeType} from "../../../../models/types";
-import {treeChartItem} from "../../../../models/interfaces";
+import {ITreeChartItem} from "../../../../models/interfaces";
 import {DragAndDropService} from "../drag-and-drop.service";
 
 @Component({
@@ -12,7 +12,7 @@ import {DragAndDropService} from "../drag-and-drop.service";
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit, OnDestroy {
-  public employeesArray: Array<treeChartItem> = [];
+  public employeesArray: Array<ITreeChartItem> = [];
   public treeType: TreeType = 'vertical';
   private dataSubscription: Subscription = new Subscription();
 
@@ -29,12 +29,12 @@ export class ChartComponent implements OnInit, OnDestroy {
     this.isBufferChart = this.chartMode === 'buffer';
     switch (this.chartMode) {
       case 'main':
-        this.dataSubscription.add(this.chartService.treeChartData.subscribe((data: Array<treeChartItem>) => {
+        this.dataSubscription.add(this.chartService.treeChartData.subscribe((data: Array<ITreeChartItem>) => {
           this.employeesArray = data;
         }));
         break;
       case 'buffer':
-        this.dataSubscription.add(this.chartService.bufferTreeChartData.subscribe((data: Array<treeChartItem>) => {
+        this.dataSubscription.add(this.chartService.bufferTreeChartData.subscribe((data: Array<ITreeChartItem>) => {
           this.employeesArray = data;
         }));
       break;

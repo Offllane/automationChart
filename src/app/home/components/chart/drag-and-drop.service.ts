@@ -1,17 +1,17 @@
 import {ChartService} from "./chart.service";
 import {Subscription} from "rxjs";
 import {Injectable, OnDestroy} from "@angular/core";
-import {listChartItem, treeChartItem} from "../../../models/interfaces";
+import {IListChartItem, ITreeChartItem} from "../../../models/interfaces";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DragAndDropService implements OnDestroy{
   private dataSubscription = new Subscription();
-  private employeeList: Array<listChartItem> = [];
-  private employeeTrees: Array<treeChartItem> = []
-  private bufferEmployeeList: Array<listChartItem> = [];
-  private bufferEmployeeTrees: Array<treeChartItem> = [];
+  private employeeList: Array<IListChartItem> = [];
+  private employeeTrees: Array<ITreeChartItem> = []
+  private bufferEmployeeList: Array<IListChartItem> = [];
+  private bufferEmployeeTrees: Array<ITreeChartItem> = [];
   public draggedItemId: number = -1; // init value
   public isDraggedItemFromBuffer = false;
   public dropPlaceholderItemId: number | null = -1; // init value
@@ -19,26 +19,26 @@ export class DragAndDropService implements OnDestroy{
   constructor(
     private chartService: ChartService
   ) {
-    this.dataSubscription.add(this.chartService.listChartData.subscribe((employeeList: Array<listChartItem>) => {
+    this.dataSubscription.add(this.chartService.listChartData.subscribe((employeeList: Array<IListChartItem>) => {
       this.employeeList = employeeList;
     }));
-    this.dataSubscription.add(this.chartService.treeChartData.subscribe((treeEmployeeList: Array<treeChartItem>) => {
+    this.dataSubscription.add(this.chartService.treeChartData.subscribe((treeEmployeeList: Array<ITreeChartItem>) => {
       this.employeeTrees = treeEmployeeList;
     }));
-    this.dataSubscription.add(this.chartService.bufferListChartData.subscribe((bufferTreeEmployeeList: Array<listChartItem>) => {
+    this.dataSubscription.add(this.chartService.bufferListChartData.subscribe((bufferTreeEmployeeList: Array<IListChartItem>) => {
       this.bufferEmployeeList = bufferTreeEmployeeList;
     }));
-    this.dataSubscription.add(this.chartService.bufferTreeChartData.subscribe((bufferTreeEmployeeList: Array<treeChartItem>) => {
+    this.dataSubscription.add(this.chartService.bufferTreeChartData.subscribe((bufferTreeEmployeeList: Array<ITreeChartItem>) => {
       this.bufferEmployeeTrees = bufferTreeEmployeeList;
     }));
   }
 
-  private updateEmployeeList(employeeList: Array<listChartItem>): void {
+  private updateEmployeeList(employeeList: Array<IListChartItem>): void {
     this.employeeList = employeeList;
     this.chartService.listChartData.next(this.employeeList);
   }
 
-  private updateBufferEmployeeList(bufferEmployeeList: Array<listChartItem>): void {
+  private updateBufferEmployeeList(bufferEmployeeList: Array<IListChartItem>): void {
     this.bufferEmployeeList = bufferEmployeeList;
     this.chartService.bufferListChartData.next(this.bufferEmployeeList);
   }
@@ -48,18 +48,18 @@ export class DragAndDropService implements OnDestroy{
       return;
     }
 
-    let employeeList: Array<listChartItem> = [...this.employeeList];
-    let bufferEmployeeList: Array<listChartItem> = [...this.bufferEmployeeList];
+    let employeeList: Array<IListChartItem> = [...this.employeeList];
+    let bufferEmployeeList: Array<IListChartItem> = [...this.bufferEmployeeList];
 
-    const draggedItem: listChartItem = isDraggedItemFromBuffer ?
-      bufferEmployeeList.find((item: listChartItem) => item.id === this.draggedItemId) as listChartItem
-      : employeeList.find((item: listChartItem) => item.id === this.draggedItemId) as listChartItem;
-    const dropPlaceholderItem: listChartItem | undefined = isDropPlaceholderItemFromBuffer ?
-      bufferEmployeeList.find((item: listChartItem) => item.id === this.dropPlaceholderItemId)
-      : employeeList.find((item: listChartItem) => item.id === this.dropPlaceholderItemId);
+    const draggedItem: IListChartItem = isDraggedItemFromBuffer ?
+      bufferEmployeeList.find((item: IListChartItem) => item.id === this.draggedItemId) as IListChartItem
+      : employeeList.find((item: IListChartItem) => item.id === this.draggedItemId) as IListChartItem;
+    const dropPlaceholderItem: IListChartItem | undefined = isDropPlaceholderItemFromBuffer ?
+      bufferEmployeeList.find((item: IListChartItem) => item.id === this.dropPlaceholderItemId)
+      : employeeList.find((item: IListChartItem) => item.id === this.dropPlaceholderItemId);
 
     // for check subordinating of dragged item
-    let draggedItemWithSubordinates: treeChartItem | null = null;
+    let draggedItemWithSubordinates: ITreeChartItem | null = null;
     for (let i = 0; i < this.employeeTrees.length && draggedItemWithSubordinates === null; i++) {
       draggedItemWithSubordinates = this.findTreeItemById(this.employeeTrees[i], this.draggedItemId);
     }
@@ -88,16 +88,16 @@ export class DragAndDropService implements OnDestroy{
     this.updateEmployeeList(employeeList);
   }
 
-  private isItemSubordinate(possibleBossItem: treeChartItem, possibleSubordinateItem: listChartItem | undefined): boolean {
+  private isItemSubordinate(possibleBossItem: ITreeChartItem, possibleSubordinateItem: IListChartItem | undefined): boolean {
     const id = possibleSubordinateItem?.id ?? null;
     return this.findTreeItemById(possibleBossItem, id) !== null;
   }
 
-  private findTreeItemById(bossItem: treeChartItem, id: number | null): treeChartItem | null {
+  private findTreeItemById(bossItem: ITreeChartItem, id: number | null): ITreeChartItem | null {
     if (bossItem.id === id) {
       return bossItem;
     } else if (bossItem.subordinates.length) {
-      let result: treeChartItem | null = null;
+      let result: ITreeChartItem | null = null;
       for (let i = 0; i < bossItem.subordinates.length && result === null; i++) {
          result = this.findTreeItemById(bossItem.subordinates[i], id);
       }
@@ -107,7 +107,7 @@ export class DragAndDropService implements OnDestroy{
     }
   }
 
-  private replaceItemsBetweenLists(startList: Array<listChartItem>, endList:Array<listChartItem>, draggedItem: treeChartItem) {
+  private replaceItemsBetweenLists(startList: Array<IListChartItem>, endList:Array<IListChartItem>, draggedItem: ITreeChartItem) {
     endList.push(draggedItem);
     startList = this.removeItemFromList(draggedItem.id, startList);
     for (let i = 0; i < draggedItem.subordinates.length; i++) {
@@ -117,8 +117,8 @@ export class DragAndDropService implements OnDestroy{
     return {startList: startList, endList: endList};
   }
 
-  private removeItemFromList(id: number, list: Array<listChartItem>): Array<listChartItem> {
-    const neededItemIndex = list.findIndex((employee: listChartItem) => employee.id === id);
+  private removeItemFromList(id: number, list: Array<IListChartItem>): Array<IListChartItem> {
+    const neededItemIndex = list.findIndex((employee: IListChartItem) => employee.id === id);
     list.splice(neededItemIndex, 1);
 
     return list;

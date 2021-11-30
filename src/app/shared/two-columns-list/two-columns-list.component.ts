@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {listChartItem} from "../../models/interfaces";
+import {IListChartItem} from "../../models/interfaces";
 
 @Component({
   selector: 'app-two-columns-list',
@@ -9,7 +9,7 @@ import {listChartItem} from "../../models/interfaces";
 export class TwoColumnsListComponent implements OnInit {
   @Input() isInformDisplaying = false;
   @Input() listInform = {};
-  public listInformForAdditionalChartItemArea: listChartItem = {} as listChartItem;
+  public listInformForAdditionalChartItemArea: IListChartItem = {} as IListChartItem;
 
   constructor() { }
 

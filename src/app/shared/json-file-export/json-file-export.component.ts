@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { saveAs } from 'file-saver';
 import {Subscription} from "rxjs";
-import {listChartItem} from "../../models/interfaces";
+import {IListChartItem} from "../../models/interfaces";
 import {ChartService} from "../../home/components/chart/chart.service";
 
 @Component({
@@ -21,10 +21,10 @@ export class JsonFileExportComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.dataSubscription.add(this.chartService.listChartData.subscribe((data: Array<listChartItem>) => {
+    this.dataSubscription.add(this.chartService.listChartData.subscribe((data: Array<IListChartItem>) => {
       this.dataForExport.employees = data;
     }));
-    this.dataSubscription.add(this.chartService.bufferListChartData.subscribe((data: Array<listChartItem>) => {
+    this.dataSubscription.add(this.chartService.bufferListChartData.subscribe((data: Array<IListChartItem>) => {
       this.dataForExport.bufferEmployees = data;
     }));
   }
