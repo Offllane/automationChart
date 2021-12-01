@@ -6,6 +6,7 @@ import { TwoColumnsListComponent } from './two-columns-list/two-columns-list.com
 import { JsonFileInputComponent } from './json-file-input/json-file-input.component';
 import { JsonFileExportComponent } from './json-file-export/json-file-export.component';
 import { ChartSelectorComponent } from './chart-selector/chart-selector.component';
+import { PopupComponent } from './popup/popup.component';
 
 
 
@@ -15,15 +16,17 @@ import { ChartSelectorComponent } from './chart-selector/chart-selector.componen
     TwoColumnsListComponent,
     JsonFileInputComponent,
     JsonFileExportComponent,
-    ChartSelectorComponent
+    ChartSelectorComponent,
+    PopupComponent
   ],
     imports: [
         CommonModule,
         FormsModule
     ],
-    exports: [
-        HeaderComponent,
-        TwoColumnsListComponent
-    ]
+  exports: [
+    HeaderComponent,
+    TwoColumnsListComponent,
+    PopupComponent
+  ]
 })
 export class SharedModule { }

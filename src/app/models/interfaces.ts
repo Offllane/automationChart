@@ -1,3 +1,5 @@
+import {PopupMode} from "./types";
+
 export interface ICardIdentifiers {
   id: number;
   parentId: number | null;
@@ -30,4 +32,9 @@ export interface IChartParams {
   chartId: number;
   userId: number;
   chartName: string;
+}
+
+export interface IPopupConfig {
+  popupTitle: string;
+  popupMode: PopupMode;
 }

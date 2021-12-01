@@ -36,4 +36,12 @@
     background-size: 25px;
     transform: rotate(180deg);
   }
+  &.add-chart-icon {
+    background-image: url("../../assets/icons/add-chart.png");
+    background-size: 30px;
+  }
+  &.close-icon {
+    background-image: url("../../assets/icons/close.png");
+    background-size: 20px;
+  }
 }

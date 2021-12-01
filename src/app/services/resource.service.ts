@@ -3,11 +3,13 @@ import { Injectable } from '@angular/core';
 import testData from '../models/testData2.json';
 import chartsData from '../models/chartsData.json'
 import {IChartParams, IListChartItem} from "../models/interfaces";
+import {BehaviorSubject, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResourceService {
+  public chartsData:Subject<IChartParams> = new Subject<IChartParams>(); // TODO удалится после подключенгия к бэку чартов
 
   constructor() { }
 

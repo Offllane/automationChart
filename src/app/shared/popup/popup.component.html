@@ -1,0 +1,24 @@
+<div class="popup-wrapper" [ngClass]="{'active' : isPopupOpen}">
+  <div class="popup-background" (click)="closePopup()"></div>
+  <div class="popup-container">
+    <div class="popup-header">
+      <div class="popup-title">{{popupConfig.popupTitle}}</div>
+      <div class="popup-close-button icons close-icon" (click)="closePopup()"></div>
+    </div>
+    <div class="popup-body">
+      <div [ngSwitch]="popupConfig.popupMode">
+        <div *ngSwitchCase="'addChart'">
+          <form ngNativeValidate class="add-chart-form" (ngSubmit)="createNewChart()">
+            <div>
+              <label for="chartName">Enter chart name: </label>
+              <input id="chartName" required placeholder="Chart name" type="text" name="chartName" [(ngModel)]="addChartPopupData.chartName"/>
+            </div>
+            <button type="submit">Create new chart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -9,8 +9,9 @@
       </div>
     </div>
 
-    <div class="">
+    <div class="header-controls" *ngIf="mode === 'home'">
       <app-chart-selector></app-chart-selector>
+      <div class="header-button icons add-chart-icon" (click)="openAddChartPopup()"></div>
     </div>
   </div>
 

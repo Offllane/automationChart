@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {ChartService} from "../../home/components/chart/chart.service";
 import {Subscription} from "rxjs";
 import {IListChartItem} from "../../models/interfaces";
+import {PopupsService} from "../../services/popups.service";
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private homeService: HomeService,
     private chartService: ChartService,
+    private popupService: PopupsService,
     private router: Router
   ) { }
 
@@ -48,6 +50,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public toggleBuffer(): void {
     this.bufferState = this.bufferState === 'open' ? 'close' : 'open';
     this.homeService.bufferState.next(this.bufferState);
+  }
+
+  public openAddChartPopup(): void {
+    this.popupService.popupState.next({
+      popupTitle: 'Create new chart',
+      popupMode: "addChart"
+    });
   }
 
   ngOnDestroy(): void {

@@ -19,6 +19,9 @@ export class ChartSelectorComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllChartsByUserId(1);
+    this.resourceService.chartsData.subscribe((data: IChartParams) => { // TODO удалится после подключенгия к бэку чартов
+      this.chartsArray.push(data);
+    })
   }
 
   public onChartSelectChange(): void {
