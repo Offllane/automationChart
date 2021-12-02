@@ -1,10 +1,10 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
 import {HomeService} from "../../home/home.service";
 import {Switch, TreeType} from "../../models/types";
 import {Router} from "@angular/router";
 import {ChartService} from "../../home/components/chart/chart.service";
 import {Subscription} from "rxjs";
-import {IListChartItem} from "../../models/interfaces";
+import {IListChartItem, IPopupConfig} from "../../models/interfaces";
 import {PopupsService} from "../../services/popups.service";
 import {AuthService} from "../../auth/auth.service";
 
@@ -18,7 +18,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public bufferItemCounter: number = 0;
   public treeType: TreeType = 'horizontal';
   public bufferState: Switch = 'close';
+  public headerState: Switch = 'open';
+  public popupConfig: IPopupConfig | null = null;
   @Input() mode = 'home';
+  @HostListener('window:scroll', ['$event'])
+  scrollEvent() {
+    this.onScroll();
+  }
+
+
 
   constructor(
     private homeService: HomeService,
@@ -34,6 +42,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }));
     this.dataSubscription.add(this.chartService.bufferListChartData.subscribe((data: Array<IListChartItem>) => {
       this.bufferItemCounter = data.length;
+    }));
+    this.dataSubscription.add(this.popupService.popupState.subscribe((popupState: IPopupConfig | null) => {
+      this.popupConfig = popupState;
     }));
   }
 
@@ -64,6 +75,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  public onScroll():void {
+    if (window.scrollY > 100) {
+      this.headerState = 'close';
+    } else {
+      this.headerState = 'open';
+    }
   }
 
   ngOnDestroy(): void {

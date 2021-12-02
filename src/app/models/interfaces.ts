@@ -42,6 +42,7 @@ export interface IPopupConfig {
 export interface IUserCredentials {
   username: string;
   password: string;
+  role: string;
 }
 
 export interface ILoginInform {

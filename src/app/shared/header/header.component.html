@@ -1,4 +1,7 @@
-<header>
+<div [ngClass]="{'header-placeholder ' : popupConfig === null}" class="header-placeholder">
+
+</div>
+<header [ngClass]="{'open' : headerState === 'open' && popupConfig === null}">
   <div class="chart-controls">
     <div class="header-logo">
       <div class="logo-name">

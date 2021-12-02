@@ -17,7 +17,7 @@ export class ResourceService {
   constructor(
     private http: HttpClient
   ) {
-    //this.api = this.apiLocal;
+   // this.api = this.apiLocal;
   }
 
   // get data for main chart
@@ -40,5 +40,9 @@ export class ResourceService {
 
   public login(userCredentials : FormData) {
     return this.http.post<ILoginInform>(this.api + '/login', userCredentials).pipe(shareReplay());
+  }
+
+  public addNewUser(userCredentials: FormData) {
+    return this.http.post<IUserCredentials>(this.api + '/register', userCredentials).pipe(shareReplay());
   }
 }

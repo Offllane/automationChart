@@ -12,7 +12,8 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   public userCredentials: IUserCredentials = {
     username: '',
-    password: ''
+    password: '',
+    role: 'user'
   }
   public isInvalidLoginOrPassword = false;
 

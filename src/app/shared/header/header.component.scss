@@ -1,6 +1,19 @@
 @import "src/app/shared/shared.scss";
 @import "src/app/shared/icons.scss";
 
+.header-placeholder {
+  position: fixed;
+  width: 100vw;
+  height: 100px;
+  top: 0;
+  z-index: 1;
+}
+
+.header-placeholder:hover + header {
+  top: 0;
+  transition: .5s;
+}
+
 header {
   position: fixed;
   display: flex;
@@ -8,14 +21,25 @@ header {
   align-items: center;
   width: 100vw;
   height: 100px;
-  top:0;
+  top:-100px;
   padding: 15px;
-  background-color: $background;
+  background: rgba(171, 220, 255, .8);
   color: #002394;
   font-size: 30px;
   font-weight: bold;
   z-index: 1;
   overflow: hidden;
+  box-shadow:inset -3px -3px 3px 0 rgba(0, 35, 148,.2),
+  inset 3px 3px 3px 0 rgba(255, 255, 255, 0.5);
+  transition: .5s;
+
+  &:hover {
+    top: 0;
+  }
+
+  &.open {
+    top: 0;
+  }
 
   .chart-controls {
     display: flex;

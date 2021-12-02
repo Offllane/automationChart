@@ -37,15 +37,15 @@
   transform: rotate(180deg);
 }
 .icons.add-chart-icon {
-  background-image: url("../../assets/icons/add-chart.png");
+  background-image: url("../../assets/icons/add-chart.svg");
   background-size: 30px;
 }
 .icons.close-icon {
-  background-image: url("../../assets/icons/close.png");
+  background-image: url("../../assets/icons/close.svg");
   background-size: 20px;
 }
 .icons.logout-icon {
-  background-image: url("../../assets/icons/logout.png");
+  background-image: url("../../assets/icons/logout.svg");
   background-size: 20px;
 }
 

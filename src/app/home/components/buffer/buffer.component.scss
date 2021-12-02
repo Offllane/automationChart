@@ -9,13 +9,15 @@
   align-items: center;
   width: 35vw;
   height: calc(100vh - 100px); // 100px -- header height
-  background-color: $buffer-background;
+  background-image: linear-gradient( 135deg, #5EFCE8 10%, #736EFE 100%);
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   right: 0;
   top: 100px;
-  z-index: 20;
+  z-index: 0;
   overflow: auto;
+  box-shadow:inset -3px -3px 3px 0 rgba(0, 35, 148,.2), // TODO $shadow-size (for now it's hardcoded 3px but should add it as variable
+  inset 3px 3px 3px 0 rgba(255,255,255,0.5);
 }
 
 .buffer-open-state {

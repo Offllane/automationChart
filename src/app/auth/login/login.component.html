@@ -20,8 +20,8 @@
               <div class="error-message placeholder" *ngIf="!isInvalidLoginOrPassword"></div>
             </div>
             <div class="button-container">
+              <button class="additional-button" (click)="goToRegistrationPage()">Go to sign up</button>
               <button type="submit">Login</button>
-              <button class="register-button" (click)="goToRegistrationPage()">Register</button>
             </div>
           </form>
         </div>

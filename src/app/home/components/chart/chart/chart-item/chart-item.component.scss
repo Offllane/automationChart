@@ -8,7 +8,6 @@
   width: $card-width;
   height: $card-height;
   border-radius: 10px;
-  background-color: $background;
   box-shadow:inset -3px -3px 3px 0 rgba(0, 35, 148,.2), // TODO $shadow-size (for now it's hardcoded 3px but should add it as variable
   inset 3px 3px 3px 0 rgba(255,255,255,0.5);
   color: $text-color;
@@ -19,7 +18,7 @@
   cursor: pointer;
 
   &.buffer {
-    background-color: #E2D8FF;
+
   }
 }
 .chart-item-card:hover, .chart-item-card-active {

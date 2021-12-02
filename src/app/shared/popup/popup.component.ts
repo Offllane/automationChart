@@ -33,13 +33,14 @@ export class PopupComponent implements OnInit, OnDestroy {
         this.isPopupOpen = true;
         this.popupConfig = popupState;
       } else {
-        this.closePopup();
+        this.isPopupOpen = false;
       }
     }));
   }
 
   public closePopup(): void {
     this.isPopupOpen = false;
+    this.popupService.popupState.next(null);
   }
 
   public createNewChart() {
