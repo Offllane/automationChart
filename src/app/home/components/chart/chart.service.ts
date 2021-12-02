@@ -3,6 +3,7 @@ import testDataBuffer from '../../../models/testDataBuffer1.json';
 import {BehaviorSubject, Subscription} from "rxjs";
 import {IListChartItem, ITreeChartItem} from "../../../models/interfaces";
 import {ResourceService} from "../../../services/resource.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,11 @@ export class ChartService implements OnDestroy{
   public currentChartId: number = 0;
 
   constructor(
-    private resourceService: ResourceService
+    private resourceService: ResourceService,
+    private router: Router
   ) {
+    this.getPersonsCards();
+
     // this.listChartData.next(testData.employees); // будет браться из запроса к бд по идее
     // this.treeChartData.next(this.prepareChartDataList(testData.employees));
     // this.bufferListChartData.next(testDataBuffer.employees); // будет браться из запроса к бд по идее
@@ -37,6 +41,18 @@ export class ChartService implements OnDestroy{
       this.bufferEmployeeList = data;
       this.bufferTreeChartData.next(this.prepareChartDataList(data));
     }));
+  }
+
+  public getPersonsCards(): void {
+    this.resourceService.getPersonsCards().pipe().subscribe((data: any) => {
+      console.log(data);
+    },
+      error => {
+        if (error.status === 401) {
+          this.router.navigate(['/login']);
+          console.log('Неавторизирован');
+        }
+      });
   }
 
   public prepareChartDataList(employeeList: Array<IListChartItem>): Array<ITreeChartItem> {

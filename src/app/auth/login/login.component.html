@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="wrapper">
+  <div class="container">
+    <div class="popup-header">
+      <div class="popup-title">Login</div>
+    </div>
+    <div class="popup-body">
+      <div>
+        <div>
+          <form ngNativeValidate class="form" (ngSubmit)="login()">
+            <div>
+              <div class="input-field">
+                <label for="Login">Login: </label>
+                <input id="Login" required placeholder="Login" type="text" name="Login" [(ngModel)]="userCredentials.username"/>
+              </div>
+              <div class="input-field">
+                 <label for="Password">Password: </label>
+                 <input id="Password" required placeholder="Password" type="text" name="Password" [(ngModel)]="userCredentials.password"/>
+              </div>
+              <div class="error-message" *ngIf="isInvalidLoginOrPassword">Invalid user password or login</div>
+              <div class="error-message placeholder" *ngIf="!isInvalidLoginOrPassword"></div>
+            </div>
+            <div class="button-container">
+              <button type="submit">Login</button>
+              <button class="register-button" (click)="goToRegistrationPage()">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

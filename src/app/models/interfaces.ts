@@ -38,3 +38,14 @@ export interface IPopupConfig {
   popupTitle: string;
   popupMode: PopupMode;
 }
+
+export interface IUserCredentials {
+  username: string;
+  password: string;
+}
+
+export interface ILoginInform {
+  id: string;
+  access_token: string;
+  username: string;
+}

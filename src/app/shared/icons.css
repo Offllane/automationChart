@@ -44,5 +44,9 @@
   background-image: url("../../assets/icons/close.png");
   background-size: 20px;
 }
+.icons.logout-icon {
+  background-image: url("../../assets/icons/logout.png");
+  background-size: 20px;
+}
 
 /*# sourceMappingURL=icons.css.map */

@@ -37,6 +37,7 @@
          (click)="toggleBuffer()">
       <div class="buffer-item-counter" *ngIf="bufferItemCounter">{{bufferItemCounter}}</div>
     </div>
+    <div class="header-button icons logout-icon" (click)="logout()"></div>
   </div>
 
   <div class="header-controls" *ngIf="mode === 'item-form'">

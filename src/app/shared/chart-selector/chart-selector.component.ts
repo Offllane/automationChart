@@ -21,7 +21,9 @@ export class ChartSelectorComponent implements OnInit {
     this.getAllChartsByUserId(1);
     this.resourceService.chartsData.subscribe((data: IChartParams) => { // TODO удалится после подключенгия к бэку чартов
       this.chartsArray.push(data);
-    })
+    });
+    this.selectedChartId = this.chartsArray.length === 0 ? -1 : 1;
+    this.onChartSelectChange();
   }
 
   public onChartSelectChange(): void {

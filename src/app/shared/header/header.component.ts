@@ -6,6 +6,7 @@ import {ChartService} from "../../home/components/chart/chart.service";
 import {Subscription} from "rxjs";
 import {IListChartItem} from "../../models/interfaces";
 import {PopupsService} from "../../services/popups.service";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private homeService: HomeService,
     private chartService: ChartService,
     private popupService: PopupsService,
+    private authService: AuthService,
     private router: Router
   ) { }
 
@@ -57,6 +59,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
       popupTitle: 'Create new chart',
       popupMode: "addChart"
     });
+  }
+
+  public logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   ngOnDestroy(): void {
