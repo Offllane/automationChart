@@ -17,7 +17,7 @@ export class ResourceService {
   constructor(
     private http: HttpClient
   ) {
-    this.api = this.apiLocal;
+  //  this.api = this.apiLocal;
   }
 
   // // get data for main chart
