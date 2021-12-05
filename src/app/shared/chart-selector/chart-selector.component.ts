@@ -1,27 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ChartService} from "../../home/components/chart/chart.service";
 import {IChartParams} from "../../models/interfaces";
 import {ResourceService} from "../../services/resource.service";
+import {Subscription} from "rxjs";
+import {HomeService} from "../../home/home.service";
 
 @Component({
   selector: 'app-chart-selector',
   templateUrl: './chart-selector.component.html',
   styleUrls: ['./chart-selector.component.scss']
 })
-export class ChartSelectorComponent implements OnInit {
+export class ChartSelectorComponent implements OnInit, OnDestroy {
+  private dataSubscription: Subscription = new Subscription();
   public selectedChartId: number  = -1;
   public chartsArray: Array<IChartParams> = new Array<IChartParams>();
 
   constructor(
     private chartService: ChartService,
-    private resourceService: ResourceService
+    private resourceService: ResourceService,
+    private homeService: HomeService
   ) { }
 
   ngOnInit(): void {
-    this.getAllChartsByUserId(1);
-    this.resourceService.chartsData.subscribe((data: IChartParams) => { // TODO удалится после подключенгия к бэку чартов
-      this.chartsArray.push(data);
-    });
+    this.homeService.getUserCharts();
+
+    this.dataSubscription.add(this.homeService.usersChart.subscribe(usersCharts => {
+      this.chartsArray = usersCharts;
+    }))
+
     this.selectedChartId = this.chartsArray.length === 0 ? -1 : 1;
     this.onChartSelectChange();
   }
@@ -31,8 +37,7 @@ export class ChartSelectorComponent implements OnInit {
     this.chartService.setAllEmployeeCardsByChartId(this.selectedChartId);
   }
 
-  public getAllChartsByUserId(userId: number): void {
-    this.chartsArray = this.resourceService.getChartsByUserId(userId);
+  ngOnDestroy(): void {
+    this.dataSubscription.unsubscribe();
   }
-
 }

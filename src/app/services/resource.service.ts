@@ -17,7 +17,7 @@ export class ResourceService {
   constructor(
     private http: HttpClient
   ) {
-   // this.api = this.apiLocal;
+    this.api = this.apiLocal;
   }
 
   // get data for main chart
@@ -30,10 +30,6 @@ export class ResourceService {
     return testData.bufferEmployees.filter(employee => employee.chartId == chartId); //TODO метод поменяется на запрос к бэку
   }
 
-  public getChartsByUserId(userId: number): Array<IChartParams> {
-    return chartsData.charts.filter(chart => chart.userId == userId);
-  }
-
   public getPersonsCards() {
     return this.http.get(this.api + '/api/personCard');
   }
@@ -42,7 +38,16 @@ export class ResourceService {
     return this.http.post<ILoginInform>(this.api + '/login', userCredentials).pipe(shareReplay());
   }
 
+  // register
   public addNewUser(userCredentials: FormData) {
     return this.http.post<IUserCredentials>(this.api + '/register', userCredentials).pipe(shareReplay());
+  }
+
+  public getUserCharts() {
+    return this.http.get(this.api + '/api/chart');
+  }
+
+  public addNewChart(chartName: any) {
+    return this.http.post(this.api + '/api/chart', {"chartName": chartName})
   }
 }

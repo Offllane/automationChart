@@ -29,9 +29,10 @@ export interface ITreeChartItem extends IListChartItem{
 }
 
 export interface IChartParams {
-  chartId: number;
-  userId: number;
   chartName: string;
+  id: number;
+  personCard?: Array<IListChartItem>;
+  userChart?: [];
 }
 
 export interface IPopupConfig {

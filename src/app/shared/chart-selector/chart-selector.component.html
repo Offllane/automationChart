@@ -2,7 +2,7 @@
         [(ngModel)]="selectedChartId"
         (change)="onChartSelectChange()">
   <option value="-1" disabled selected>Select chart</option>
-  <option *ngFor="let chart of chartsArray"  value="{{chart.chartId}}">{{chart.chartName}}</option>
+  <option *ngFor="let chart of chartsArray"  value="{{chart.id}}">{{chart.chartName}}</option>
 </select>
 
 

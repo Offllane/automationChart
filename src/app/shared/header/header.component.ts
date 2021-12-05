@@ -26,8 +26,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.onScroll();
   }
 
-
-
   constructor(
     private homeService: HomeService,
     private chartService: ChartService,
