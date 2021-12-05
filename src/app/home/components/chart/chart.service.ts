@@ -25,12 +25,6 @@ export class ChartService implements OnDestroy{
     private resourceService: ResourceService,
     private router: Router
   ) {
-    this.getPersonsCards();
-
-    // this.listChartData.next(testData.employees); // будет браться из запроса к бд по идее
-    // this.treeChartData.next(this.prepareChartDataList(testData.employees));
-    // this.bufferListChartData.next(testDataBuffer.employees); // будет браться из запроса к бд по идее
-    // this.bufferTreeChartData.next(this.prepareChartDataList(testDataBuffer.employees));
 
 
     this.dataSubscription.add(this.listChartData.subscribe((data: Array<IListChartItem>) => {
@@ -41,18 +35,6 @@ export class ChartService implements OnDestroy{
       this.bufferEmployeeList = data;
       this.bufferTreeChartData.next(this.prepareChartDataList(data));
     }));
-  }
-
-  public getPersonsCards(): void {
-    this.resourceService.getPersonsCards().pipe().subscribe((data: any) => {
-      console.log(data);
-    },
-      error => {
-        if (error.status === 401) {
-          this.router.navigate(['/login']);
-          console.log('Неавторизирован');
-        }
-      });
   }
 
   public prepareChartDataList(employeeList: Array<IListChartItem>): Array<ITreeChartItem> {
@@ -79,21 +61,34 @@ export class ChartService implements OnDestroy{
     return employeeArray.filter(employee => employee.parentId === id);
   }
 
-  public findMaxIdInEmployeeList(): number {
-    const listIdsArray = this.employeeList.map((item: IListChartItem) => item.id);
-    this.bufferEmployeeList.map((item: IListChartItem) => listIdsArray.push(item.id));
-
-    function arrayMax(array: Array<number>): number {
-      return array.length === 0 ? 0 : array.reduce((a: number, b: number) => Math.max(a, b));
+  public setChartPersonCard(chartCards: Array<IListChartItem>) {
+    const orderedCards = this.orderInformation(chartCards);
+    const nullCardsWithSubordinates = orderedCards.slice(1); // null items with Subordinates
+    let bufferCards : any = []
+    for (let i = 0; i < nullCardsWithSubordinates.length; i++) {
+      const updatedList = this.replaceItemsBetweenLists(chartCards, bufferCards, nullCardsWithSubordinates[i]);
+      bufferCards = updatedList.endList;
     }
-    return arrayMax(listIdsArray);
+
+    this.listChartData.next(chartCards);
+    this.bufferListChartData.next(bufferCards);
   }
 
-  public setAllEmployeeCardsByChartId(chartId: number) {
-    const currentChartMainCards:Array<IListChartItem> = this.resourceService.getAllMainPersonsCardsByChartId(chartId);
-    const currentChartBufferCards:Array<IListChartItem> = this.resourceService.getAllBufferPersonsCardsByChartId(chartId);
-    this.listChartData.next(currentChartMainCards);
-    this.bufferListChartData.next(currentChartBufferCards);
+  private replaceItemsBetweenLists(startList: Array<IListChartItem>, endList:Array<IListChartItem>, draggedItem: ITreeChartItem) {
+    endList.push(draggedItem);
+    startList = this.removeItemFromList(draggedItem.id, startList);
+    for (let i = 0; i < draggedItem.subordinates.length; i++) {
+      this.replaceItemsBetweenLists(startList, endList, draggedItem.subordinates[i]);
+    }
+
+    return {startList: startList, endList: endList};
+  }
+
+  private removeItemFromList(id: number, list: Array<IListChartItem>): Array<IListChartItem> {
+    const neededItemIndex = list.findIndex((employee: IListChartItem) => employee.id === id);
+    list.splice(neededItemIndex, 1);
+
+    return list;
   }
 
   ngOnDestroy(): void {

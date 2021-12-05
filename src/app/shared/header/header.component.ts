@@ -70,6 +70,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  public openAddPersonCardPopup(): void {
+    this.popupService.popupState.next({
+      popupTitle: 'Add new Person',
+      popupMode: "addPersonCard"
+    });
+  }
+
   public logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);

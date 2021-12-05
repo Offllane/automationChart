@@ -1,9 +1,10 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {PopupsService} from "../../services/popups.service";
 import {Subscription} from "rxjs";
-import {IPopupConfig} from "../../models/interfaces";
+import {IListChartItem, IPopupConfig} from "../../models/interfaces";
 import {ResourceService} from "../../services/resource.service";
 import {HomeService} from "../../home/home.service";
+import {ChartService} from "../../home/components/chart/chart.service";
 
 @Component({
   selector: 'app-popup',
@@ -17,6 +18,24 @@ export class PopupComponent implements OnInit, OnDestroy {
     popupTitle: 'Add new chart',
     popupMode: 'addChart'
   }
+  public listForm: IListChartItem = {
+    id: 0,
+    parentId: null,
+    chartId: this.chartService.currentChartId,
+    age: 0,
+    birthDate: "",
+    city: "",
+    country: "",
+    department: "",
+    education: "",
+    firstName: "",
+    lastName: "",
+    passport: "",
+    patronymic: "",
+    phoneNumber: "",
+    position: "",
+    sex: ""
+  }
 
   public addChartPopupData = {
     chartName: ''
@@ -25,7 +44,8 @@ export class PopupComponent implements OnInit, OnDestroy {
   constructor(
     private popupService: PopupsService,
     private resourceService: ResourceService,
-    private homeService: HomeService
+    private homeService: HomeService,
+    private chartService: ChartService
   ) { }
 
   ngOnInit(): void {
@@ -46,6 +66,15 @@ export class PopupComponent implements OnInit, OnDestroy {
 
   public createNewChart() {
     this.dataSubscription.add(this.resourceService.addNewChart(this.addChartPopupData.chartName).subscribe(() => {
+      this.homeService.getUserCharts();
+    }));
+    this.closePopup();
+  }
+
+  public createNewPersonCard(): void {
+    this.listForm.chartId = this.chartService.currentChartId;
+    const { id, ...newCard} = this.listForm;
+    this.dataSubscription.add(this.resourceService.addNewPersonCard(newCard).subscribe(() => {
       this.homeService.getUserCharts();
     }));
     this.closePopup();

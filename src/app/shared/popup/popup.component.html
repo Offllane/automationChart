@@ -16,6 +16,63 @@
             <button type="submit">Create new chart</button>
           </form>
         </div>
+        <div *ngSwitchCase="'addPersonCard'">
+          <form class="form" (ngSubmit)="createNewPersonCard()">
+            <div class="input-field">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="Name" [(ngModel)]="listForm.firstName">
+            </div>
+            <div class="input-field">
+              <label for="surname">Surname:</label>
+              <input type="text" id="surname" name="Surname" [(ngModel)]="listForm.lastName">
+            </div>
+            <div class="input-field">
+              <label for="patronymic">Patronymic:</label>
+              <input type="text" id="patronymic" name="Patronymic" [(ngModel)]="listForm.patronymic">
+            </div>
+            <div class="input-field">
+              <label for="birthdate">Birth date:</label>
+              <input type="date" id="birthdate" name="Birthdate" [(ngModel)]="listForm.birthDate">
+            </div>
+            <div class="input-field">
+              <label for="age">Age:</label>
+              <input type="number" id="age" name="Age" [(ngModel)]="listForm.age">
+            </div>
+            <div class="input-field">
+              <label for="sex">Sex:</label>
+              <input type="text" id="sex" name="Sex" [(ngModel)]="listForm.sex">
+            </div>
+            <div class="input-field">
+              <label for="position">Position:</label>
+              <input type="text" id="position" name="Position" [(ngModel)]="listForm.position">
+            </div>
+            <div class="input-field">
+              <label for="department">Department:</label>
+              <input type="text" id="department" name="Department" [(ngModel)]="listForm.department">
+            </div>
+            <div class="input-field">
+              <label for="passportData">Passport data:</label>
+              <input type="text" id="passportData" name="PassportData" [(ngModel)]="listForm.passport">
+            </div>
+            <div class="input-field">
+              <label for="city">City:</label>
+              <input type="text" id="city" name="City" [(ngModel)]="listForm.city">
+            </div>
+            <div class="input-field">
+              <label for="country">Country:</label>
+              <input type="text" id="country" name="Country" [(ngModel)]="listForm.country">
+            </div>
+            <div class="input-field">
+              <label for="phone">Phone number:</label>
+              <input type="tel" id="phone" name="PhoneNumber" [(ngModel)]="listForm.phoneNumber">
+            </div>
+            <div class="input-field">
+              <label for="education">Education:</label>
+              <input type="text" id="education" name="Education" [(ngModel)]="listForm.education">
+            </div>
+            <button class="add-new-button" type="submit">Add </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>

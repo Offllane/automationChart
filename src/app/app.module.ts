@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 
 import { AuthModule } from "./auth/auth.module";
 import { HomeModule } from "./home/home.module";
-import { AddItemPageComponent } from './pages/add-item-page/add-item-page.component';
 import {SharedModule} from "./shared/shared.module";
 import {FormsModule} from "@angular/forms";
 import {AuthService} from "./auth/auth.service";
@@ -16,8 +15,7 @@ import {AuthInterceptor} from "./auth/auth.interceptor";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AddItemPageComponent
+    AppComponent
   ],
     imports: [
         BrowserModule,

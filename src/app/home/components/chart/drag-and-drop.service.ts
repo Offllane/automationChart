@@ -2,6 +2,7 @@ import {ChartService} from "./chart.service";
 import {Subscription} from "rxjs";
 import {Injectable, OnDestroy} from "@angular/core";
 import {IListChartItem, ITreeChartItem} from "../../../models/interfaces";
+import {ResourceService} from "../../../services/resource.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class DragAndDropService implements OnDestroy{
   public dropPlaceholderItemId: number | null = -1; // init value
 
   constructor(
-    private chartService: ChartService
+    private chartService: ChartService,
+    private resourceService: ResourceService
   ) {
     this.dataSubscription.add(this.chartService.listChartData.subscribe((employeeList: Array<IListChartItem>) => {
       this.employeeList = employeeList;
@@ -70,6 +72,9 @@ export class DragAndDropService implements OnDestroy{
     if (!this.isItemSubordinate(draggedItemWithSubordinates, dropPlaceholderItem)) {
       draggedItemWithSubordinates.parentId = dropPlaceholderItem?.id ?? null;
       draggedItem.parentId = dropPlaceholderItem?.id ?? null;
+      this.resourceService.updatePersonCard(draggedItem).subscribe(() => {
+      },
+        error => {console.log(error)});
 
       // remove item form dragged array
       if(isDraggedItemFromBuffer && !isDropPlaceholderItemFromBuffer) {

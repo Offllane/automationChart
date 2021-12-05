@@ -48,88 +48,87 @@
         }
       }
     }
+  }
+}
+.popup-body {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 30px;
 
-    .popup-body {
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .input-field {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       width: 100%;
-      margin-bottom: 30px;
 
-      .form {
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+
+      label {
+        color: $text-color;
+        font-size: 20px;
+        margin-right: 10px;
+      }
+
+      input {
+        height: 30px;
+        padding: 10px;
+        border: 2px solid $text-color;
+        border-radius: 5px;
+        color: $text-color;
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+
+    .button-container {
+      display: flex;
+
+      button {
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
+        min-width: 150px;
+        height: 30px;
+        padding: 20px;
+        margin-top: 30px;
+        border: none;
+        background-color: $background;
+        border-radius: 5px;
+        color: $text-color;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: inset -3px -3px 3px 0 rgba(0, 35, 148, .2),
+        inset 3px 3px 3px 0 rgba(255, 255, 255, 0.5);
+        cursor: pointer;
 
-        .input-field {
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-
-          &:not(:last-child) {
-            margin-bottom: 15px;
-          }
-
-          label {
-            color: $text-color;
-            font-size: 20px;
-            margin-right: 10px;
-          }
-
-          input {
-            height: 30px;
-            padding: 10px;
-            border: 2px solid $text-color;
-            border-radius: 5px;
-            color: $text-color;
-            font-size: 16px;
-            font-weight: bold;
-          }
+        &.additional-button {
+          background-color: #91D991;
         }
 
-        .button-container {
-          display: flex;
-
-          button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 150px;
-            height: 30px;
-            padding: 20px;
-            margin-top: 30px;
-            border: none;
-            background-color: $background;
-            border-radius: 5px;
-            color: $text-color;
-            font-size: 16px;
-            font-weight: bold;
-            box-shadow: inset -3px -3px 3px 0 rgba(0, 35, 148, .2),
-            inset 3px 3px 3px 0 rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-
-            &.additional-button {
-              background-color: #91D991;
-            }
-
-            &:hover {
-              box-shadow: unset;
-            }
-            &:not(:last-child) {
-              margin-right: 15px;
-            }
-          }
-
+        &:hover {
+          box-shadow: unset;
         }
-
-        .error-message {
-          color: darkred;
-          font-weight: bold;
-          height: 10px;
-
-          &.placeholder {
-            height: 10px;
-          }
+        &:not(:last-child) {
+          margin-right: 15px;
         }
+      }
+
+    }
+
+    .error-message {
+      color: darkred;
+      font-weight: bold;
+      height: 10px;
+
+      &.placeholder {
+        height: 10px;
       }
     }
   }

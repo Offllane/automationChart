@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ChartService} from "../../home/components/chart/chart.service";
-import {IChartParams} from "../../models/interfaces";
+import {IChartParams, IListChartItem} from "../../models/interfaces";
 import {ResourceService} from "../../services/resource.service";
 import {Subscription} from "rxjs";
 import {HomeService} from "../../home/home.service";
@@ -26,15 +26,21 @@ export class ChartSelectorComponent implements OnInit, OnDestroy {
 
     this.dataSubscription.add(this.homeService.usersChart.subscribe(usersCharts => {
       this.chartsArray = usersCharts;
-    }))
 
-    this.selectedChartId = this.chartsArray.length === 0 ? -1 : 1;
-    this.onChartSelectChange();
+      if(this.selectedChartId === -1) { // set first chart if user have one
+        this.selectedChartId = this.chartsArray.length === 0 ? -1 : this.chartsArray[0].id;
+      }
+      this.onChartChange();
+    }));
+    this.onChartChange();
   }
 
-  public onChartSelectChange(): void {
+  public onChartChange(): void {
     this.chartService.currentChartId = this.selectedChartId;
-    this.chartService.setAllEmployeeCardsByChartId(this.selectedChartId);
+    const currentChartCards: Array<IListChartItem> | undefined = this.chartsArray.find(chart => chart.id == this.selectedChartId)?.personCard;
+    if (currentChartCards) {
+      this.chartService.setChartPersonCard(currentChartCards);
+    }
   }
 
   ngOnDestroy(): void {

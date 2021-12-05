@@ -20,15 +20,15 @@ export class ResourceService {
     this.api = this.apiLocal;
   }
 
-  // get data for main chart
-  public getAllMainPersonsCardsByChartId(chartId: number): Array<IListChartItem> {
-    return testData.employees.filter(employee => employee.chartId == chartId); //TODO метод поменяется на запрос к бэку
-  }
-
-  // get data for buffer chart
-  public getAllBufferPersonsCardsByChartId(chartId: number): Array<IListChartItem> {
-    return testData.bufferEmployees.filter(employee => employee.chartId == chartId); //TODO метод поменяется на запрос к бэку
-  }
+  // // get data for main chart
+  // public getAllMainPersonsCardsByChartId(chartId: number): Array<IListChartItem> {
+  //   return testData.employees.filter(employee => employee.chartId == chartId); //TODO метод поменяется на запрос к бэку
+  // }
+  //
+  // // get data for buffer chart
+  // public getAllBufferPersonsCardsByChartId(chartId: number): Array<IListChartItem> {
+  //   return testData.bufferEmployees.filter(employee => employee.chartId == chartId); //TODO метод поменяется на запрос к бэку
+  // }
 
   public getPersonsCards() {
     return this.http.get(this.api + '/api/personCard');
@@ -49,5 +49,13 @@ export class ResourceService {
 
   public addNewChart(chartName: any) {
     return this.http.post(this.api + '/api/chart', {"chartName": chartName})
+  }
+
+  public addNewPersonCard(personCard: any) {
+    return this.http.post(this.api + '/api/personCard', personCard);
+  }
+
+  public updatePersonCard(personCard: IListChartItem) {
+    return this.http.put(this.api + '/api/personCard', personCard);
   }
 }
