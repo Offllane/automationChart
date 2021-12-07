@@ -1,0 +1,101 @@
+<app-header [mode]="'admin'">
+
+</app-header>
+<app-popup></app-popup>
+<div class="wrapper">
+  <div class="section-container">
+    <div class="section">
+      <div class="section-title">Groups</div>
+      <div class="section-header">
+        <div class="placeholder"></div>
+        <div class="section-header-param">Group name</div>
+        <div class="section-header-param">Group quantity</div>
+      </div>
+      <button (click)="removeGroup()"
+              class="remove-group-button"
+              [disabled]="groups[currentActiveGroupIndex].userInGroup?.length !== 0"
+              *ngIf="currentActiveGroupIndex != -1">Remove group</button>
+      <div class="group-body">
+        <div class="users-line-container" *ngFor="let group of groups; let currentGroupIndex = index">
+          <div class="section-list-item param-hover pointer"
+               [ngClass]="{'active' : currentGroupIndex === currentActiveGroupIndex}"
+               (click)="selectGroup(currentGroupIndex)">
+            {{currentGroupIndex + 1}}.
+            <div class="section-param first-param">{{group.groupName}}</div>
+            <div class="section-param">{{group.userInGroup.length ?? 0}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-container">
+    <div class="section">
+      <div class="section-title">Users in group {{groups[currentActiveGroupIndex]?.groupName}}</div>
+      <div class="section-header">
+        <div class="section-header-param">Id</div>
+        <div class="section-header-param">User login</div>
+        <div class="section-header-param">User role</div>
+      </div>
+      <button class="add-user-button"
+              (click)="openAddUserToGroupPopup()"
+              *ngIf="currentActiveGroupIndex != -1"> Add User</button>
+      <div class="users-line-container" *ngFor="let selectedGroup of usersInSelectedGroup; let currentUserIndex = index">
+        <div class="section-list-item">
+          <div class="section-param first-param">{{selectedGroup.user.id}}</div>
+          <div class="section-param first-param">{{selectedGroup.user.login}}</div>
+          <div class="section-param">{{selectedGroup.user.role}}</div>
+        </div>
+        <button (click)="removeUserFromGroup(selectedGroup.user.id)">Remove user</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-container">
+    <div class="section">
+      <div class="section-title">Permissions for {{groups[currentActiveGroupIndex]?.groupName}} Group</div>
+      <div *ngIf="currentActiveGroupIndex != -1">
+        <div class="section-list-item">
+          <div class="section-param first-param">Доступ на загрузку</div>
+          <input class="section-param checkbox" type="checkbox" [(ngModel)]="currentGroupPermissionList.canDownload" (change)="updatePermissionList()">
+        </div>
+        <div class="section-list-item">
+          <div class="section-param first-param">Доступ на скачивание</div>
+          <input class="section-param checkbox" type="checkbox" [(ngModel)]="currentGroupPermissionList.canUpload" (change)="updatePermissionList()">
+        </div>
+        <div class="section-list-item">
+          <div class="section-param first-param">Доступ на просмотр адреса</div>
+          <input class="section-param checkbox" type="checkbox" [(ngModel)]="currentGroupPermissionList.canReadAddress" (change)="updatePermissionList()">
+        </div>
+        <div class="section-list-item">
+          <div class="section-param first-param">Доступ просмотр паспортных данных</div>
+          <input class="section-param checkbox" type="checkbox" [(ngModel)]="currentGroupPermissionList.canReadPassportData" (change)="updatePermissionList()">
+        </div>
+        <div class="section-list-item">
+          <div class="section-param first-param">Права на обновление пользователя</div>
+          <input class="section-param checkbox" type="checkbox" [(ngModel)]="currentGroupPermissionList.canReadPassportData" (change)="updatePermissionList()">
+        </div>
+        <div class="section-list-item">
+          <div class="section-param first-param">Права на добавление пользователя</div>
+          <input class="section-param checkbox" type="checkbox" [(ngModel)]="currentGroupPermissionList.canReadPassportData" (change)="updatePermissionList()">
+        </div>
+        <div class="section-list-item">
+          <div class="section-param first-param">Права на удаление пользователя</div>
+          <input class="section-param checkbox" type="checkbox" [(ngModel)]="currentGroupPermissionList.canReadPassportData" (change)="updatePermissionList()">
+        </div>
+        <div class="section-list-item">
+          <div class="section-param first-param">Права на изменение схемы</div>
+          <input class="section-param checkbox" type="checkbox" [(ngModel)]="currentGroupPermissionList.canReadPassportData" (change)="updatePermissionList()">
+        </div>
+        <div class="section-list-item">
+          <div class="section-param first-param">Права на добавление схемы</div>
+          <input class="section-param checkbox" type="checkbox" [(ngModel)]="currentGroupPermissionList.canReadPassportData" (change)="updatePermissionList()">
+        </div>
+        <div class="section-list-item">
+          <div class="section-param first-param">Права на удаление схемы</div>
+          <input class="section-param checkbox" type="checkbox" [(ngModel)]="currentGroupPermissionList.canReadPassportData" (change)="updatePermissionList()">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

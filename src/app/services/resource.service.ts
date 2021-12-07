@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
-import testData from '../models/testData2.json';
-import chartsData from '../models/chartsData.json'
-import {IChartParams, IListChartItem, ILoginInform, IUserCredentials} from "../models/interfaces";
+import {
+  IChartParams,
+  IGroup,
+  IListChartItem,
+  ILoginInform,
+  IPermissionList,
+  IUser,
+  IUserCredentials
+} from "../models/interfaces";
 import {Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {shareReplay } from 'rxjs/operators'
@@ -17,18 +23,8 @@ export class ResourceService {
   constructor(
     private http: HttpClient
   ) {
-  //  this.api = this.apiLocal;
+    // this.api = this.apiLocal;
   }
-
-  // // get data for main chart
-  // public getAllMainPersonsCardsByChartId(chartId: number): Array<IListChartItem> {
-  //   return testData.employees.filter(employee => employee.chartId == chartId); //TODO метод поменяется на запрос к бэку
-  // }
-  //
-  // // get data for buffer chart
-  // public getAllBufferPersonsCardsByChartId(chartId: number): Array<IListChartItem> {
-  //   return testData.bufferEmployees.filter(employee => employee.chartId == chartId); //TODO метод поменяется на запрос к бэку
-  // }
 
   public getPersonsCards() {
     return this.http.get(this.api + '/api/personCard');
@@ -57,5 +53,37 @@ export class ResourceService {
 
   public updatePersonCard(personCard: IListChartItem) {
     return this.http.put(this.api + '/api/personCard', personCard);
+  }
+
+  public getAllGroups() {
+    return this.http.get<Array<IGroup>>(this.api + '/api/permissionGroups');
+  }
+
+  public addNewGroup(groupName: string) {
+    return this.http.post<Array<IGroup>>(this.api + '/api/permissionGroups', {"groupName": groupName});
+  }
+
+  public removeGroup(groupId: number) {
+    return this.http.delete<Array<IGroup>>(this.api + '/api/permissionGroups/' + groupId);
+  }
+
+  public getAllUsers() {
+    return this.http.get<Array<IUser>>(this.api + '/api/userAccounts');
+  }
+
+  public addUserToGroup(group: IGroup, userId: number) {
+    return this.http.put(this.api + '/api/permissionGroups/' + userId, {id: group.id, groupName: group.groupName, permissionListId: group.permissionListId} )
+  }
+
+  public removeUserFromGroup(groupId: number, userId: number) {
+    return this.http.delete(this.api + '/api/deleteUser/' + groupId +'/' + userId);
+  }
+
+  public updatePermissionList(permissionList: IPermissionList) {
+    return this.http.put(this.api + '/api/PermissionLists/' + permissionList.id, permissionList );
+  }
+
+  public getAccountPermission(){
+    return this.http.get(this.api + '/api/getUsersPermission');
   }
 }

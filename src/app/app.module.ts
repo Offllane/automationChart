@@ -11,11 +11,13 @@ import {SharedModule} from "./shared/shared.module";
 import {FormsModule} from "@angular/forms";
 import {AuthService} from "./auth/auth.service";
 import {AuthInterceptor} from "./auth/auth.interceptor";
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdminPageComponent
   ],
     imports: [
         BrowserModule,

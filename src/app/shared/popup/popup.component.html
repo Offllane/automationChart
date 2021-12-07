@@ -73,6 +73,28 @@
             <button class="add-new-button" type="submit">Add </button>
           </form>
         </div>
+        <div *ngSwitchCase="'addGroup'">
+          <form ngNativeValidate class="add-chart-form" (ngSubmit)="createNewGroup()">
+            <div>
+              <label for="groupName">Enter group name: </label>
+              <input id="groupName" required placeholder="Chart name" type="text" name="chartName" [(ngModel)]="addGroupPopupData.groupName"/>
+            </div>
+            <button type="submit">Create new group</button>
+          </form>
+        </div>
+        <div *ngSwitchCase="'addUserToGroup'">
+          <div class="users">
+            <div class="user-item" *ngFor="let user of usersAccount">
+             <div class="user-information">
+               <div class="user-login">{{user.login}}</div>
+               <div>{{user.role}}</div>
+             </div>
+              <div>
+                <button (click)="addUserToGroup(user.id)"> Add User to Group</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

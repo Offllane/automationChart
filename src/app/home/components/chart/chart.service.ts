@@ -1,5 +1,4 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import testDataBuffer from '../../../models/testDataBuffer1.json';
 import {BehaviorSubject, Subscription} from "rxjs";
 import {IListChartItem, ITreeChartItem} from "../../../models/interfaces";
 import {ResourceService} from "../../../services/resource.service";

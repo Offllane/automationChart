@@ -46,6 +46,14 @@
   }
   &.logout-icon {
     background-image: url("../../assets/icons/logout.svg");
-    background-size: 20px;
+    background-size: 25px;
+  }
+  &.admin-icon {
+    background-image: url("../../assets/icons/admin.png");
+    background-size: 25px;
+  }
+  &.create-group-icon {
+    background-image: url("../../assets/icons/create-group-button.png");
+    background-size: 30px;
   }
 }

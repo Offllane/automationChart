@@ -33,7 +33,9 @@ export class LoginComponent implements OnInit {
 
     this.resourceService.login(formData).subscribe((data: ILoginInform) => {
       this.authService.setJWTToLocalStorage(data.access_token);
-      this.router.navigate(['/']);
+        this.authService.currentRole = data.role;
+        localStorage.setItem('role', data.role);
+        this.router.navigate(['/']);
     },
       error => {
       if (error.status == 400) {

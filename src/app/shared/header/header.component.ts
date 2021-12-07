@@ -4,7 +4,7 @@ import {Switch, TreeType} from "../../models/types";
 import {Router} from "@angular/router";
 import {ChartService} from "../../home/components/chart/chart.service";
 import {Subscription} from "rxjs";
-import {IListChartItem, IPopupConfig} from "../../models/interfaces";
+import {IListChartItem, IPermissionList, IPopupConfig} from "../../models/interfaces";
 import {PopupsService} from "../../services/popups.service";
 import {AuthService} from "../../auth/auth.service";
 
@@ -15,11 +15,19 @@ import {AuthService} from "../../auth/auth.service";
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription = new Subscription();
+  public isAdmin = this.authService.isCurrentUserAdmin();
   public bufferItemCounter: number = 0;
   public treeType: TreeType = 'horizontal';
   public bufferState: Switch = 'close';
   public headerState: Switch = 'open';
   public popupConfig: IPopupConfig | null = null;
+  public permissionList: IPermissionList = {
+    canDownload: false,
+    canReadAddress: false,
+    canReadPassportData: false,
+    canUpload: false,
+    id: 0
+  };
   @Input() mode = 'home';
   @HostListener('window:scroll', ['$event'])
   scrollEvent() {
@@ -44,14 +52,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.dataSubscription.add(this.popupService.popupState.subscribe((popupState: IPopupConfig | null) => {
       this.popupConfig = popupState;
     }));
+    this.dataSubscription.add(this.authService.accountPermission.subscribe((data: IPermissionList) => {
+      this.permissionList = data;
+    }));
   }
 
   public switchTreeType(treeType: TreeType) {
     this.homeService.treeType.next(treeType);
-  }
-
-  public goToAddItemPage(): void {
-    this.router.navigate(['/add-item']);
   }
 
   public goToMainPage(): void {
@@ -75,6 +82,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
       popupTitle: 'Add new Person',
       popupMode: "addPersonCard"
     });
+  }
+
+  public openAddGroupPopup(): void {
+    this.popupService.popupState.next({
+      popupTitle: 'Add new Group',
+      popupMode: "addGroup"
+    });
+  }
+
+  public goToAdminPage() {
+    this.router.navigate(['/admin']);
   }
 
   public logout(): void {

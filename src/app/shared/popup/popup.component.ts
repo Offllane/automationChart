@@ -1,10 +1,11 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {PopupsService} from "../../services/popups.service";
 import {Subscription} from "rxjs";
-import {IListChartItem, IPopupConfig} from "../../models/interfaces";
+import {IListChartItem, IPopupConfig, IUser, IUserInGroup} from "../../models/interfaces";
 import {ResourceService} from "../../services/resource.service";
 import {HomeService} from "../../home/home.service";
 import {ChartService} from "../../home/components/chart/chart.service";
+import {AdminService} from "../../pages/admin-page/admin.service";
 
 @Component({
   selector: 'app-popup',
@@ -36,16 +37,20 @@ export class PopupComponent implements OnInit, OnDestroy {
     position: "",
     sex: ""
   }
-
   public addChartPopupData = {
     chartName: ''
   }
+  public addGroupPopupData = {
+    groupName: ''
+  }
+  public usersAccount: Array<IUser> = [];
 
   constructor(
     private popupService: PopupsService,
     private resourceService: ResourceService,
     private homeService: HomeService,
-    private chartService: ChartService
+    private chartService: ChartService,
+    private adminService: AdminService
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +58,12 @@ export class PopupComponent implements OnInit, OnDestroy {
       if (popupState) {
         this.isPopupOpen = true;
         this.popupConfig = popupState;
+
+        if (popupState.popupMode === 'addUserToGroup') {
+          this.resourceService.getAllUsers().subscribe((data: Array<IUser>) => {
+            this.usersAccount = data;
+          });
+        }
       } else {
         this.isPopupOpen = false;
       }
@@ -77,6 +88,18 @@ export class PopupComponent implements OnInit, OnDestroy {
     this.dataSubscription.add(this.resourceService.addNewPersonCard(newCard).subscribe(() => {
       this.homeService.getUserCharts();
     }));
+    this.closePopup();
+  }
+
+  public createNewGroup(): void {
+    this.resourceService.addNewGroup(this.addGroupPopupData.groupName).subscribe(data => {
+      this.adminService.getAllGroups();
+    });
+    this.closePopup();
+  }
+
+  public addUserToGroup(userId: number) {
+    this.adminService.userIdToAddingToGroup.next(userId);
     this.closePopup();
   }
 
