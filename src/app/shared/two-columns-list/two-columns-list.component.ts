@@ -8,16 +8,11 @@ import {IListChartItem} from "../../models/interfaces";
 })
 export class TwoColumnsListComponent implements OnInit {
   @Input() isInformDisplaying = false;
-  @Input() listInform = {};
-  public listInformForAdditionalChartItemArea: IListChartItem = {} as IListChartItem;
+  @Input() listInform: any;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.listInformForAdditionalChartItemArea = {
-      age: 0, city: "", country: "", firstName: "", id: 0, lastName: "", parentId: null, chartId: 0
-
-    }
   }
 
 }

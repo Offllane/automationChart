@@ -1,7 +1,7 @@
 <select name="chartSelector" class="chart-selector"
         [(ngModel)]="selectedChartId"
         (change)="onChartChange()">
-  <option value="-1" disabled selected>Select chart</option>
+  <option value="-1" disabled selected>Выберите схему</option>
   <option *ngFor="let chart of chartsArray"  value="{{chart.id}}">{{chart.chartName}}</option>
 </select>
 

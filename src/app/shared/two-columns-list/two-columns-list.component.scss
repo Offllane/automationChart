@@ -4,13 +4,14 @@
   width: $card-width;
   margin-top: 5px;
   border-radius: 12px;
-  padding: 15px;
+  padding: 10px;
   box-shadow:inset 3px 3px 3px 0 rgba(0, 35, 148,.2),
   inset -3px -3px 3px 0 rgba(255,255,255,0.5);
 
   .list-point {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     font-size: $card-font-size;
     line-height: 22px;
     color: $text-color;
@@ -18,7 +19,12 @@
     text-align: left;
 
     .list-param {
+      margin-left: 10px;
       font-weight: $card-font-weight;
+    }
+
+    .list-value {
+      margin-left: 10px;
     }
   }
 }

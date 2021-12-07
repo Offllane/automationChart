@@ -72,21 +72,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public openAddChartPopup(): void {
     this.popupService.popupState.next({
-      popupTitle: 'Create new chart',
+      popupTitle: 'Добавить новую схему',
       popupMode: "addChart"
     });
   }
 
   public openAddPersonCardPopup(): void {
     this.popupService.popupState.next({
-      popupTitle: 'Add new Person',
+      popupTitle: 'Добавить человека',
       popupMode: "addPersonCard"
     });
   }
 
   public openAddGroupPopup(): void {
     this.popupService.popupState.next({
-      popupTitle: 'Add new Group',
+      popupTitle: 'Добавить группу',
       popupMode: "addGroup"
     });
   }

@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.resourceService.getAccountPermission().subscribe((data: any) => {
-      if(data[0].permissionList) {
+      if(data[0]?.permissionList) {
         this.authService.accountPermission.next(data[0].permissionList);
       }
     });

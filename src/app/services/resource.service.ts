@@ -26,10 +26,6 @@ export class ResourceService {
     // this.api = this.apiLocal;
   }
 
-  public getPersonsCards() {
-    return this.http.get(this.api + '/api/personCard');
-  }
-
   public login(userCredentials : FormData) {
     return this.http.post<ILoginInform>(this.api + '/login', userCredentials).pipe(shareReplay());
   }
