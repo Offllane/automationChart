@@ -5,16 +5,16 @@
 <div class="wrapper">
   <div class="section-container">
     <div class="section">
-      <div class="section-title">Groups</div>
+      <div class="section-title">Группы</div>
       <div class="section-header">
         <div class="placeholder"></div>
-        <div class="section-header-param">Group name</div>
-        <div class="section-header-param">Group quantity</div>
+        <div class="section-header-param">Имя группы</div>
+        <div class="section-header-param">Численность группы</div>
       </div>
       <button (click)="removeGroup()"
               class="remove-group-button"
               [disabled]="groups[currentActiveGroupIndex].userInGroup?.length !== 0"
-              *ngIf="currentActiveGroupIndex != -1">Remove group</button>
+              *ngIf="currentActiveGroupIndex != -1">Удалить группу</button>
       <div class="group-body">
         <div class="users-line-container" *ngFor="let group of groups; let currentGroupIndex = index">
           <div class="section-list-item param-hover pointer"
@@ -30,29 +30,29 @@
   </div>
   <div class="section-container">
     <div class="section">
-      <div class="section-title">Users in group {{groups[currentActiveGroupIndex]?.groupName}}</div>
+      <div class="section-title">Пользователи в группах{{groups[currentActiveGroupIndex]?.groupName}}</div>
       <div class="section-header">
         <div class="section-header-param">Id</div>
-        <div class="section-header-param">User login</div>
-        <div class="section-header-param">User role</div>
+        <div class="section-header-param">Логин</div>
+        <div class="section-header-param">Роль</div>
       </div>
       <button class="add-user-button"
               (click)="openAddUserToGroupPopup()"
-              *ngIf="currentActiveGroupIndex != -1"> Add User</button>
+              *ngIf="currentActiveGroupIndex != -1"> Добавить пользователя</button>
       <div class="users-line-container" *ngFor="let selectedGroup of usersInSelectedGroup; let currentUserIndex = index">
         <div class="section-list-item">
           <div class="section-param first-param">{{selectedGroup.user.id}}</div>
           <div class="section-param first-param">{{selectedGroup.user.login}}</div>
           <div class="section-param">{{selectedGroup.user.role}}</div>
         </div>
-        <button (click)="removeUserFromGroup(selectedGroup.user.id)">Remove user</button>
+        <button (click)="removeUserFromGroup(selectedGroup.user.id)">Удалить пользователя</button>
       </div>
     </div>
   </div>
 
   <div class="section-container">
     <div class="section">
-      <div class="section-title">Permissions for {{groups[currentActiveGroupIndex]?.groupName}} Group</div>
+      <div class="section-title">Разрешения для {{groups[currentActiveGroupIndex]?.groupName}} Group</div>
       <div *ngIf="currentActiveGroupIndex != -1">
         <div class="section-list-item">
           <div class="section-param first-param">Доступ на загрузку</div>
