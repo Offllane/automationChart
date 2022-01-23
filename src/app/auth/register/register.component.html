@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="container">
     <div class="popup-header">
-      <div class="popup-title">Sign up</div>
+      <div class="popup-title">Create account</div>
     </div>
     <div class="popup-body">
       <div>
@@ -20,8 +20,11 @@
               <div class="error-message placeholder" *ngIf="!errorMessage"></div>
             </div>
             <div class="button-container">
-              <button class="additional-button" (click)="goToLoginPage()">Go to login</button>
               <button type="submit">Sign up</button>
+            </div>
+            <div class="additional-navigation">
+              <div>Already registered?</div>
+              <div> <a class="additional-navigation-link" (click)="goToLoginPage()">Login</a></div>
             </div>
           </form>
         </div>
