@@ -10,7 +10,7 @@ describe('BufferService', () => {
     service = TestBed.inject(BufferService);
   });
 
-  it('should be created', () => {
+  it('should be injected', () => {
     expect(service).toBeTruthy();
   });
 });

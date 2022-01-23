@@ -6,6 +6,7 @@ import {ResourceService} from "../../services/resource.service";
 import {HomeService} from "../../home/home.service";
 import {ChartService} from "../../home/components/chart/chart.service";
 import {AdminService} from "../../pages/admin-page/admin.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-popup',
@@ -19,24 +20,25 @@ export class PopupComponent implements OnInit, OnDestroy {
     popupTitle: 'Add new chart',
     popupMode: 'addChart'
   }
-  public listForm: IListChartItem = {
-    id: 0,
-    parentId: null,
-    chartId: this.chartService.currentChartId,
-    age: 0,
-    birthDate: "",
-    city: "",
-    country: "",
-    department: "",
-    education: "",
-    firstName: "",
-    lastName: "",
-    passport: "",
-    patronymic: "",
-    phoneNumber: "",
-    position: "",
-    sex: ""
-  }
+  public listForm: FormGroup = this.fb.group({
+    id: [0],
+    parentId: [null],
+    chartId: [this.chartService.currentChartId],
+    age: [''],
+    birthDate: [''],
+    city: [''],
+    country: [''],
+    department: [''],
+    education: [''],
+    firstName: [''],
+    lastName: [''],
+    passport: [''],
+    patronymic: [''],
+    phoneNumber: [''],
+    position: [''],
+    sex: ['']
+  });
+
   public addChartPopupData = {
     chartName: ''
   }
@@ -50,7 +52,8 @@ export class PopupComponent implements OnInit, OnDestroy {
     private resourceService: ResourceService,
     private homeService: HomeService,
     private chartService: ChartService,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -83,9 +86,8 @@ export class PopupComponent implements OnInit, OnDestroy {
   }
 
   public createNewPersonCard(): void {
-    this.listForm.chartId = this.chartService.currentChartId;
-    const { id, ...newCard} = this.listForm;
-    this.dataSubscription.add(this.resourceService.addNewPersonCard(newCard).subscribe(() => {
+    this.listForm.patchValue({chartId: this.chartService.currentChartId});
+    this.dataSubscription.add(this.resourceService.addNewPersonCard(this.listForm.value).subscribe(() => {
       this.homeService.getUserCharts();
     }));
     this.closePopup();
