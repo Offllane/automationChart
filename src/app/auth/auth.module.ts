@@ -4,6 +4,7 @@ import { ChartModule} from "../home/components/chart/chart.module";
 import { LoginComponent} from "./login/login.component";
 import { RegisterComponent } from './register/register.component';
 import {FormsModule} from "@angular/forms";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -11,11 +12,12 @@ import {FormsModule} from "@angular/forms";
     LoginComponent,
     RegisterComponent
   ],
-  imports: [
-    CommonModule,
-    ChartModule,
-    FormsModule
-  ],
+    imports: [
+        CommonModule,
+        ChartModule,
+        FormsModule,
+        SharedModule
+    ],
   exports: [
     LoginComponent
   ]

@@ -7,6 +7,7 @@ import { JsonFileInputComponent } from './json-file-input/json-file-input.compon
 import { JsonFileExportComponent } from './json-file-export/json-file-export.component';
 import { ChartSelectorComponent } from './chart-selector/chart-selector.component';
 import { PopupComponent } from './popup/popup.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 
@@ -17,17 +18,19 @@ import { PopupComponent } from './popup/popup.component';
     JsonFileInputComponent,
     JsonFileExportComponent,
     ChartSelectorComponent,
-    PopupComponent
+    PopupComponent,
+    LoaderComponent
   ],
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule
     ],
-  exports: [
-    HeaderComponent,
-    TwoColumnsListComponent,
-    PopupComponent
-  ]
+    exports: [
+        HeaderComponent,
+        TwoColumnsListComponent,
+        PopupComponent,
+        LoaderComponent
+    ]
 })
 export class SharedModule { }
