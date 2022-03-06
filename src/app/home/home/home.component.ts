@@ -1,17 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {ResourceService} from "../../services/resource.service";
+import {HomeService} from "../../services/home.service";
+import {Subscription} from "rxjs";
+import {Switch} from "../../models/types";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  private dataSubscription: Subscription = new Subscription();
+  public bufferState: Switch = 'close';
 
   constructor(
     private authService: AuthService,
-    private resourceService: ResourceService
+    private resourceService: ResourceService,
+    private homeService: HomeService
   ) { }
 
   ngOnInit(): void {
@@ -20,6 +26,12 @@ export class HomeComponent implements OnInit {
         this.authService.accountPermission.next(data[0].permissionList);
       }
     });
+    this.dataSubscription.add(this.homeService.bufferState.subscribe((bufferState: Switch) => {
+      this.bufferState = bufferState;
+    }));
   }
 
+  ngOnDestroy(): void {
+    this.dataSubscription.unsubscribe();
+  }
 }

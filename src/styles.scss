@@ -20,16 +20,15 @@ body {
   background-image: $background-image;
 }
 
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 20px;
 }
 
-body::-webkit-scrollbar-track {
-  background-color: #e4e4e4;
-  border-radius: 100px;
+::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   border-radius: 100px;
   background-image: linear-gradient(135deg, #0396ff 10%, #736EFE 100%);
   box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
