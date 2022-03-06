@@ -46,6 +46,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.dataSubscription.add(this.homeService.treeType.subscribe((data: TreeType) => {
       this.treeType = data;
     }));
+    this.dataSubscription.add(this.homeService.bufferState.subscribe((bufferState: Switch) => {
+      this.bufferState = bufferState;
+    }));
     this.dataSubscription.add(this.chartService.bufferListChartData.subscribe((data: Array<IListChartItem>) => {
       this.bufferItemCounter = data.length;
     }));
@@ -96,6 +99,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public logout(): void {
+    this.homeService.bufferState.next('close');
     this.authService.logout();
     this.router.navigate(['/login']);
   }
