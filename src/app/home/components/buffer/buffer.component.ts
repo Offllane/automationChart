@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Switch} from "../../../models/types";
 import {Subscription} from "rxjs";
-import {HomeService} from "../../home.service";
-import {DragAndDropService} from "../chart/drag-and-drop.service";
+import {HomeService} from "../../../services/home.service";
+import {DragAndDropService} from "../../../services/drag-and-drop.service";
 
 @Component({
   selector: 'app-buffer',

@@ -1,7 +1,7 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {BehaviorSubject, Subscription} from "rxjs";
 import {Switch, TreeType} from "../models/types";
-import {ResourceService} from "../services/resource.service";
+import {ResourceService} from "./resource.service";
 
 @Injectable({
   providedIn: 'root'

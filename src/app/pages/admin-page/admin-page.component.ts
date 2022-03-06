@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {AdminService} from "./admin.service";
+import {AdminService} from "../../services/admin.service";
 import {IGroup, IPermissionList, IUserInGroup} from "../../models/interfaces";
 import {group} from "@angular/animations";
 import {ResourceService} from "../../services/resource.service";

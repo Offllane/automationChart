@@ -9,7 +9,7 @@ import { AuthModule } from "./auth/auth.module";
 import { HomeModule } from "./home/home.module";
 import {SharedModule} from "./shared/shared.module";
 import {FormsModule} from "@angular/forms";
-import {AuthService} from "./auth/auth.service";
+import {AuthService} from "./services/auth.service";
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 

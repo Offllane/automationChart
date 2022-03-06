@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ChartService} from "../../home/components/chart/chart.service";
+import {ChartService} from "../../services/chart.service";
 
 @Component({
   selector: 'app-json-file-input',

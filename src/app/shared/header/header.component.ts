@@ -1,12 +1,12 @@
 import {Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
-import {HomeService} from "../../home/home.service";
+import {HomeService} from "../../services/home.service";
 import {Switch, TreeType} from "../../models/types";
 import {Router} from "@angular/router";
-import {ChartService} from "../../home/components/chart/chart.service";
+import {ChartService} from "../../services/chart.service";
 import {Subscription} from "rxjs";
 import {IListChartItem, IPermissionList, IPopupConfig} from "../../models/interfaces";
 import {PopupsService} from "../../services/popups.service";
-import {AuthService} from "../../auth/auth.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-header',

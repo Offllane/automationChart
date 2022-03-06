@@ -1,7 +1,7 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {BehaviorSubject, Subscription} from "rxjs";
-import {IListChartItem, ITreeChartItem} from "../../../models/interfaces";
-import {ResourceService} from "../../../services/resource.service";
+import {IListChartItem, ITreeChartItem} from "../models/interfaces";
+import {ResourceService} from "./resource.service";
 import {Router} from "@angular/router";
 
 @Injectable({

@@ -1,7 +1,7 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {Subject, Subscription} from "rxjs";
-import {ResourceService} from "../../services/resource.service";
-import {IGroup} from "../../models/interfaces";
+import {ResourceService} from "./resource.service";
+import {IGroup} from "../models/interfaces";
 
 @Injectable({
   providedIn: 'root'

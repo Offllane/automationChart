@@ -3,9 +3,9 @@ import {PopupsService} from "../../services/popups.service";
 import {Subscription} from "rxjs";
 import {IListChartItem, IPopupConfig, IUser, IUserInGroup} from "../../models/interfaces";
 import {ResourceService} from "../../services/resource.service";
-import {HomeService} from "../../home/home.service";
-import {ChartService} from "../../home/components/chart/chart.service";
-import {AdminService} from "../../pages/admin-page/admin.service";
+import {HomeService} from "../../services/home.service";
+import {ChartService} from "../../services/chart.service";
+import {AdminService} from "../../services/admin.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({

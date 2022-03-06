@@ -1,10 +1,10 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {ChartService} from "../chart.service";
-import {HomeService} from "../../../home.service";
+import {ChartService} from "../../../../services/chart.service";
+import {HomeService} from "../../../../services/home.service";
 import {Subscription} from "rxjs";
 import {ChartMode, TreeType} from "../../../../models/types";
 import {ITreeChartItem} from "../../../../models/interfaces";
-import {DragAndDropService} from "../drag-and-drop.service";
+import {DragAndDropService} from "../../../../services/drag-and-drop.service";
 
 @Component({
   selector: 'app-chart',

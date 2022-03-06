@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ILoginInform, IUserCredentials} from "../../models/interfaces";
 import {ResourceService} from "../../services/resource.service";
-import {AuthService} from "../auth.service";
+import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 
 @Component({

@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { saveAs } from 'file-saver';
 import {Subscription} from "rxjs";
 import {IListChartItem} from "../../models/interfaces";
-import {ChartService} from "../../home/components/chart/chart.service";
+import {ChartService} from "../../services/chart.service";
 
 @Component({
   selector: 'app-json-file-export',
