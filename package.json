@@ -9,8 +9,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "heroku-postbuild": "ng build --prod",
-    "test": "ng test",
-    "serve": "ng serve"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
