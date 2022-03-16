@@ -11,14 +11,14 @@ import {
 import {Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {shareReplay } from 'rxjs/operators'
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResourceService {
   public chartsData:Subject<IChartParams> = new Subject<IChartParams>(); // TODO удалится после подключенгия к бэку чартов
-  private apiLocal = 'https://localhost:44362';
-  private api = 'http://offllane-aitomation-chart.somee.com';
+  private api = environment.apiUrl;
 
   constructor(
     private http: HttpClient
