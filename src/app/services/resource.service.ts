@@ -22,9 +22,7 @@ export class ResourceService {
 
   constructor(
     private http: HttpClient
-  ) {
-    // this.api = this.apiLocal;
-  }
+  ) { }
 
   public login(userCredentials : FormData) {
     return this.http.post<ILoginInform>(this.api + '/login', userCredentials).pipe(shareReplay());
