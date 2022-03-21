@@ -1,0 +1,12 @@
+<div class="container"
+     [ngClass]="state"
+     [style]="{
+        top: contextMenuParams.yPosition + 'px',
+        left: contextMenuParams.xPosition + 'px'
+     }">
+  <div *ngFor="let action of actions"
+       class="context-menu-option"
+        (click)="setContextMenuAction(action.action); closeContextMenu()">
+    {{action.name}}
+  </div>
+</div>

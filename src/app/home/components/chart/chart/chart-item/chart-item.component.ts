@@ -4,6 +4,7 @@ import {HomeService} from "../../../../../services/home.service";
 import {TreeType} from "../../../../../models/types";
 import {DragAndDropService} from "../../../../../services/drag-and-drop.service";
 import {ITreeChartItem} from "../../../../../models/interfaces";
+import {ContextMenuService} from "../../../../../services/context-menu.service";
 
 @Component({
   selector: 'app-chart-item',
@@ -30,7 +31,8 @@ export class ChartItemComponent implements OnInit, OnDestroy {
 
   constructor(
     private homeService: HomeService,
-    private dndService: DragAndDropService
+    private dndService: DragAndDropService,
+    private contextMenuService: ContextMenuService
   ) { }
 
   ngOnInit(): void {
@@ -57,6 +59,11 @@ export class ChartItemComponent implements OnInit, OnDestroy {
     event.stopPropagation();
     this.dndService.dropPlaceholderItemId = this.employee.id;
     this.dndService.replaceItemToNewPosition(this.isBufferChartItem);
+  }
+
+  public onContextMenu(event: any): void {
+    event.preventDefault();
+    this.contextMenuService.openContextMenu({xPosition: event.pageX, yPosition: event.pageY, mode:'cardContextMenuMode', employeeId: this.employee.id});
   }
 
   ngOnDestroy() {

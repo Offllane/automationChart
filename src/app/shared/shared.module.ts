@@ -8,6 +8,7 @@ import { JsonFileExportComponent } from './json-file-export/json-file-export.com
 import { ChartSelectorComponent } from './chart-selector/chart-selector.component';
 import { PopupComponent } from './popup/popup.component';
 import { LoaderComponent } from './loader/loader.component';
+import { ContextMenuComponent } from './context-menu/context-menu.component';
 
 
 
@@ -19,7 +20,8 @@ import { LoaderComponent } from './loader/loader.component';
     JsonFileExportComponent,
     ChartSelectorComponent,
     PopupComponent,
-    LoaderComponent
+    LoaderComponent,
+    ContextMenuComponent
   ],
     imports: [
         CommonModule,
@@ -30,7 +32,8 @@ import { LoaderComponent } from './loader/loader.component';
         HeaderComponent,
         TwoColumnsListComponent,
         PopupComponent,
-        LoaderComponent
+        LoaderComponent,
+        ContextMenuComponent
     ]
 })
 export class SharedModule { }

@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {ResourceService} from "../../services/resource.service";
 import {HomeService} from "../../services/home.service";
 import {Subscription} from "rxjs";
 import {Switch} from "../../models/types";
+import {ContextMenuService} from "../../services/context-menu.service";
 
 @Component({
   selector: 'app-home',
@@ -14,10 +15,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription = new Subscription();
   public bufferState: Switch = 'close';
 
+  @HostListener('document:click') onClickOutside() {
+    this.contextMenuService.closeContextMenu();
+  }
+
   constructor(
     private authService: AuthService,
     private resourceService: ResourceService,
-    private homeService: HomeService
+    private homeService: HomeService,
+    private contextMenuService: ContextMenuService
   ) { }
 
   ngOnInit(): void {
