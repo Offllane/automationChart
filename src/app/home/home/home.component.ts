@@ -5,6 +5,7 @@ import {HomeService} from "../../services/home.service";
 import {Subscription} from "rxjs";
 import {Switch} from "../../models/types";
 import {ContextMenuService} from "../../services/context-menu.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private resourceService: ResourceService,
     private homeService: HomeService,
@@ -31,7 +33,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       if(data[0]?.permissionList) {
         this.authService.accountPermission.next(data[0].permissionList);
       }
-    });
+    },error => {
+        if( error.status === 401) {
+          this.router.navigate(['/login']);
+        }
+      });
     this.dataSubscription.add(this.homeService.bufferState.subscribe((bufferState: Switch) => {
       this.bufferState = bufferState;
     }));

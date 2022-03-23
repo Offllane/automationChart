@@ -12,12 +12,16 @@ import {FormsModule} from "@angular/forms";
 import {AuthService} from "./services/auth.service";
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { UpdateCardPageComponent } from './pages/update-card-page/update-card-page.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    UpdateCardPageComponent,
+    PageNotFoundComponent
   ],
     imports: [
         BrowserModule,

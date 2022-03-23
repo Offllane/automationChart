@@ -41,6 +41,10 @@ export class ResourceService {
     return this.http.post(this.api + '/api/chart', {"chartName": chartName})
   }
 
+  public getPersonCard(cardId: number) {
+    return this.http.get(this.api + '/api/personCard/' + cardId);
+  }
+
   public addNewPersonCard(personCard: any) {
     return this.http.post(this.api + '/api/personCard', personCard);
   }

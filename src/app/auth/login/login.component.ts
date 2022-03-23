@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       this.authService.setJWTToLocalStorage(data.access_token);
         this.authService.currentRole = data.role;
         localStorage.setItem('role', data.role);
-        this.router.navigate(['/']);
+        this.router.navigate(['/chart']);
 
         this.isLoading = false;
     },

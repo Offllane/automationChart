@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {ContextMenuService} from "../../services/context-menu.service";
 import {ContextMenuMode, Switch} from "../../models/types";
 import { personCardContextMenuActions} from "../../models/data";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-context-menu',
@@ -12,10 +13,11 @@ import { personCardContextMenuActions} from "../../models/data";
 export class ContextMenuComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription = new Subscription();
   public state: Switch = 'close'
-  public contextMenuParams = {xPosition: 0, yPosition: 0};
+  public contextMenuParams: any = {xPosition: 0, yPosition: 0};
   public actions: any;
 
   constructor(
+    private router: Router,
     private contextMenuService: ContextMenuService
   ) { }
 
@@ -53,7 +55,8 @@ export class ContextMenuComponent implements OnInit, OnDestroy {
   }
 
   openUpdateCardPage(): void {
-    console.log('here');
+    console.log(this.contextMenuParams);
+    this.router.navigate(['/update-card/' + this.contextMenuParams.cardId])
   }
 
   closeContextMenu():void {

@@ -63,7 +63,7 @@ export class ChartItemComponent implements OnInit, OnDestroy {
 
   public onContextMenu(event: any): void {
     event.preventDefault();
-    this.contextMenuService.openContextMenu({xPosition: event.pageX, yPosition: event.pageY, mode:'cardContextMenuMode', employeeId: this.employee.id});
+    this.contextMenuService.openContextMenu({xPosition: event.pageX, yPosition: event.pageY, mode:'cardContextMenuMode', cardId: this.employee.id});
   }
 
   ngOnDestroy() {
