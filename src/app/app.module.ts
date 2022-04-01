@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from "./auth/auth.module";
 import { HomeModule } from "./home/home.module";
 import {SharedModule} from "./shared/shared.module";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthService} from "./services/auth.service";
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
@@ -30,7 +30,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
         AuthModule,
         HomeModule,
         SharedModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
   providers: [
     AuthService, {

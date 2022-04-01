@@ -48,5 +48,9 @@
     <div class="header-button icons create-group-icon" (click)="openAddGroupPopup()"></div>
     <div class="header-button icons home-icon" (click)="goToMainPage()"></div>
   </div>
+
+  <div class="header-controls" *ngIf="mode === 'cardInform'">
+    <div class="header-button icons home-icon" (click)="goToMainPage()"></div>
+  </div>
 </header>
 

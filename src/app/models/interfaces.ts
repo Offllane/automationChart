@@ -23,6 +23,12 @@ export interface IListChartItem extends ICardIdentifiers{
   photo?: any;
 }
 
+export interface ISegregatedListChartItem {
+  generalInform: Array<ICardProperties>,
+  workInform: Array<ICardProperties>,
+  personalInform: Array<ICardProperties>
+}
+
 export interface ITreeChartItem extends IListChartItem{
   isHide?: boolean;
   subordinates: Array <ITreeChartItem>;
@@ -78,4 +84,9 @@ export interface IPermissionList {
   canUpload: boolean;
   canReadAddress: boolean;
   canReadPassportData: boolean;
+}
+
+export interface ICardProperties {
+  propertyLabel: string;
+  propertyFormControlValue: any;
 }

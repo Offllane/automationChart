@@ -1,1 +1,49 @@
-<p>update-card-page works!</p>
+<app-header [mode]="'cardInform'"></app-header>
+
+<div class="wrapper-container">
+  <div class="page-title">
+    <p> Изменение информации: {{cardInform?.firstName}} {{cardInform?.lastName}}</p>
+  </div>
+
+  <form [formGroup]="cardForm" *ngIf="isCardFormReady" (ngSubmit)="updatePersonCardInform()">
+    <section class="wrapper" formGroupName="generalInform">
+      <div class="section-title">Основная информация</div>
+      <div class="card-information">
+        <div class="card-photo">
+          <img src="assets/icons/man.png" alt="person-avatar">
+        </div>
+        <div class="card-properties">
+          <div class="card-property" *ngFor="let property of segregatedCardInform.generalInform">
+            <label class="property-label">{{property.propertyLabel}}</label>
+            <input class="property-value" type="text" [formControlName]="property.propertyFormControlValue"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrapper" formGroupName="workInform">
+      <div class="section-title">Рабочая информация</div>
+      <div class="card-information">
+        <div class="card-properties">
+          <div class="card-property" *ngFor="let property of segregatedCardInform.workInform">
+            <label class="property-label">{{property.propertyLabel}}</label>
+            <input class="property-value" type="text" [formControlName]="property.propertyFormControlValue"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrapper" formGroupName="personalInform">
+      <div class="section-title">Персональная информация</div>
+      <div class="card-information">
+        <div class="card-properties">
+          <div class="card-property" *ngFor="let property of segregatedCardInform.personalInform">
+            <label class="property-label">{{property.propertyLabel}}</label>
+            <input class="property-value" type="text" [formControlName]="property.propertyFormControlValue"/>
+          </div>
+        </div>
+      </div>
+    </section>
+    <button [disabled]="!isUpdateButtonEnabled" class="button" type="submit">Сохранить изменения</button>
+  </form>
+</div>

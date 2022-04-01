@@ -42,7 +42,7 @@ export class ResourceService {
   }
 
   public getPersonCard(cardId: number) {
-    return this.http.get(this.api + '/api/personCard/' + cardId);
+    return this.http.get<IListChartItem>(this.api + '/api/personCard/' + cardId);
   }
 
   public addNewPersonCard(personCard: any) {

@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminPageComponent, canActivate: [RoleGuardService]},
   { path: 'chart', component: HomeComponent, canActivate: [AuthGuardService]},
   { path: 'update-card/:cardId', component: UpdateCardPageComponent, canActivate: [AuthGuardService]},
-  { path: '**', component: PageNotFoundComponent}
+  { path: '**', component: HomeComponent, canActivate: [AuthGuardService]}
 ]
 
 

@@ -55,7 +55,6 @@ export class ContextMenuComponent implements OnInit, OnDestroy {
   }
 
   openUpdateCardPage(): void {
-    console.log(this.contextMenuParams);
     this.router.navigate(['/update-card/' + this.contextMenuParams.cardId])
   }
 

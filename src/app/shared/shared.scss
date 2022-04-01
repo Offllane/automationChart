@@ -25,3 +25,37 @@ $card-font-size: 18px;
     height: 70px;
   }
 }
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  padding: 20px;
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+  box-shadow:inset -3px -3px 3px 0 rgba(0, 35, 148,.2),
+  inset 3px 3px 3px 0 rgba(255, 255, 255, 0.5);
+  color: $text-color;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow:inset 3px 3px 3px 0 rgba(0, 35, 148,.2),
+    inset -3px -3px 3px 0 rgba(255,255,255,0.5);
+  }
+
+  &:active {
+    box-shadow:inset 5px 5px 5px 0 rgba(0, 35, 148,.2),
+    inset -5px -5px 5px 0 rgba(255,255,255,0.5);
+  }
+
+  &:disabled {
+    border: 1px solid $text-color;
+    box-shadow: unset;
+    opacity: .5;
+    cursor: default;
+  }
+}
