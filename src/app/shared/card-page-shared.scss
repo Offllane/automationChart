@@ -1,0 +1,103 @@
+@import 'src/app/shared/shared';
+
+.wrapper-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: calc(100vh - 100px);
+  margin-top: 100px;
+  overflow-y: auto;
+
+  .page-title {
+    width: 95%;
+    padding: 30px;
+    font-size: 28px;
+    font-weight: 700;
+    color: $text-color;
+  }
+
+  form {
+    width: 95%;
+  }
+
+  .wrapper {
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: inset -3px -3px 3px 0 rgb(0 35 148 / 20%), inset 3px 3px 3px 0 rgb(255 255 255 / 50%);
+    color: #002394;
+
+
+    &:first-child {
+      margin-top: 30px;
+    }
+  }
+
+  .section-title {
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .card-information {
+    display: flex;
+
+    .card-photo {
+      height: 200px;
+      padding: 20px;
+      margin-right: 30px;
+      box-shadow: inset -3px -3px 3px 0 rgb(0 35 148 / 20%), inset 3px 3px 3px 0 rgb(255 255 255 / 50%);
+      border-radius: 10px;
+
+      &>img {
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .card-properties {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3%;
+      width: 100%;
+
+      .card-property {
+        width: 30%;
+
+        .property-label {
+          display: block;
+          margin-bottom: 10px;
+          font-size: 20px;
+          line-height: 24px;
+          font-weight: 500;
+          color: $text-color;
+        }
+
+        .property-value {
+          height: 40px;
+          width: 100%;
+          color: $text-color;
+          font-size: 20px;
+          font-weight: 400;
+          margin-bottom: 30px;
+        }
+
+        input {
+          padding: 10px;
+          border: none;
+          border-radius: 5px;
+          background-color: transparent;
+          box-shadow:inset 3px 3px 3px 0 rgba(0, 35, 148,.2),
+          inset -3px -3px 3px 0 rgba(255,255,255,0.5);
+        }
+      }
+    }
+  }
+
+  button {
+    margin: 0 0 30px auto;
+  }
+}
+

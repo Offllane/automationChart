@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ResourceService} from "../../services/resource.service";
 import {IListChartItem, ISegregatedListChartItem} from "../../models/interfaces";
 import {FormControl, FormGroup} from "@angular/forms";
+import {CardPageActionsService} from "../../services/card-page-actions.service";
 
 @Component({
   selector: 'app-update-card-page',
@@ -25,7 +26,8 @@ export class UpdateCardPageComponent implements OnInit, AfterViewInit, OnDestroy
   constructor(
     private activateRoute: ActivatedRoute,
     private router: Router,
-    private resourceService: ResourceService
+    private resourceService: ResourceService,
+    private cardPageService: CardPageActionsService
   ) {
   }
 
@@ -40,36 +42,13 @@ export class UpdateCardPageComponent implements OnInit, AfterViewInit, OnDestroy
   getPersonCardInform(cardId: number): void {
     this.resourceService.getPersonCard(cardId).subscribe((cardInform: IListChartItem) => {
       this.cardInform = cardInform;
-      console.log(this.cardInform);
-      this.segregatedCardInform = this.createSegregatedCardInform();
+      this.segregatedCardInform = this.cardPageService.createSegregatedCardInform();
       this.cardForm = this.createFormGroup();
       this.subscribeToCardFormChanges();
       this.isCardFormReady = true;
     }, () => {
         this.router.navigate(['/chart']);
       });
-  }
-
-  private createSegregatedCardInform(): ISegregatedListChartItem {
-    // propertyFormControlValue should be same with cardInform properties
-    return {
-      generalInform: [
-        {propertyLabel: 'Имя', propertyFormControlValue: 'firstName'},
-        {propertyLabel: 'Фамилиия', propertyFormControlValue: 'lastName'},
-        {propertyLabel: 'Отчество', propertyFormControlValue: 'patronymic'}
-      ],
-      workInform: [
-        {propertyLabel: 'Должность', propertyFormControlValue: 'position'},
-        {propertyLabel: 'Дирекция', propertyFormControlValue: 'department'}
-      ],
-      personalInform: [
-        {propertyLabel: 'Город', propertyFormControlValue: 'city'},
-        {propertyLabel: 'Пол', propertyFormControlValue: 'sex'},
-        {propertyLabel: 'Дата рождения', propertyFormControlValue: 'birthDate'},
-        {propertyLabel: 'Образование', propertyFormControlValue: 'education'},
-        {propertyLabel: 'Паспортные данные', propertyFormControlValue: 'passport'}
-      ]
-    }
   }
 
   private createFormGroup(): FormGroup {

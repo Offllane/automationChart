@@ -88,5 +88,12 @@ export interface IPermissionList {
 
 export interface ICardProperties {
   propertyLabel: string;
-  propertyFormControlValue: any;
+  propertyFormControlValue: keyof IListChartItem;
 }
+
+export interface IPersonCardContextMenuActions {
+  name: string;
+  action: IPersonCardContextAction;
+}
+
+export  type IPersonCardContextAction = 'openPersonCard' | 'updatePersonCard' | 'deletePersonCard';

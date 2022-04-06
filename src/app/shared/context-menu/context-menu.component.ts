@@ -4,6 +4,7 @@ import {ContextMenuService} from "../../services/context-menu.service";
 import {ContextMenuMode, Switch} from "../../models/types";
 import { personCardContextMenuActions} from "../../models/data";
 import {Router} from "@angular/router";
+import {IPersonCardContextAction} from "../../models/interfaces";
 
 @Component({
   selector: 'app-context-menu',
@@ -42,8 +43,12 @@ export class ContextMenuComponent implements OnInit, OnDestroy {
     }
   }
 
-  setContextMenuAction(action: string): void {
+  setContextMenuAction(action: IPersonCardContextAction): void {
     switch (action) {
+      case 'openPersonCard': {
+        this.openCardPage();
+        break;
+      }
       case 'updatePersonCard': {
         this.openUpdateCardPage();
         break;
@@ -54,8 +59,12 @@ export class ContextMenuComponent implements OnInit, OnDestroy {
     }
   }
 
+  openCardPage(): void {
+    this.router.navigate(['/card/' + this.contextMenuParams.cardId]);
+  }
+
   openUpdateCardPage(): void {
-    this.router.navigate(['/update-card/' + this.contextMenuParams.cardId])
+    this.router.navigate(['/update-card/' + this.contextMenuParams.cardId]);
   }
 
   closeContextMenu():void {

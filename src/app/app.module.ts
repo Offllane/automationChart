@@ -14,6 +14,7 @@ import {AuthInterceptor} from "./auth/auth.interceptor";
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { UpdateCardPageComponent } from './pages/update-card-page/update-card-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { CardPageComponent } from './pages/card-page/card-page.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     AppComponent,
     AdminPageComponent,
     UpdateCardPageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CardPageComponent
   ],
     imports: [
         BrowserModule,

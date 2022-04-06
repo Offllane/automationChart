@@ -1,4 +1,7 @@
-export const personCardContextMenuActions = [
-  { name: 'Update', action: 'updatePersonCard'},
-  { name: 'Delete', action: 'deletePersonCard'}
+import {IPersonCardContextMenuActions} from "./interfaces";
+
+export const personCardContextMenuActions: Array<IPersonCardContextMenuActions> = [
+  { name: 'Открыть', action: 'openPersonCard'},
+  { name: 'Изменить', action: 'updatePersonCard'},
+  { name: 'Удалить', action: 'deletePersonCard'}
 ]
