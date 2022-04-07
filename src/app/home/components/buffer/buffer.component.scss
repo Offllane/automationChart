@@ -1,6 +1,10 @@
 @import 'src/app/shared/shared.scss';
 @import "src/app/shared/icons.scss";
 
+app-chart {
+  width: 100%;
+}
+
 .buffer-placeholder {
   box-sizing: border-box;
   position: fixed;
