@@ -18,7 +18,8 @@ export class PopupComponent implements OnInit, OnDestroy {
   public isPopupOpen = true;
   public popupConfig : IPopupConfig = {
     popupTitle: 'Add new chart',
-    popupMode: 'addChart'
+    popupMode: 'addChart',
+    popupInform: {}
   }
   public listForm: FormGroup = this.fb.group({
     id: [0],
@@ -91,6 +92,17 @@ export class PopupComponent implements OnInit, OnDestroy {
       this.homeService.getUserCharts();
     }));
     this.closePopup();
+  }
+
+  public deletePersonCard(): void {
+     this.resourceService.deletePersonCard(this.popupConfig.popupInform.cardId).subscribe(() => {
+        this.homeService.getUserCharts();
+     },
+       error => {
+         console.log(error);
+         this.homeService.getUserCharts();
+       });
+     this.closePopup();
   }
 
   public createNewGroup(): void {

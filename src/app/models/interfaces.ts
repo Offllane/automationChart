@@ -44,6 +44,7 @@ export interface IChartParams {
 export interface IPopupConfig {
   popupTitle: string;
   popupMode: PopupMode;
+  popupInform?: any;
 }
 
 export interface IUserCredentials {

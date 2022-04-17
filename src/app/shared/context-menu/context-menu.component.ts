@@ -5,6 +5,7 @@ import {ContextMenuMode, Switch} from "../../models/types";
 import { personCardContextMenuActions} from "../../models/data";
 import {Router} from "@angular/router";
 import {IPersonCardContextAction} from "../../models/interfaces";
+import {PopupsService} from "../../services/popups.service";
 
 @Component({
   selector: 'app-context-menu',
@@ -19,7 +20,8 @@ export class ContextMenuComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private contextMenuService: ContextMenuService
+    private contextMenuService: ContextMenuService,
+    private popupService: PopupsService
   ) { }
 
   ngOnInit(): void {
@@ -54,6 +56,7 @@ export class ContextMenuComponent implements OnInit, OnDestroy {
         break;
       }
       case 'deletePersonCard': {
+        this.deleteCard();
         break;
       }
     }
@@ -65,6 +68,14 @@ export class ContextMenuComponent implements OnInit, OnDestroy {
 
   openUpdateCardPage(): void {
     this.router.navigate(['/update-card/' + this.contextMenuParams.cardId]);
+  }
+
+  deleteCard(): void {
+    this.popupService.popupState.next({
+      popupTitle: 'Вы уверены, что хотите удалить человека из схемы?',
+      popupMode: 'deletePersonCardConfirmation',
+      popupInform: { cardId: this.contextMenuParams.cardId }
+    })
   }
 
   closeContextMenu():void {

@@ -53,6 +53,10 @@ export class ResourceService {
     return this.http.put(this.api + '/api/personCard', personCard);
   }
 
+  public deletePersonCard(cardId: number) {
+    return this.http.delete(this.api + '/api/personCard/'+ cardId);
+  }
+
   public getAllGroups() {
     return this.http.get<Array<IGroup>>(this.api + '/api/permissionGroups');
   }

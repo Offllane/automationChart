@@ -95,6 +95,16 @@
             </div>
           </div>
         </div>
+        <div *ngSwitchCase="'deletePersonCardConfirmation'">
+          <div class="popup-inform">
+            <p> Если вы удалите человека из схемы, то все его подчиненные также будут удалены.</p>
+            <p>Если вы хотите этого избежать, то перед удалением перенесите всех необходимых подчиненных в буфер приложения.</p>
+          </div>
+          <div class="popup-actions">
+            <button class="cancel" (click)="closePopup()">Отмена</button>
+            <button class="delete" (click)="deletePersonCard()">Удалить</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
