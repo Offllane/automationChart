@@ -13,7 +13,7 @@ import {CardPageActionsService} from "../../services/card-page-actions.service";
 })
 export class UpdateCardPageComponent implements OnInit, AfterViewInit, OnDestroy {
   private dataSubscription: Subscription = new Subscription();
-  public segregatedCardInform: any = null;
+  public segregatedCardInform: any | null = null;
   public cardInformId = 0;
   public cardInform: IListChartItem | null = null;
   public cardForm: FormGroup = new FormGroup({});
