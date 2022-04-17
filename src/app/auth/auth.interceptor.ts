@@ -19,6 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (this.authService.isLoggedIn()) {
       this.JWTToken = this.authService.getToken()
+      if (request.url.includes('cloudinary')) { return next.handle(request)}
       const cloned = request.clone({
         headers: request.headers.set("Authorization",
           "Bearer " + this.JWTToken)

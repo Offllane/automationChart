@@ -56,4 +56,12 @@
     background-image: url("../../assets/icons/create-group-button.png");
     background-size: 30px;
   }
+  &.refresh {
+    background-image: url("../../assets/icons/refresh.svg");
+    background-size: 20px;
+  }
+  &.delete {
+    background-image: url("../../assets/icons/delete.svg");
+    background-size: 20px;
+  }
 }

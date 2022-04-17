@@ -1,0 +1,33 @@
+<div class="card-photo" [ngStyle]="{
+  width,
+  height
+}">
+  <img src="{{avatarPhotoLink || 'assets/icons/man.png'}}" alt="person-avatar">
+</div>
+
+<div class="avatar-actions" *ngIf="isActionsNeeded">
+  <div class="action">
+    <input type="file" id="person-avatar" (change)="onImageChanged($event)" placeholder="Upload file">
+    <label for="person-avatar">
+      <span class="action-icon">
+        <span
+          [ngStyle]="{
+            display: 'block',
+            height: '40px',
+            width: '40px'
+          }"
+          [ngClass]="{
+            'spin-icon': isImageLoading
+          }"
+          class="icons refresh"></span>
+      </span>
+      <span class="action-text">Изменить</span>
+    </label>
+  </div>
+  <div class="action" (click)="deleteImage()">
+    <div class="action-icon icons delete"></div>
+    <div class="action-text">Удалить</div>
+  </div>
+
+</div>
+

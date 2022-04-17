@@ -41,10 +41,6 @@ export class ChartItemComponent implements OnInit, OnDestroy {
     }))
   }
 
-  public toggleAdditionalInform() {
-    this.isAdditionalInformOpen = !this.isAdditionalInformOpen;
-  }
-
   public onDragStart(event: any): void {
     event.stopPropagation();
     this.dndService.draggedItemId = this.employee.id;

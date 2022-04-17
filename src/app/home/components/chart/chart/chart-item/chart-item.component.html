@@ -5,17 +5,23 @@
     'chart-item-card-active': isAdditionalInformOpen,
     'buffer': isBufferChartItem
   }"
-  (click)="toggleAdditionalInform()"
   (dragstart)="onDragStart($event)"
   (drop)="onDrop($event)"
   (contextmenu)="onContextMenu($event)">
-  {{employee.firstName}} {{employee.lastName}}
+  <div class="person-photo">
+    <img src="{{employee.avatarPhotoLink || './assets/icons/man.png'}}" alt="avatar">
+  </div>
+  <div class="person-main-inform">
+    <div class="value">{{employee.firstName}}</div>
+    <div class="value">{{employee.lastName}}</div>
+    <div class="value">{{employee.department}}</div>
+  </div>
 </div>
 
-<app-two-columns-list
-  [isInformDisplaying]="isAdditionalInformOpen"
-  [listInform]="employee"
-></app-two-columns-list>
+<!--<app-two-columns-list-->
+<!--  [isInformDisplaying]="isAdditionalInformOpen"-->
+<!--  [listInform]="employee"-->
+<!--&gt;</app-two-columns-list>-->
 
 <div
   *ngIf="employee.subordinates.length"

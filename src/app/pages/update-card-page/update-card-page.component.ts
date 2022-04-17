@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ResourceService} from "../../services/resource.service";
-import {IListChartItem, ISegregatedListChartItem} from "../../models/interfaces";
+import {IListChartItem} from "../../models/interfaces";
 import {FormControl, FormGroup} from "@angular/forms";
 import {CardPageActionsService} from "../../services/card-page-actions.service";
 
@@ -14,6 +14,7 @@ import {CardPageActionsService} from "../../services/card-page-actions.service";
 export class UpdateCardPageComponent implements OnInit, AfterViewInit, OnDestroy {
   private dataSubscription: Subscription = new Subscription();
   public segregatedCardInform: any = null;
+  public cardInformId = 0;
   public cardInform: IListChartItem | null = null;
   public cardForm: FormGroup = new FormGroup({});
   public isCardFormReady = false;
@@ -35,6 +36,7 @@ export class UpdateCardPageComponent implements OnInit, AfterViewInit, OnDestroy
 
   ngAfterViewInit(): void {
     this.dataSubscription.add(this.activateRoute.params.subscribe(params => {
+      this.cardInformId = params.cardId;
       this.getPersonCardInform(params.cardId);
     }));
   }
@@ -80,7 +82,13 @@ export class UpdateCardPageComponent implements OnInit, AfterViewInit, OnDestroy
       ...this.cardForm.value.personalInform,
     }
     this.dataSubscription.add(this.resourceService.updatePersonCard(cardInform).subscribe(() => {
+      this.getPersonCardInform(cardInform.id);
     }));
+  }
+
+  updateCardInformAvatar(avatarPhotoLink: any): void {
+    if (this.cardInform) {this.cardInform.avatarPhotoLink = avatarPhotoLink; }
+    this.updatePersonCardInform();
   }
 
   ngOnDestroy() {

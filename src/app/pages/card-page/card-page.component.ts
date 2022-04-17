@@ -15,6 +15,7 @@ export class CardPageComponent implements OnInit, OnDestroy {
   public cardInform: IListChartItem | null = null;
   public segregatedCardInform: ISegregatedListChartItem | null = null;
   public isCardFormReady = false;
+  public cardInformId = 0;
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -25,6 +26,7 @@ export class CardPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.dataSubscription.add(this.activateRoute.params.subscribe(params => {
+      this.cardInformId = params.cardId;
       this.getPersonCardInform(params.cardId);
     }));
   }

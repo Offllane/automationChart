@@ -46,14 +46,17 @@
 
     .card-photo {
       height: 200px;
-      padding: 20px;
+      width: 200px;
+      padding: 10px;
       margin-right: 30px;
       box-shadow: inset -3px -3px 3px 0 rgb(0 35 148 / 20%), inset 3px 3px 3px 0 rgb(255 255 255 / 50%);
       border-radius: 10px;
 
       &>img {
         height: 100%;
-        object-fit: contain;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 5px;
       }
     }
 

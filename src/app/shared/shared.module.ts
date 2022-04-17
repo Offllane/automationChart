@@ -9,6 +9,7 @@ import { ChartSelectorComponent } from './chart-selector/chart-selector.componen
 import { PopupComponent } from './popup/popup.component';
 import { LoaderComponent } from './loader/loader.component';
 import { ContextMenuComponent } from './context-menu/context-menu.component';
+import { AvatarCloudinaryComponent } from './avatar-cloudinary/avatar-cloudinary.component';
 
 
 
@@ -21,19 +22,21 @@ import { ContextMenuComponent } from './context-menu/context-menu.component';
     ChartSelectorComponent,
     PopupComponent,
     LoaderComponent,
-    ContextMenuComponent
+    ContextMenuComponent,
+    AvatarCloudinaryComponent
   ],
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule
     ],
-    exports: [
-        HeaderComponent,
-        TwoColumnsListComponent,
-        PopupComponent,
-        LoaderComponent,
-        ContextMenuComponent
-    ]
+  exports: [
+    HeaderComponent,
+    TwoColumnsListComponent,
+    PopupComponent,
+    LoaderComponent,
+    ContextMenuComponent,
+    AvatarCloudinaryComponent
+  ]
 })
 export class SharedModule { }

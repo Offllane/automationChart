@@ -84,4 +84,8 @@ export class ResourceService {
   public getAccountPermission(){
     return this.http.get(this.api + '/api/getUsersPermission');
   }
+
+  public uploadImage(formData: FormData) {
+    return this.http.post('http://api.cloudinary.com/v1_1/offllane/upload', formData);
+  }
 }

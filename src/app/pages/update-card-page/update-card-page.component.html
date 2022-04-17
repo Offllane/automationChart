@@ -9,9 +9,11 @@
     <section class="wrapper" formGroupName="generalInform">
       <div class="section-title">Основная информация</div>
       <div class="card-information">
-        <div class="card-photo">
-          <img src="assets/icons/man.png" alt="person-avatar">
-        </div>
+        <app-avatar-cloudinary
+          [cardInformId]="cardInformId"
+          [avatarPhotoLink]="cardInform?.avatarPhotoLink"
+          (avatarPhotoLinkChanged)="updateCardInformAvatar($event)"
+          ></app-avatar-cloudinary>
         <div class="card-properties">
           <div class="card-property" *ngFor="let property of segregatedCardInform.generalInform">
             <label class="property-label">{{property.propertyLabel}}</label>

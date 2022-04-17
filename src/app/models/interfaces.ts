@@ -20,7 +20,7 @@ export interface IListChartItem extends ICardIdentifiers{
   country?: string;
   phoneNumber?: string;
   education?: string;
-  photo?: any;
+  avatarPhotoLink?: any;
 }
 
 export interface ISegregatedListChartItem {

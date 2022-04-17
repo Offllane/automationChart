@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {CloudinaryModule} from '@cloudinary/ng';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +29,7 @@ import { CardPageComponent } from './pages/card-page/card-page.component';
     imports: [
         BrowserModule,
         HttpClientModule,
+        CloudinaryModule,
         AppRoutingModule,
         AuthModule,
         HomeModule,

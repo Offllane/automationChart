@@ -3,10 +3,11 @@
 .chart-item-card {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: $card-width;
   height: $card-height;
+  padding: 5px;
   border-radius: 10px;
   box-shadow:inset -3px -3px 3px 0 rgba(0, 35, 148,.2), // TODO $shadow-size (for now it's hardcoded 3px but should add it as variable
   inset 3px 3px 3px 0 rgba(255,255,255,0.5);
@@ -16,9 +17,38 @@
   text-align: center;
   transition-duration: .3s;
   cursor: pointer;
+  overflow: hidden;
 
-  &.buffer {
+  .person-photo {
+    display: flex;
+    align-items: center;
+    width: 30%;
 
+    img {
+      width: 100%;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+  }
+
+  .person-main-inform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 65%;
+
+    .value {
+      height: 30%;
+      width: 100%;
+      text-align: start;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 }
 .chart-item-card:hover, .chart-item-card-active {
