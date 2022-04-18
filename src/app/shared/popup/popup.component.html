@@ -16,63 +16,6 @@
             <button type="submit">Создать схему</button>
           </form>
         </div>
-        <div *ngSwitchCase="'addPersonCard'">
-          <form class="form" [formGroup]="listForm" (ngSubmit)="createNewPersonCard()">
-            <div class="input-field">
-              <label for="name">Имя:</label>
-              <input type="text" id="name" name="Name" formControlName="firstName">
-            </div>
-            <div class="input-field">
-              <label for="surname">Фамилия:</label>
-              <input type="text" id="surname" name="Surname" formControlName="lastName">
-            </div>
-            <div class="input-field">
-              <label for="patronymic">Отчество:</label>
-              <input type="text" id="patronymic" name="Patronymic" formControlName="patronymic">
-            </div>
-            <div class="input-field">
-              <label for="birthdate">Дата рождения:</label>
-              <input type="date" id="birthdate" name="Birthdate" formControlName="birthDate">
-            </div>
-            <div class="input-field">
-              <label for="age">Возраст:</label>
-              <input type="number" id="age" name="Age" formControlName="age">
-            </div>
-            <div class="input-field">
-              <label for="sex">Пол:</label>
-              <input type="text" id="sex" name="Sex" formControlName="sex">
-            </div>
-            <div class="input-field">
-              <label for="position">Должность:</label>
-              <input type="text" id="position" name="Position" formControlName="position">
-            </div>
-            <div class="input-field">
-              <label for="department">Департамент:</label>
-              <input type="text" id="department" name="Department" formControlName="department">
-            </div>
-            <div class="input-field">
-              <label for="passportData">Паспортные данные:</label>
-              <input type="text" id="passportData" name="PassportData" formControlName="passport">
-            </div>
-            <div class="input-field">
-              <label for="city">Город:</label>
-              <input type="text" id="city" name="City" formControlName="city">
-            </div>
-            <div class="input-field">
-              <label for="country">Страна:</label>
-              <input type="text" id="country" name="Country" formControlName="country">
-            </div>
-            <div class="input-field">
-              <label for="phone">Телефон:</label>
-              <input type="tel" id="phone" name="PhoneNumber" formControlName="phoneNumber">
-            </div>
-            <div class="input-field">
-              <label for="education">Образование:</label>
-              <input type="text" id="education" name="Education" formControlName="education">
-            </div>
-            <button class="add-new-button" type="submit">Добавить</button>
-          </form>
-        </div>
         <div *ngSwitchCase="'addGroup'">
           <form ngNativeValidate class="add-chart-form" (ngSubmit)="createNewGroup()">
             <div>

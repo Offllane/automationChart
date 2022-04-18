@@ -8,6 +8,7 @@ import {AuthGuardService, RoleGuardService} from "./services/auth-guard.service"
 import {AdminPageComponent} from "./pages/admin-page/admin-page.component";
 import {UpdateCardPageComponent} from "./pages/update-card-page/update-card-page.component";
 import {CardPageComponent} from "./pages/card-page/card-page.component";
+import {CreateCardPageComponent} from "./pages/create-card-page/create-card-page.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminPageComponent, canActivate: [RoleGuardService]},
   { path: 'chart', component: HomeComponent, canActivate: [AuthGuardService]},
   { path: 'update-card/:cardId', component: UpdateCardPageComponent, canActivate: [AuthGuardService]},
+  { path: 'create-card', component: CreateCardPageComponent, canActivate: [AuthGuardService]},
   { path: 'card/:cardId', component: CardPageComponent, canActivate: [AuthGuardService]},
   { path: '**', component: HomeComponent, canActivate: [AuthGuardService]}
 ]

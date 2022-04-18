@@ -86,14 +86,6 @@ export class PopupComponent implements OnInit, OnDestroy {
     this.closePopup();
   }
 
-  public createNewPersonCard(): void {
-    this.listForm.patchValue({chartId: this.chartService.currentChartId});
-    this.dataSubscription.add(this.resourceService.addNewPersonCard(this.listForm.value).subscribe(() => {
-      this.homeService.getUserCharts();
-    }));
-    this.closePopup();
-  }
-
   public deletePersonCard(): void {
      this.resourceService.deletePersonCard(this.popupConfig.popupInform.cardId).subscribe(() => {
         this.homeService.getUserCharts();

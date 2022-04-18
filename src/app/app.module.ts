@@ -16,6 +16,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { UpdateCardPageComponent } from './pages/update-card-page/update-card-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { CardPageComponent } from './pages/card-page/card-page.component';
+import { CreateCardPageComponent } from './pages/create-card-page/create-card-page.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CardPageComponent } from './pages/card-page/card-page.component';
     AdminPageComponent,
     UpdateCardPageComponent,
     PageNotFoundComponent,
-    CardPageComponent
+    CardPageComponent,
+    CreateCardPageComponent
   ],
     imports: [
         BrowserModule,

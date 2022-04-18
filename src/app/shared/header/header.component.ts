@@ -81,10 +81,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public openAddPersonCardPopup(): void {
-    this.popupService.popupState.next({
-      popupTitle: 'Добавить человека',
-      popupMode: "addPersonCard"
-    });
+    this.router.navigate(['create-card']);
   }
 
   public openAddGroupPopup(): void {

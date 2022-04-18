@@ -11,7 +11,7 @@ export interface IListChartItem extends ICardIdentifiers{
   lastName?: string;
   patronymic?: string;
   birthDate?: string;
-  age?: number;
+  age?: number | string;
   sex?: string;
   position?: string;
   department?: string;

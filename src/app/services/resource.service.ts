@@ -46,7 +46,7 @@ export class ResourceService {
   }
 
   public addNewPersonCard(personCard: any) {
-    return this.http.post(this.api + '/api/personCard', personCard);
+    return this.http.post<IListChartItem>(this.api + '/api/personCard', personCard);
   }
 
   public updatePersonCard(personCard: IListChartItem) {
