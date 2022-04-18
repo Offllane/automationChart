@@ -86,12 +86,21 @@ export class PopupComponent implements OnInit, OnDestroy {
     this.closePopup();
   }
 
+  public deleteChart(): void {
+    console.log(this.popupConfig);
+    this.dataSubscription.add(this.resourceService.deleteChart(this.popupConfig.popupInform.chartId).subscribe(() => {
+      this.homeService.getUserCharts();
+    }, () => {
+      this.homeService.getUserCharts();
+    }));
+    this.closePopup();
+  }
+
   public deletePersonCard(): void {
      this.resourceService.deletePersonCard(this.popupConfig.popupInform.cardId).subscribe(() => {
         this.homeService.getUserCharts();
      },
-       error => {
-         console.log(error);
+       () => {
          this.homeService.getUserCharts();
        });
      this.closePopup();

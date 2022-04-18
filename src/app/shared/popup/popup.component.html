@@ -48,6 +48,16 @@
             <button class="delete" (click)="deletePersonCard()">Удалить</button>
           </div>
         </div>
+        <div *ngSwitchCase="'deleteChartConfirmation'">
+          <div class="popup-inform">
+            <p>Если вы удалите схему, то все сотрудники в этой схеме будут также удалены.</p>
+            <p>Если вы хотите этого избежать, то перед удалением перенесите всех необходимых сотрудников в другую схему.</p>
+          </div>
+          <div class="popup-actions">
+            <button class="cancel" (click)="closePopup()">Отмена</button>
+            <button class="delete" (click)="deleteChart()">Удалить</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

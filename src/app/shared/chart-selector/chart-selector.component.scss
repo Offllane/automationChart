@@ -1,27 +1,88 @@
 @import 'src/app/shared/shared.scss';
 
-.chart-selector {
-  width: 200px;
-  height: 50px;
-  margin-right: 30px;
-  background-color: $background;
-  color: $text-color;
-  border: none;
-  padding: 5px 5px 5px 10px;
-  border-radius: 5px;
-  box-shadow: inset -3px -3px 3px 0 rgb(255 255 255 / 50%), inset 3px 3px 3px 0 rgb(0 35 148 / 20%);
-  font-size: 16px;
-  font-weight: bold;
-  text-overflow: ellipsis;
-
-  option {
+.drop-down {
+  cursor: pointer;
+  .current-chart {
+    width: 200px;
+    height: 50px;
+    margin-right: 30px;
+    background-color: $background;
+    color: $text-color;
+    border: none;
     padding: 5px 5px 5px 10px;
+    border-radius: 5px;
+    box-shadow: inset -3px -3px 3px 0 rgb(0 35 148 / 20%),inset 3px 3px 3px 0 rgb(255 255 255 / 50%);
     font-size: 16px;
+    line-height: 40px;
     font-weight: bold;
-    cursor: pointer;
+    text-overflow: ellipsis;
 
     &:hover {
-      background-color: $buffer-background;
+      box-shadow: inset -3px -3px 3px 0 rgb(255 255 255 / 50%), inset 3px 3px 3px 0 rgb(0 35 148 / 20%);
+    }
+
+    &:active {
+      box-shadow: inset -5px -5px 5px 0 rgb(255 255 255 / 50%), inset 5px 5px 5px 0 rgb(0 35 148 / 20%);
+    }
+  }
+
+  .options {
+    position: absolute;
+    background-color: $background;
+    border-radius: 5px;
+    box-shadow: inset -3px -3px 3px 0 rgb(0 35 148 / 20%), inset 3px 3px 3px 0 rgb(255 255 255 / 50%);
+    font-size: 16px;
+    font-weight: 500;
+
+    .option {
+      position: relative;
+      padding: 10px 0 10px 15px;
+
+      .option-wrapper {
+        .chart-name {
+          width: 185px;
+        }
+
+        .additional-options {
+          display: none;
+          position: absolute;
+          width: 200px;
+          top: 0;
+          left: 200px;
+          background-color: $background;
+          border-radius: 5px;
+          box-shadow: inset -3px -3px 3px 0 rgb(0 35 148 / 20%),
+          inset 3px 3px 3px 0 rgb(255 255 255 / 50%);
+          overflow: hidden;
+
+          .additional-option {
+            padding: 10px 0 10px 15px;
+
+            &:hover {
+              font-weight: 700;
+              box-shadow: inset -3px -3px 3px 0 rgb(255 255 255 / 50%),
+              inset 3px 3px 3px 0 rgb(0 35 148 / 20%);
+            }
+          }
+        }
+      }
+
+      &:hover {
+        font-weight: 700;
+        border-radius: 5px;
+        box-shadow: inset -3px -3px 3px 0 rgb(255 255 255 / 50%),
+        inset 3px 3px 3px 0 rgb(0 35 148 / 20%);
+
+        .additional-options {
+          font-weight: 500;
+          display: block !important;
+        }
+      }
+
+      &:active {
+        box-shadow: inset -5px -5px 5px 0 rgb(255 255 255 / 50%),
+        inset 5px 5px 5px 0 rgb(0 35 148 / 20%);
+      }
     }
   }
 }

@@ -41,6 +41,10 @@ export class ResourceService {
     return this.http.post(this.api + '/api/chart', {"chartName": chartName})
   }
 
+  public deleteChart(chartId: number) {
+    return this.http.delete(this.api + '/api/chart/' + chartId);
+  }
+
   public getPersonCard(cardId: number) {
     return this.http.get<IListChartItem>(this.api + '/api/personCard/' + cardId);
   }

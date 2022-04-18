@@ -1,8 +1,19 @@
-<select name="chartSelector" class="chart-selector"
-        [(ngModel)]="selectedChartId"
-        (change)="onChartChange()">
-  <option value="-1" disabled selected>Выберите схему</option>
-  <option *ngFor="let chart of chartsArray"  value="{{chart.id}}">{{chart.chartName}}</option>
-</select>
-
+<div class="drop-down">
+  <div class="current-chart" (click)="openDropDown()">{{selectedChartName}}</div>
+  <div class="options" *ngIf="dropDownState === 'open'">
+    <div *ngFor="let chart of chartsArray"
+         class="option"
+         (click)="onChartChange(chart.id)">
+      <div class="option-wrapper">
+        <div class="chart-name">{{chart.chartName}}</div>
+        <div class="additional-options">
+          <div class="additional-option">Изменить имя</div>
+          <div class="additional-option">Перенести схему</div>
+          <div class="additional-option">Поделиться схемой</div>
+          <div class="additional-option" (click)="openDeleteChartConfirmationPopup(chart.id)">Удалить</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
