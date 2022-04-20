@@ -1,0 +1,71 @@
+@import 'src/app/shared/shared';
+@import 'src/app/shared/page-shared';
+@import "src/app/shared/icons.scss";
+
+
+.user-list {
+  height: 500px;
+  width: 250px;
+  background-color: $background;
+  color: $text-color;
+  border-radius: 5px;
+  box-shadow: inset -3px -3px 3px 0 rgb(0 35 148 / 20%),inset 3px 3px 3px 0 rgb(255 255 255 / 50%);
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 500;
+  cursor: pointer;
+  overflow: overlay;
+
+  .user {
+    width: 100%;
+    padding: 5px;
+
+    &.selected {
+      font-weight: 700;
+      border-radius: 5px;
+      box-shadow: inset -3px -3px 3px 0 rgb(255 255 255 / 50%),
+      inset 3px 3px 3px 0 rgb(0 35 148 / 20%);
+    }
+
+    &:hover {
+      font-weight: 700;
+      border-radius: 5px;
+      box-shadow: inset -3px -3px 3px 0 rgb(255 255 255 / 50%),
+      inset 3px 3px 3px 0 rgb(0 35 148 / 20%);
+    }
+
+    &:active {
+      box-shadow: inset -5px -5px 5px 0 rgb(255 255 255 / 50%),
+      inset 5px 5px 5px 0 rgb(0 35 148 / 20%);
+    }
+  }
+
+  .empty-list {
+    width: 100%;
+    padding: 5px;
+  }
+}
+
+.share-button {
+  margin: auto 0 0 auto;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 250px;
+  margin-bottom: 10px;
+
+  label {
+    position: absolute;
+    display: block;
+    width: 30px;
+    height: 30px;
+    top: 8px;
+    left: 8px;
+  }
+
+  input {
+    width: 100%;
+    padding-left: 40px;
+  }
+}

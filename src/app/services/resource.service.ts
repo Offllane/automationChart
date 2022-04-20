@@ -5,7 +5,7 @@ import {
   IListChartItem,
   ILoginInform,
   IPermissionList,
-  IUser,
+  IUser, IUserChart,
   IUserCredentials
 } from "../models/interfaces";
 import {Subject} from "rxjs";
@@ -34,7 +34,7 @@ export class ResourceService {
   }
 
   public getUserCharts() {
-    return this.http.get(this.api + '/api/chart');
+    return this.http.get<Array<IChartParams>>(this.api + '/api/chart');
   }
 
   public addNewChart(chartName: any) {
@@ -77,6 +77,11 @@ export class ResourceService {
     return this.http.get<Array<IUser>>(this.api + '/api/userAccounts');
   }
 
+  public getUsersByLogin(login: string) {
+    const userObject = { Login: login};
+    return this.http.post<Array<IUser>>(this.api + '/api/getUsersByLogin', userObject);
+  }
+
   public addUserToGroup(group: IGroup, userId: number) {
     return this.http.put(this.api + '/api/permissionGroups/' + userId, {id: group.id, groupName: group.groupName, permissionListId: group.permissionListId} )
   }
@@ -91,6 +96,10 @@ export class ResourceService {
 
   public getAccountPermission(){
     return this.http.get(this.api + '/api/getUsersPermission');
+  }
+
+  public addChartToUser(userChart: IUserChart) {
+    return this.http.post(this.api + '/api/UserChart', userChart);
   }
 
   public uploadImage(formData: FormData) {

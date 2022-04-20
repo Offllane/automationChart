@@ -97,4 +97,9 @@ export interface IPersonCardContextMenuActions {
   action: IPersonCardContextAction;
 }
 
+export interface IUserChart {
+  userId: number;
+  chartId: number;
+}
+
 export  type IPersonCardContextAction = 'openPersonCard' | 'updatePersonCard' | 'deletePersonCard';

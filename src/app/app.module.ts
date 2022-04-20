@@ -17,6 +17,7 @@ import { UpdateCardPageComponent } from './pages/update-card-page/update-card-pa
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { CardPageComponent } from './pages/card-page/card-page.component';
 import { CreateCardPageComponent } from './pages/create-card-page/create-card-page.component';
+import { ShareChartPageComponent } from './pages/share-chart-page/share-chart-page.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { CreateCardPageComponent } from './pages/create-card-page/create-card-pa
     UpdateCardPageComponent,
     PageNotFoundComponent,
     CardPageComponent,
-    CreateCardPageComponent
+    CreateCardPageComponent,
+    ShareChartPageComponent
   ],
     imports: [
         BrowserModule,

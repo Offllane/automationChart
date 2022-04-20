@@ -6,6 +6,7 @@ import {Subscription} from "rxjs";
 import {HomeService} from "../../services/home.service";
 import {Switch} from "../../models/types";
 import {PopupsService} from "../../services/popups.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-chart-selector',
@@ -22,7 +23,8 @@ export class ChartSelectorComponent implements OnInit, OnDestroy {
     private chartService: ChartService,
     private resourceService: ResourceService,
     private homeService: HomeService,
-    private popupService: PopupsService
+    private popupService: PopupsService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -57,6 +59,10 @@ export class ChartSelectorComponent implements OnInit, OnDestroy {
       popupMode: 'deleteChartConfirmation',
       popupInform: { chartId: chartId }
     })
+  }
+
+  public openShareChartPage(chartId: number): void {
+    this.router.navigate(['/share-chart/' + chartId])
   }
 
   ngOnDestroy(): void {
