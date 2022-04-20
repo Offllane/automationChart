@@ -32,7 +32,11 @@ export class ChartSelectorComponent implements OnInit, OnDestroy {
 
     this.dataSubscription.add(this.homeService.usersChart.subscribe(usersCharts => {
       this.chartsArray = usersCharts;
-      if (this.chartsArray.length !== 0) { this.onChartChange(this.chartsArray[0].id); }
+      if (this.chartService.currentChartId !== 0) {
+        let neededIndex = this.chartsArray.findIndex(chart => chart.id === this.chartService.currentChartId);
+        neededIndex = neededIndex === -1 ? 0 : neededIndex;
+        this.onChartChange(this.chartsArray[neededIndex].id);
+      }
     }));
     this.dataSubscription.add(this.popupService.popupState.subscribe(() => {
       this.dropDownState = 'close';
