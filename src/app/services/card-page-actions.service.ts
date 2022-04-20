@@ -18,7 +18,8 @@ export class CardPageActionsService {
       ],
       workInform: [
         {propertyLabel: 'Должность', propertyFormControlValue: 'position'},
-        {propertyLabel: 'Дирекция', propertyFormControlValue: 'department'}
+        {propertyLabel: 'Дирекция', propertyFormControlValue: 'department'},
+        {propertyLabel: 'Номер телефона', propertyFormControlValue: 'phoneNumber'}
       ],
       personalInform: [
         {propertyLabel: 'Город', propertyFormControlValue: 'city'},
