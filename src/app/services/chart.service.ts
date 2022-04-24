@@ -61,15 +61,16 @@ export class ChartService implements OnDestroy{
   }
 
   public setChartPersonCard(chartCards: Array<IListChartItem>) {
-    const orderedCards = this.orderInformation(chartCards);
+    const destructedChartCards = [...chartCards];
+    const orderedCards = this.orderInformation(destructedChartCards);
     const nullCardsWithSubordinates = orderedCards.slice(1); // null items with Subordinates
     let bufferCards : any = []
     for (let i = 0; i < nullCardsWithSubordinates.length; i++) {
-      const updatedList = this.replaceItemsBetweenLists(chartCards, bufferCards, nullCardsWithSubordinates[i]);
+      const updatedList = this.replaceItemsBetweenLists(destructedChartCards, bufferCards, nullCardsWithSubordinates[i]);
       bufferCards = updatedList.endList;
     }
 
-    this.listChartData.next(chartCards);
+    this.listChartData.next(destructedChartCards);
     this.bufferListChartData.next(bufferCards);
   }
 
