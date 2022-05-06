@@ -57,6 +57,14 @@ export class ChartSelectorComponent implements OnInit, OnDestroy {
     this.dropDownState = 'close';
   }
 
+  public openRenameChartPopup(chart: IChartParams): void {
+    this.popupService.popupState.next({
+      popupTitle: `Переименовать схему ${chart.chartName}`,
+      popupMode: 'renameChart',
+      popupInform: { chartId: chart.id }
+    })
+  }
+
   public openDeleteChartConfirmationPopup(chartId: number): void {
     this.popupService.popupState.next({
       popupTitle: 'Вы уверены, что хотите удалить схему?',

@@ -16,6 +16,15 @@
             <button type="submit">Создать схему</button>
           </form>
         </div>
+        <div *ngSwitchCase="'renameChart'">
+          <form ngNativeValidate class="add-chart-form" (ngSubmit)="renameChart()">
+            <div>
+              <label for="chartRename">Название схемы: </label>
+              <input id="chartRename" required placeholder="Имя схемы" type="text" name="chartName" [(ngModel)]="addChartPopupData.chartName"/>
+            </div>
+            <button type="submit">Переименовать</button>
+          </form>
+        </div>
         <div *ngSwitchCase="'addGroup'">
           <form ngNativeValidate class="add-chart-form" (ngSubmit)="createNewGroup()">
             <div>

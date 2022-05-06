@@ -41,6 +41,10 @@ export class ResourceService {
     return this.http.post(this.api + '/api/chart', {"chartName": chartName})
   }
 
+  public renameChart(chart: any) {
+    return this.http.put(this.api + '/api/chart/changeName', chart);
+  }
+
   public deleteChart(chartId: number) {
     return this.http.delete(this.api + '/api/chart/' + chartId);
   }

@@ -21,24 +21,6 @@ export class PopupComponent implements OnInit, OnDestroy {
     popupMode: 'addChart',
     popupInform: {}
   }
-  public listForm: FormGroup = this.fb.group({
-    id: [0],
-    parentId: [null],
-    chartId: [this.chartService.currentChartId],
-    age: [''],
-    birthDate: [''],
-    city: [''],
-    country: [''],
-    department: [''],
-    education: [''],
-    firstName: [''],
-    lastName: [''],
-    passport: [''],
-    patronymic: [''],
-    phoneNumber: [''],
-    position: [''],
-    sex: ['']
-  });
 
   public addChartPopupData = {
     chartName: ''
@@ -75,6 +57,8 @@ export class PopupComponent implements OnInit, OnDestroy {
   }
 
   public closePopup(): void {
+    this.addChartPopupData.chartName = '';
+    this.addGroupPopupData.groupName = '';
     this.isPopupOpen = false;
     this.popupService.popupState.next(null);
   }
@@ -86,8 +70,18 @@ export class PopupComponent implements OnInit, OnDestroy {
     this.closePopup();
   }
 
+  public renameChart(): void {
+    const dataForRequest = {
+      Id: this.popupConfig.popupInform.chartId,
+      chartName: this.addChartPopupData.chartName
+    }
+    this.dataSubscription.add(this.resourceService.renameChart(dataForRequest).subscribe(() => {
+      this.homeService.getUserCharts();
+    }));
+    this.closePopup();
+  }
+
   public deleteChart(): void {
-    console.log(this.popupConfig);
     this.dataSubscription.add(this.resourceService.deleteChart(this.popupConfig.popupInform.chartId).subscribe(() => {
       this.homeService.getUserCharts();
     }, () => {

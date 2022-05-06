@@ -7,7 +7,7 @@
       <div class="option-wrapper">
         <div class="chart-name">{{chart.chartName}}</div>
         <div class="additional-options">
-          <div class="additional-option">Изменить имя</div>
+          <div class="additional-option" (click)="openRenameChartPopup(chart)">Изменить имя</div>
           <div class="additional-option">Перенести схему</div>
           <div class="additional-option" (click)="openShareChartPage(chart.id)">Поделиться схемой</div>
           <div class="additional-option" (click)="openDeleteChartConfirmationPopup(chart.id)">Удалить</div>
