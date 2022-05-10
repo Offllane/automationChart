@@ -25,6 +25,22 @@
             <button type="submit">Переименовать</button>
           </form>
         </div>
+        <div *ngSwitchCase="'copyChart'">
+          <form ngNativeValidate class="add-chart-form copy-chart" (ngSubmit)="copyChartToAnotherChart(popupConfig.popupInform.chartId, selectedChart?.id)">
+            <label>Перенести в:</label>
+            <div class="drop-down">
+              <div class="current-chart" (click)="openDropDown()">{{selectedChartName}}</div>
+              <div class="options" *ngIf="dropDownState === 'open'">
+                <div *ngFor="let chart of chartsArray" class="option" (click)="onChartChange(chart)">
+                  <div class="option-wrapper">
+                    <div class="chart-name">{{chart.chartName}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button [disabled]="!selectedChart" type="submit">Копировать</button>
+          </form>
+        </div>
         <div *ngSwitchCase="'addGroup'">
           <form ngNativeValidate class="add-chart-form" (ngSubmit)="createNewGroup()">
             <div>

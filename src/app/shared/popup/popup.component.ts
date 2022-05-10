@@ -1,12 +1,12 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PopupsService} from "../../services/popups.service";
 import {Subscription} from "rxjs";
-import {IListChartItem, IPopupConfig, IUser, IUserInGroup} from "../../models/interfaces";
+import {IChartParams, IPopupConfig, IUser} from "../../models/interfaces";
 import {ResourceService} from "../../services/resource.service";
 import {HomeService} from "../../services/home.service";
 import {ChartService} from "../../services/chart.service";
 import {AdminService} from "../../services/admin.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {Switch} from "../../models/types";
 
 @Component({
   selector: 'app-popup',
@@ -21,7 +21,6 @@ export class PopupComponent implements OnInit, OnDestroy {
     popupMode: 'addChart',
     popupInform: {}
   }
-
   public addChartPopupData = {
     chartName: ''
   }
@@ -29,14 +28,17 @@ export class PopupComponent implements OnInit, OnDestroy {
     groupName: ''
   }
   public usersAccount: Array<IUser> = [];
+  public chartsArray: Array<IChartParams> = new Array<IChartParams>();
+  public selectedChartName: string = 'Выберите схему';
+  public dropDownState: Switch = 'close';
+  public selectedChart: IChartParams | null = null;
 
   constructor(
     private popupService: PopupsService,
     private resourceService: ResourceService,
     private homeService: HomeService,
     private chartService: ChartService,
-    private adminService: AdminService,
-    private fb: FormBuilder
+    private adminService: AdminService
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +46,7 @@ export class PopupComponent implements OnInit, OnDestroy {
       if (popupState) {
         this.isPopupOpen = true;
         this.popupConfig = popupState;
+        this.chartsArray = this.popupConfig?.popupInform?.chartsArray;
 
         if (popupState.popupMode === 'addUserToGroup') {
           this.resourceService.getAllUsers().subscribe((data: Array<IUser>) => {
@@ -109,6 +112,25 @@ export class PopupComponent implements OnInit, OnDestroy {
 
   public addUserToGroup(userId: number) {
     this.adminService.userIdToAddingToGroup.next(userId);
+    this.closePopup();
+  }
+
+  public openDropDown(): void {
+    this.dropDownState = this.dropDownState === 'open' ? 'close' : 'open';
+  }
+
+  public onChartChange(chart: IChartParams): void {
+    this.selectedChart = chart;
+    this.selectedChartName = chart.chartName;
+    this.dropDownState = 'close';
+  }
+
+  copyChartToAnotherChart(startChartId: number, endChartId: number | undefined): void {
+    if (endChartId != null) {
+      this.resourceService.copyChart(startChartId, endChartId).subscribe(data => {
+        this.homeService.getUserCharts();
+      });
+    }
     this.closePopup();
   }
 

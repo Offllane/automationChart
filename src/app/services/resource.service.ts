@@ -109,4 +109,8 @@ export class ResourceService {
   public uploadImage(formData: FormData) {
     return this.http.post('http://api.cloudinary.com/v1_1/offllane/upload', formData);
   }
+
+  public copyChart(startChartId: number, endChartId: number) {
+    return this.http.post(this.api + `/api/personCard/copyChart/${startChartId}/${endChartId}`, {});
+  }
 }

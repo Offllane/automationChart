@@ -77,6 +77,14 @@ export class ChartSelectorComponent implements OnInit, OnDestroy {
     this.router.navigate(['/share-chart/' + chartId])
   }
 
+  public openCopyChartPopup(chart: IChartParams): void {
+    this.popupService.popupState.next({
+      popupTitle: `Перенести схему "${chart.chartName}" в другую схему`,
+      popupMode: 'copyChart',
+      popupInform: { chartId: chart.id, chartsArray: this.chartsArray }
+    })
+  }
+
   ngOnDestroy(): void {
     this.dataSubscription.unsubscribe();
   }
