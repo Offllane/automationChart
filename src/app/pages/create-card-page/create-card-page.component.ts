@@ -100,6 +100,7 @@ export class CreateCardPageComponent implements OnInit, OnDestroy {
       ...this.cardForm.value.generalInform,
       ...this.cardForm.value.workInform,
       ...this.cardForm.value.personalInform,
+      id: null
     }
     this.dataSubscription.add(this.resourceService.addNewPersonCard(cardInform).subscribe((data: IListChartItem) => {
      this.router.navigate(['update-card/' + data.id]);
