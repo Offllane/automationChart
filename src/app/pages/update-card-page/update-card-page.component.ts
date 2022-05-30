@@ -19,6 +19,7 @@ export class UpdateCardPageComponent implements OnInit, AfterViewInit, OnDestroy
   public cardForm: FormGroup = new FormGroup({});
   public isCardFormReady = false;
   public isAnyValueWasChanged = false;
+  public isLoading = false;
 
   get isUpdateButtonEnabled() {
     return this.isAnyValueWasChanged;
@@ -28,9 +29,8 @@ export class UpdateCardPageComponent implements OnInit, AfterViewInit, OnDestroy
     private activateRoute: ActivatedRoute,
     private router: Router,
     private resourceService: ResourceService,
-    private cardPageService: CardPageActionsService
-  ) {
-  }
+    private cardPageService: CardPageActionsService,
+  ) {}
 
   ngOnInit(): void {}
 
@@ -75,6 +75,7 @@ export class UpdateCardPageComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   updatePersonCardInform(): void {
+    this.isLoading = true
     const cardInform = {
       ...this.cardInform,
       ...this.cardForm.value.generalInform,
@@ -83,6 +84,8 @@ export class UpdateCardPageComponent implements OnInit, AfterViewInit, OnDestroy
     }
     this.dataSubscription.add(this.resourceService.updatePersonCard(cardInform).subscribe(() => {
       this.getPersonCardInform(cardInform.id);
+      this.isAnyValueWasChanged = false;
+      this.isLoading = false;
     }));
   }
 

@@ -46,6 +46,9 @@
         </div>
       </div>
     </section>
-    <button [disabled]="!isUpdateButtonEnabled" class="button" type="submit">Сохранить изменения</button>
+    <button [disabled]="!isUpdateButtonEnabled" class="button" type="submit">
+      <app-loader *ngIf="isLoading"></app-loader>
+      <span *ngIf="!isLoading">Сохранить изменения</span>
+    </button>
   </form>
 </div>

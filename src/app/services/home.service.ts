@@ -12,15 +12,16 @@ export class HomeService implements OnDestroy {
   public treeType: BehaviorSubject<TreeType> = new BehaviorSubject<TreeType>('horizontal');
   public bufferState: BehaviorSubject<Switch> = new BehaviorSubject<Switch>('close');
   public usersChart: BehaviorSubject<Array<any>> = new BehaviorSubject<Array<any>>([]);
+  public headerState: BehaviorSubject<Switch> = new BehaviorSubject<Switch>('open');
 
   constructor(
-    private resourceService: ResourceService
+    private resourceService: ResourceService,
   ) { }
 
   public getUserCharts(): void {
     this.dataSubscription.add(
       this.resourceService.getUserCharts().subscribe((usersCharts: any) => {
-        this.usersChart.next(usersCharts);
+        this.usersChart.next(usersCharts)
       }));
   }
 

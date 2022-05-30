@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ResourceService} from "../../services/resource.service";
+import {LoadingService} from "../../services/loading.service";
 
 @Component({
   selector: 'app-avatar-cloudinary',
@@ -18,7 +19,8 @@ export class AvatarCloudinaryComponent implements OnInit {
 
 
   constructor(
-    private resourceService: ResourceService
+    private resourceService: ResourceService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit(): void {

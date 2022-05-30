@@ -10,6 +10,7 @@ import { PopupComponent } from './popup/popup.component';
 import { LoaderComponent } from './loader/loader.component';
 import { ContextMenuComponent } from './context-menu/context-menu.component';
 import { AvatarCloudinaryComponent } from './avatar-cloudinary/avatar-cloudinary.component';
+import { LoaderWrapperComponent } from './loader-wrapper/loader-wrapper.component';
 
 
 
@@ -23,20 +24,22 @@ import { AvatarCloudinaryComponent } from './avatar-cloudinary/avatar-cloudinary
     PopupComponent,
     LoaderComponent,
     ContextMenuComponent,
-    AvatarCloudinaryComponent
+    AvatarCloudinaryComponent,
+    LoaderWrapperComponent
   ],
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule
     ],
-  exports: [
-    HeaderComponent,
-    TwoColumnsListComponent,
-    PopupComponent,
-    LoaderComponent,
-    ContextMenuComponent,
-    AvatarCloudinaryComponent
-  ]
+    exports: [
+        HeaderComponent,
+        TwoColumnsListComponent,
+        PopupComponent,
+        LoaderComponent,
+        ContextMenuComponent,
+        AvatarCloudinaryComponent,
+        LoaderWrapperComponent
+    ]
 })
 export class SharedModule { }

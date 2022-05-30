@@ -58,6 +58,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.dataSubscription.add(this.authService.accountPermission.subscribe((data: IPermissionList) => {
       this.permissionList = data;
     }));
+    this.dataSubscription.add(this.homeService.headerState.subscribe((state: Switch) => {
+      this.headerState = state;
+    }));
   }
 
   public switchTreeType(treeType: TreeType) {

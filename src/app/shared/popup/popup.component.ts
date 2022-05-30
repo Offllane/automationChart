@@ -7,6 +7,7 @@ import {HomeService} from "../../services/home.service";
 import {ChartService} from "../../services/chart.service";
 import {AdminService} from "../../services/admin.service";
 import {Switch} from "../../models/types";
+import {LoadingService} from "../../services/loading.service";
 
 @Component({
   selector: 'app-popup',
@@ -38,7 +39,8 @@ export class PopupComponent implements OnInit, OnDestroy {
     private resourceService: ResourceService,
     private homeService: HomeService,
     private chartService: ChartService,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit(): void {
@@ -85,20 +87,26 @@ export class PopupComponent implements OnInit, OnDestroy {
   }
 
   public deleteChart(): void {
+    this.loadingService.setIsLoading.next(true);
     this.dataSubscription.add(this.resourceService.deleteChart(this.popupConfig.popupInform.chartId).subscribe(() => {
       this.homeService.getUserCharts();
+      this.loadingService.setIsLoading.next(false);
     }, () => {
       this.homeService.getUserCharts();
+      this.loadingService.setIsLoading.next(false);
     }));
     this.closePopup();
   }
 
   public deletePersonCard(): void {
+    this.loadingService.setIsLoading.next(true);
      this.resourceService.deletePersonCard(this.popupConfig.popupInform.cardId).subscribe(() => {
         this.homeService.getUserCharts();
+        this.loadingService.setIsLoading.next(false);
      },
        () => {
          this.homeService.getUserCharts();
+         this.loadingService.setIsLoading.next(false);
        });
      this.closePopup();
   }
@@ -127,9 +135,14 @@ export class PopupComponent implements OnInit, OnDestroy {
 
   copyChartToAnotherChart(startChartId: number, endChartId: number | undefined): void {
     if (endChartId != null) {
+      this.loadingService.setIsLoading.next(true);
       this.resourceService.copyChart(startChartId, endChartId).subscribe(data => {
-        this.homeService.getUserCharts();
-      });
+          this.homeService.getUserCharts();
+          this.loadingService.setIsLoading.next(false);
+        },
+        () => {
+          this.loadingService.setIsLoading.next(false);
+        });
     }
     this.closePopup();
   }

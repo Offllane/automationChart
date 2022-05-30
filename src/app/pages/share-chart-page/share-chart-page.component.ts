@@ -4,6 +4,7 @@ import {ResourceService} from "../../services/resource.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subject, Subscription} from "rxjs";
 import {debounceTime} from "rxjs/operators";
+import {LoadingService} from "../../services/loading.service";
 
 @Component({
   selector: 'app-share-chart-page',
@@ -21,7 +22,8 @@ export class ShareChartPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private resourceService: ResourceService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit(): void {
@@ -56,12 +58,14 @@ export class ShareChartPageComponent implements OnInit, OnDestroy {
 
   public addChartToUser(): void {
     if (!this.currentSelectedUser) { return; }
+    this.loadingService.setIsLoading.next(true);
     const userChartData: IUserChart = {
       userId: this.currentSelectedUser?.id,
       chartId: this.currentChartId
     }
 
     this.resourceService.addChartToUser(userChartData).subscribe(() => {
+      this.loadingService.setIsLoading.next(false);
     });
   }
 
