@@ -35,9 +35,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.resourceService.getAccountPermission().subscribe((data: any) => {
       if(data[0]?.permissionList) {
         this.authService.accountPermission.next(data[0].permissionList);
-        this.loadingService.setIsLoading.next(false);
       }
-    },error => {
+      this.loadingService.setIsLoading.next(false);
+    }, error => {
         if( error.status === 401) {
           this.router.navigate(['/login']);
           this.loadingService.setIsLoading.next(false);
