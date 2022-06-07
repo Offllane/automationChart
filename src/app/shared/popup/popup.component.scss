@@ -156,6 +156,11 @@
         }
       }
 
+      .users {
+        height: 500px;
+        overflow: auto;
+      }
+
       .user-item {
         display: flex;
         justify-content: space-between;
