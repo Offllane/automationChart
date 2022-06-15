@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="container">
     <div class="popup-header">
-      <div class="popup-title">Login</div>
+      <div class="popup-title">Логин</div>
     </div>
     <div class="popup-body">
       <div>
@@ -9,12 +9,12 @@
           <form ngNativeValidate class="form" (ngSubmit)="login()">
             <div>
               <div class="input-field">
-                <label for="Login">Login: </label>
-                <input id="Login" required placeholder="Login" type="text" name="Login" [(ngModel)]="userCredentials.username"/>
+                <label for="Login">Логин: </label>
+                <input id="Login" required placeholder="Логин" type="text" name="Login" [(ngModel)]="userCredentials.username"/>
               </div>
               <div class="input-field">
-                 <label for="Password">Password: </label>
-                 <input id="Password" required placeholder="Password" type="password" name="Password" [(ngModel)]="userCredentials.password"/>
+                 <label for="Password">Пароль: </label>
+                 <input id="Password" required placeholder="Пароль" type="password" name="Password" [(ngModel)]="userCredentials.password"/>
               </div>
               <div class="error-message" *ngIf="isInvalidLoginOrPassword">Invalid user password or login</div>
               <div class="error-message placeholder" *ngIf="!isInvalidLoginOrPassword"></div>
@@ -22,12 +22,12 @@
             <div class="button-container">
               <button type="submit">
                 <app-loader *ngIf="isLoading"></app-loader>
-                <span *ngIf="!isLoading">Login</span>
+                <span *ngIf="!isLoading">Войти</span>
               </button>
             </div>
             <div class="additional-navigation">
-              <div>Not registered yet?</div>
-              <div><a class="additional-navigation-link" (click)="goToRegistrationPage()">Create account</a></div>
+              <div>Еще не зарегистрированы?</div>
+              <div><a class="additional-navigation-link" (click)="goToRegistrationPage()">Создать аккаунт</a></div>
             </div>
           </form>
         </div>

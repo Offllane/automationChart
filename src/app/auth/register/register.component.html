@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="container">
     <div class="popup-header">
-      <div class="popup-title">Create account</div>
+      <div class="popup-title">Создать аккаунт</div>
     </div>
     <div class="popup-body">
       <div>
@@ -9,22 +9,22 @@
           <form ngNativeValidate class="form" (ngSubmit)="register()">
             <div>
               <div class="input-field">
-                <label for="Login">Login:</label>
-                <input id="Login" required placeholder="Login" type="text" name="Login" [(ngModel)]="userCredentials.username"/>
+                <label for="Login">Логин:</label>
+                <input id="Login" required placeholder="Логин" type="text" name="Login" [(ngModel)]="userCredentials.username"/>
               </div>
               <div class="input-field">
-                <label for="Password">Password:</label>
-                <input id="Password" required placeholder="Password" type="text" name="Password" [(ngModel)]="userCredentials.password"/>
+                <label for="Password">Пароль:</label>
+                <input id="Password" required placeholder="Пароль" type="text" name="Password" [(ngModel)]="userCredentials.password"/>
               </div>
               <div class="error-message" *ngIf="errorMessage">{{errorMessage}}</div>
               <div class="error-message placeholder" *ngIf="!errorMessage"></div>
             </div>
             <div class="button-container">
-              <button type="submit">Sign up</button>
+              <button type="submit">Зарегистрироваться</button>
             </div>
             <div class="additional-navigation">
-              <div>Already registered?</div>
-              <div> <a class="additional-navigation-link" (click)="goToLoginPage()">Login</a></div>
+              <div>Уже зарегистрированы?</div>
+              <div> <a class="additional-navigation-link" (click)="goToLoginPage()">Войти</a></div>
             </div>
           </form>
         </div>
