@@ -7,6 +7,7 @@ import {Subscription} from "rxjs";
 import {IListChartItem, IPermissionList, IPopupConfig} from "../../models/interfaces";
 import {PopupsService} from "../../services/popups.service";
 import {AuthService} from "../../services/auth.service";
+import {CreateImageService} from "../../services/create-image.service";
 
 @Component({
   selector: 'app-header',
@@ -39,6 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private chartService: ChartService,
     private popupService: PopupsService,
     private authService: AuthService,
+    private createImageService: CreateImageService,
     private router: Router
   ) { }
 
@@ -110,6 +112,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     } else {
       this.headerState = 'open';
     }
+  }
+
+  public createImage(): void {
+    this.createImageService.createImage();
   }
 
   ngOnDestroy(): void {

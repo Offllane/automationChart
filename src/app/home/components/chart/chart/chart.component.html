@@ -1,4 +1,4 @@
-<div (dragover)="onDragOver($event)">
+<div (dragover)="onDragOver($event)" id="chartRoot">
   <div *ngFor="let employee of employeesArray" class="employees-chart"
     (dragover)="onDragOver($event)">
     <app-chart-item
