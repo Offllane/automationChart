@@ -14,14 +14,9 @@
   <div class="person-main-inform">
     <div class="value">{{employee.firstName}}</div>
     <div class="value">{{employee.lastName}}</div>
-    <div class="value">{{employee.department}}</div>
+    <div class="value">{{employee.position}}</div>
   </div>
 </div>
-
-<!--<app-two-columns-list-->
-<!--  [isInformDisplaying]="isAdditionalInformOpen"-->
-<!--  [listInform]="employee"-->
-<!--&gt;</app-two-columns-list>-->
 
 <div
   *ngIf="employee.subordinates.length"
