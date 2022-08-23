@@ -28,33 +28,40 @@ export class ChartSelectorComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.homeService.getUserCharts();
-
-    this.dataSubscription.add(this.homeService.usersChart.subscribe(usersCharts => {
-      this.chartsArray = usersCharts;
-      if (this.chartService.currentChartId !== 0) {
-        let neededIndex = this.chartsArray.findIndex(chart => chart.id === this.chartService.currentChartId);
-        neededIndex = neededIndex === -1 ? 0 : neededIndex;
-        this.onChartChange(this.chartsArray[neededIndex].id);
-      }
+    this.dataSubscription.add(this.homeService.usersChart.subscribe((userCharts: Array<IChartParams>) => {
+      if (!userCharts) { return; }
+      this.chartsArray = userCharts;
+      const selectedChart = userCharts.find(chart => chart.id === this.chartService.currentSelectedChartId) ?? null;
+      this.selectChart(selectedChart);
     }));
     this.dataSubscription.add(this.popupService.popupState.subscribe(() => {
       this.dropDownState = 'close';
     }));
+
+    this.homeService.getUserCharts();
   }
 
-  public openDropDown(): void {
+  public toggleDropDown(): void {
     this.dropDownState = this.dropDownState === 'open' ? 'close' : 'open';
   }
 
-  public onChartChange(selectedChartId: number): void {
-    this.chartService.currentChartId = selectedChartId;
-    this.selectedChartName = this.chartsArray.find(chart => chart.id === selectedChartId)?.chartName ?? 'Выберите схему';
-    const currentChartCards: Array<IListChartItem> | undefined = this.chartsArray.find(chart => chart.id == selectedChartId)?.personCard;
-    if (currentChartCards) {
-      this.chartService.setChartPersonCard(currentChartCards);
-    }
+  public closeDropDown(): void {
     this.dropDownState = 'close';
+  }
+
+  public selectChart(selectedChart: IChartParams | null): void {
+    this.chartService.currentSelectedChartId = selectedChart?.id ?? 0;
+    this.setSelectedChartName(selectedChart?.chartName);
+    this.chartService.setChartPersonCard(selectedChart?.personCard ?? []);
+    this.closeDropDown();
+  }
+
+  public setSelectedChartName(chartName: string | undefined | null) {
+    this.selectedChartName = chartName ?? 'Выберите схему';
+  }
+
+  public openShareChartPage(chartId: number): void {
+    this.router.navigate([`/share-chart/${chartId}`])
   }
 
   public openRenameChartPopup(chart: IChartParams): void {
@@ -71,10 +78,6 @@ export class ChartSelectorComponent implements OnInit, OnDestroy {
       popupMode: 'deleteChartConfirmation',
       popupInform: { chartId: chartId }
     })
-  }
-
-  public openShareChartPage(chartId: number): void {
-    this.router.navigate(['/share-chart/' + chartId])
   }
 
   public openCopyChartPopup(chart: IChartParams): void {

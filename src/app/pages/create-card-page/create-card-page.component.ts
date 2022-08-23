@@ -35,7 +35,7 @@ export class CreateCardPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.cardInform = {
       parentId: null,
-      chartId: this.chartService.currentChartId,
+      chartId: this.chartService.currentSelectedChartId,
       id: 0,
       firstName: '',
       lastName: '',

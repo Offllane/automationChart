@@ -38,11 +38,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
       this.loadingService.setIsLoading.next(false);
     }, error => {
-        if( error.status === 401) {
-          this.router.navigate(['/login']);
-          this.loadingService.setIsLoading.next(false);
-        }
-      });
+        if( error.status === 401) { this.router.navigate(['/login']); }
+        this.loadingService.setIsLoading.next(false);
+    });
     this.dataSubscription.add(this.homeService.bufferState.subscribe((bufferState: Switch) => {
       this.bufferState = bufferState;
     }));

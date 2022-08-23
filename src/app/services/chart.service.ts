@@ -18,7 +18,7 @@ export class ChartService implements OnDestroy{
   public employeeList: Array<IListChartItem> = [];
   public bufferEmployeeList: Array<IListChartItem> = [];
 
-  public currentChartId: number = 0;
+  public currentSelectedChartId: number = 0;
 
   constructor(
     private resourceService: ResourceService,

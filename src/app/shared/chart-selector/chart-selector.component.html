@@ -1,12 +1,12 @@
 <div class="drop-down">
-  <div class="current-chart" (click)="openDropDown()">{{selectedChartName}}</div>
+  <div class="current-chart" (click)="toggleDropDown()">{{selectedChartName}}</div>
   <div class="options" *ngIf="dropDownState === 'open'">
     <div *ngFor="let chart of chartsArray"
          class="option"
-         (click)="onChartChange(chart.id)">
+         (click)="selectChart(chart)">
       <div class="option-wrapper">
         <div class="chart-name">{{chart.chartName}}</div>
-        <div class="additional-options" (click)="onChartChange(chart.id)">
+        <div class="additional-options" (click)="selectChart(chart)">
           <div class="additional-option" (click)="openRenameChartPopup(chart)">Изменить имя</div>
           <div class="additional-option" (click)="openCopyChartPopup(chart)" >Копировать схему</div>
           <div class="additional-option" (click)="openShareChartPage(chart.id)">Поделиться схемой</div>
